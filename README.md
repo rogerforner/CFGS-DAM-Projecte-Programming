@@ -21,7 +21,8 @@
 
 # Qui?
 
-[Roger Forner Fabre](https://www.linkedin.com/in/rogerforner/)
+Alumne:
+- [Roger Forner Fabre](https://www.linkedin.com/in/rogerforner/)
 
 Professor:
 - Sergi Tur Badenas
