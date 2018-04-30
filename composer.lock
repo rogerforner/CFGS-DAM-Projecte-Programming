@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d5bca48e56bbf3a25645858fcab9c285",
+    "content-hash": "4940c2e0118588afcee5ecaa8b9a788a",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1264,6 +1264,38 @@
                 "uuid"
             ],
             "time": "2018-01-20T00:28:24+00:00"
+        },
+        {
+            "name": "rogerforner/scool_programming",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "packages/rogerforner/scool_programming",
+                "reference": "da3ccd32046120447ad4b4faad3c89d7be29d6c7",
+                "shasum": null
+            },
+            "require": {
+                "php": "^7.1.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Rogerforner\\ScoolProgramming\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roger Forner Fabre",
+                    "email": "hello@rogerforner.com"
+                }
+            ],
+            "description": "Paquet per dur a terme les programacions dels M\u0000duls professionals i Unitats Formatives dels diferents Cicles Formatius Professionals."
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3968,7 +4000,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "rogerforner/scool_programming": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
