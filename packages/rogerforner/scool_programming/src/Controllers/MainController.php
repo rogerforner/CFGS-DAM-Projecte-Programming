@@ -14,7 +14,9 @@ class MainController extends Controller
      */
     public function index()
     {
-        return "Paquet Scool/Programming.";
+        // Retornem la vista "programming.blade.php". Es seleccionada gràcies al scool-programming::vista.
+        // scool-programming:: es definit en la instanciació de les vistes en el ServiceProvider del paquet.
+        return view('scool-programming::programming');
     }
 
     /**

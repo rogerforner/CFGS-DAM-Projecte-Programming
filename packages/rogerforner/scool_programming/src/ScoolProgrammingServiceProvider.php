@@ -15,6 +15,9 @@ class ScoolProgrammingServiceProvider extends ServiceProvider
     {
         // Instanciar les rutes.
         $this->loadRoutesFrom(__DIR__.'/routes.php');
+
+        // Instanciar les vistes.
+        $this->loadViewsFrom(__DIR__.'/views', 'scool-programming');
     }
 
     /**
