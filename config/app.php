@@ -150,6 +150,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Rogerforner\ScoolProgramming\ScoolProgrammingServiceProvider::class,
 
         /*
          * Application Service Providers...
