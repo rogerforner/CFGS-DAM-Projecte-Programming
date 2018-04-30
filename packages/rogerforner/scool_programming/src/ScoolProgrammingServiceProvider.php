@@ -17,7 +17,7 @@ class ScoolProgrammingServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/routes.php');
 
         // Instanciar "resources" (assets i vistes).
-        $this->loadViewsFrom(__DIR__.'/views', 'scool-programming');
+        $this->loadViewsFrom(__DIR__.'/resources/views', 'scool-programming');
     }
 
     /**
