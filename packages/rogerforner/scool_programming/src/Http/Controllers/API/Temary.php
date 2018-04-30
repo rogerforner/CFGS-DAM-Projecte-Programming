@@ -1,6 +1,6 @@
 <?php
 
-namespace Rogerforner\ScoolProgramming\Controllers\API;
+namespace Rogerforner\ScoolProgramming\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

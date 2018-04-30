@@ -29,6 +29,6 @@ use Illuminate\Http\Request;
 |
 */
 // Fem que només sigui generada la ruta corresponent al mètode index() del controlador.
-Route::resource('scool-programming', 'Rogerforner\ScoolProgramming\Controllers\MainController', [
+Route::resource('scool-programming', 'Rogerforner\ScoolProgramming\Http\Controllers\MainController', [
     'only' => ['index']
 ]);

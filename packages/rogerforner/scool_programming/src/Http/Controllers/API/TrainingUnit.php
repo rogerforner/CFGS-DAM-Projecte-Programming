@@ -1,11 +1,11 @@
 <?php
 
-namespace Rogerforner\ScoolProgramming\Controllers\API;
+namespace Rogerforner\ScoolProgramming\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ProfessionalModule extends Controller
+class TrainingUnit extends Controller
 {
     /**
      * Display a listing of the resource.
