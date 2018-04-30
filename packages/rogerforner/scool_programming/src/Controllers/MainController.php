@@ -16,7 +16,7 @@ class MainController extends Controller
     {
         // Retornem la vista "programming.blade.php". Es seleccionada gràcies al scool-programming::vista.
         // scool-programming:: es definit en la instanciació de les vistes en el ServiceProvider del paquet.
-        return view('scool-programming::programming');
+        return view('scool-programming::index');
     }
 
     /**
