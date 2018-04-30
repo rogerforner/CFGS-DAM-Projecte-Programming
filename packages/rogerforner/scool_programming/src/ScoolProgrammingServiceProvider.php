@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Rogerforner\ScoolProgramming;
 
 use Illuminate\Support\ServiceProvider;
 
