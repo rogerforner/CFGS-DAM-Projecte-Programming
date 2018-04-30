@@ -15,6 +15,8 @@ class CreateProfessionalFamiliesTable extends Migration
     {
         Schema::create('professional_families', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name', 150)->unique();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

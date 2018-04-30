@@ -15,7 +15,12 @@ class CreateTrainingCyclesTable extends Migration
     {
         Schema::create('training_cycles', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name', 150)->unique();
+            $table->string('description')->nullable();
             $table->timestamps();
+            // Un Cicle Formatiu ha de pertànyer a una Família Professional.
+            $table->integer('professional_family_id')->unsigned();
+            $table->foreign('professional_family_id')->references('id')->on('professional_families');
         });
     }
 
