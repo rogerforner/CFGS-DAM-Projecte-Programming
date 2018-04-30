@@ -13,7 +13,8 @@ class ScoolProgrammingServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Instanciar les rutes.
+        $this->loadRoutesFrom(__DIR__.'/routes.php');
     }
 
     /**

@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
+| php artisan route:list (veure rutes: scool-programming)
+|
 */
 
 
@@ -23,4 +25,10 @@ use Illuminate\Http\Request;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
+| php artisan route:list (veure rutes: scool-programming)
+|
 */
+// Fem que només sigui generada la ruta corresponent al mètode index() del controlador.
+Route::resource('scool-programming', 'Rogerforner\ScoolProgramming\Controllers\MainController', [
+    'only' => ['index']
+]);
