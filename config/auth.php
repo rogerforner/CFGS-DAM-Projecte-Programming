@@ -42,7 +42,8 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            //'driver' => 'token',    // Sense Passport.
+            'driver'   => 'passport', // Amb Passport.
             'provider' => 'users',
         ],
     ],
