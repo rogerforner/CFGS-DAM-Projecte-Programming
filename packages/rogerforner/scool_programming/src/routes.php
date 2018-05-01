@@ -14,7 +14,13 @@ use Illuminate\Http\Request;
 | php artisan route:list (veure rutes: scool-programming)
 |
 */
-
+Route::group(['prefix' => 'programming', 'middleware' => 'auth:api'], function () {
+    Route::resource('fp', 'Rogerforner\ScoolProgramming\Http\Controllers\API\ProfessionalFamilyController');
+    Route::resource('cf', 'Rogerforner\ScoolProgramming\Http\Controllers\API\TrainingCycleController');
+    Route::resource('mp', 'Rogerforner\ScoolProgramming\Http\Controllers\API\ProfessionalModuleController');
+    Route::resource('uf', 'Rogerforner\ScoolProgramming\Http\Controllers\API\TrainingUnitController');
+    Route::resource('nf', 'Rogerforner\ScoolProgramming\Http\Controllers\API\TemaryController');
+});
 
 /*
 |--------------------------------------------------------------------------

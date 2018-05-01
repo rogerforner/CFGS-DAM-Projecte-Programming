@@ -5,7 +5,7 @@ namespace Rogerforner\ScoolProgramming\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class Temary extends Controller
+class ProfessionalModuleController extends Controller
 {
     /**
      * Display a listing of the resource.

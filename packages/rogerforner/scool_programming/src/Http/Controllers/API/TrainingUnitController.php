@@ -5,7 +5,7 @@ namespace Rogerforner\ScoolProgramming\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ProfessionalFamily extends Controller
+class TrainingUnitController extends Controller
 {
     /**
      * Display a listing of the resource.
