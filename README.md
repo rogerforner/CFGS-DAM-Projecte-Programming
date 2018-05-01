@@ -2,16 +2,18 @@
 
 **Taula de continguts**
 
-- [Què és?](#què-és)
+- [Què és?](#que-es)
 - [Qui?](#qui)
-- [Laravel 5.6](#laravel-56)
+- [Laravel](#laravel)
+- [Vue](#vue)
 	- [Descarregar](#descarregar)
-	- [Instal·lació](#installació)
-	- [Configuració](#configuració)
+	- [Instal·lació](#instal-lacio)
+	- [Configuració](#configuracio)
 		- [.env](#env)
 		- [Key](#key)
+		- [Passport](#passport)
 		- [Migracions (DB)](#migracions-db)
-		- [Enviament de correus electrònics](#enviament-de-correus-electrònics)
+		- [Enviament de correus electrònics](#enviament-de-correus-electronics)
 	- [Assets](#assets)
 	- [Servidor](#servidor)
 
@@ -71,6 +73,14 @@ Per poder executar sense problemes l'aplicació web hem de generar una _key_. En
 
 ```
 $ php artisan key:generate
+```
+
+### Passport
+
+Per poder ser autenticats i dur accions a través de la API hem de generar els tokens mitjançant [Passport](https://laravel.com/docs/5.6/passport)
+
+```
+$ php artisan passport:install
 ```
 
 ### Migracions (DB)
