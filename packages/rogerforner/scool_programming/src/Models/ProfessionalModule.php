@@ -11,7 +11,10 @@ class ProfessionalModule extends Model
      *
      * @var array
      */
-    protected $fillable = ['mp', 'name', 'section1', 'section2', 'section3', 'section4', 'approved'];
+    protected $fillable = [
+        'mp', 'name', 'section1', 'section2', 'section3', 'section4', 'approved',
+        'date_start', 'date_end'
+    ];
     
     /**
      * Obtenir el Cicle Formatiu del Mòdul Professional.
