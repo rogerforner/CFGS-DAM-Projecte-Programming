@@ -18,6 +18,9 @@ class CreateProfessionalFamiliesTable extends Migration
             $table->string('name', 150)->unique();
             $table->string('description')->nullable();
             $table->timestamps();
+            // Ho crea una persona (usuari).
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
