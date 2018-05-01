@@ -26,8 +26,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        // Registrem les rutes necessàries per emetre tokens i revocar tokens d'accés,
-        // clients i tokens personals.
+        // Registrem les rutes necessàries per permetre l'accés a través de tokens i,
+        // també, evitar aquest de tokens d'accés, clients i tokens personals.
         Passport::routes();
     }
 }
