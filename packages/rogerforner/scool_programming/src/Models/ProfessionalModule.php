@@ -12,19 +12,20 @@ class ProfessionalModule extends Model
      * @var array
      */
     protected $fillable = [
-        'mp',
-        'name',
-        'section1',
-        'section2',
-        'section3',
-        'section4',
-        'approved',
-        'date_start',
-        'date_end',
-        'created_by',
-        'modified_by'
+        'mp', 'name', 'section1', 'section2', 'section3', 'section4', 'approved',
+        'date_start', 'date_end'
     ];
     
+    /**
+     * Obtenir el Cicle Formatiu del Mòdul Professional.
+     * Mètode en singular.
+     */
+    public function trainingCycle()
+    {
+        // belongsTo() Un MP pertany a un CF.
+        return $this->belongsTo('Rogerforner\ScoolProgramming\Models\trainingCycle');
+    }
+
     /**
      * Obtenir les Unitats Formatives del Mòdul Professional.
      * Mètode en plural.

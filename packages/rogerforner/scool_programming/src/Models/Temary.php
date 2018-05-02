@@ -11,16 +11,7 @@ class Temary extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'nf',
-        'duration',
-        'name',
-        'description',
-        'date_start',
-        'date_end',
-        'created_by',
-        'modified_by'
-    ];
+    protected $fillable = ['nf', 'duration', 'name', 'description'];
 
     /**
      * Obtenir la Unitat Formativa del Nucli Formatiu.

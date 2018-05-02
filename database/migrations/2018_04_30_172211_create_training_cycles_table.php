@@ -19,11 +19,11 @@ class CreateTrainingCyclesTable extends Migration
             $table->string('description')->nullable();
             $table->timestamps();
             // Ho crea una persona (usuari).
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             // Un Cicle Formatiu ha de pertànyer a una Família Professional.
             $table->integer('professional_family_id')->unsigned();
-            $table->foreign('professional_family_id')->references('id')->on('professional_families');
+            $table->foreign('professional_family_id')->references('id')->on('professional_families')->onDelete('cascade');
         });
     }
 

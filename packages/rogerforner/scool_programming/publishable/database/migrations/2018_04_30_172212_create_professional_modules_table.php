@@ -24,18 +24,13 @@ class CreateProfessionalModulesTable extends Migration
             $table->boolean('approved')->default(false); // Acceptada pel cap de departament?
             $table->dateTime('date_start'); // Data d'inici del MP.
             $table->dateTime('date_end');   // Data de finalització del MP.
-            $table->string('created_by');
-            $table->string('modified_by');
             $table->timestamps();
-<<<<<<< HEAD:packages/rogerforner/scool_programming/publishable/database/migrations/2018_04_30_002110_create_professional_modules_table.php
-=======
             // Ho crea una persona (usuari).
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             // Un Mòdul Professional ha de pertànyer a un Cicle Formatiu.
             $table->integer('training_cycle_id')->unsigned();
-            $table->foreign('training_cycle_id')->references('id')->on('training_cycles');
->>>>>>> parent of ac1a959... [packProgramming] Migrations; onDelete():packages/rogerforner/scool_programming/publishable/database/migrations/2018_04_30_172212_create_professional_modules_table.php
+            $table->foreign('training_cycle_id')->references('id')->on('training_cycles')->onDelete('cascade');
         });
     }
 
