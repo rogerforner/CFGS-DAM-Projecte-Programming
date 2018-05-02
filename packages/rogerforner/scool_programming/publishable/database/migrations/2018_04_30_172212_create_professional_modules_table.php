@@ -25,10 +25,7 @@ class CreateProfessionalModulesTable extends Migration
             $table->dateTime('date_start'); // Data d'inici del MP.
             $table->dateTime('date_end');   // Data de finalització del MP.
             $table->timestamps();
-            // Ho crea una persona (usuari).
-            $table->integer('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
-            // Un Mòdul Professional ha de pertànyer a un Cicle Formatiu.
+            // Un Mòdul Professional pertany a un Cicle Formatiu.
             $table->integer('training_cycle_id')->unsigned();
             $table->foreign('training_cycle_id')->references('id')->on('training_cycles')->onDelete('cascade');
         });
