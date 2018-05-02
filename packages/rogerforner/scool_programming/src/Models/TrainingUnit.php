@@ -11,7 +11,7 @@ class TrainingUnit extends Model
      *
      * @var array
      */
-    protected $fillable = ['uf', 'name', 'section1', 'section2', 'section3', 'section4', 'approved'];
+    protected $fillable = ['uf', 'name', 'date_start', 'date_end'];
 
     /**
      * Obtenir el Mòdul Professional de la Unitat Formativa.

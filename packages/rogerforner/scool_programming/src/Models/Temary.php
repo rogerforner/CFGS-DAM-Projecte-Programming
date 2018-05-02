@@ -20,6 +20,6 @@ class Temary extends Model
     public function trainingUnit()
     {
         // belongsTo() Un NF pertany a una UF.
-        return $this->belongsTo('Rogerforner\ScoolProgramming\Models\trainingUnit');
+        return $this->belongsTo('Rogerforner\ScoolProgramming\Models\TrainingUnit');
     }
 }

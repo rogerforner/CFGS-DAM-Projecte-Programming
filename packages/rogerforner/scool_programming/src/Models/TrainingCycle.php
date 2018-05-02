@@ -20,7 +20,7 @@ class TrainingCycle extends Model
     public function professionalFamily()
     {
         // belongsTo() Un CF pertany a una FP.
-        return $this->belongsTo('Rogerforner\ScoolProgramming\Models\professionalFamily');
+        return $this->belongsTo('Rogerforner\ScoolProgramming\Models\ProfessionalFamily');
     }
 
     /**
@@ -30,6 +30,6 @@ class TrainingCycle extends Model
     public function professionalModules()
     {
         // hasMany() Un CF té N MP.
-        return $this->hasMany('Rogerforner\ScoolProgramming\Models\professionalModule');
+        return $this->hasMany('Rogerforner\ScoolProgramming\Models\ProfessionalModule');
     }
 }
