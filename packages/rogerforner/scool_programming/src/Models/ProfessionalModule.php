@@ -3,33 +3,49 @@
 namespace Rogerforner\ScoolProgramming\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Rogerforner\ScoolProgramming\Models\Department;
+use Rogerforner\ScoolProgramming\Models\TrainingUnit;
 
 class ProfessionalModule extends Model
 {
+    /**
+     * Inserting & Updating Models.
+     **************************************************************************/
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['mp', 'name', 'date_start', 'date_end'];
-    
+    protected $fillable = [
+        'mp',
+        'name',
+        'section1',
+        'section2',
+        'section3',
+        'section4',
+        'approved',
+        'public',
+        'department_id'
+    ];
+
     /**
-     * Obtenir el Cicle Formatiu del Mòdul Professional.
-     * Mètode en singular.
+     * Eloquent: Relationships.
+     **************************************************************************/
+    /**
+     * Department.
+     * Get the department of the professional module.
      */
-    public function trainingCycle()
+    public function department()
     {
-        // belongsTo() Un MP pertany a un CF.
-        return $this->belongsTo('Rogerforner\ScoolProgramming\Models\TrainingCycle');
+        return $this->belongsTo(Department::class)->withDefault();
     }
 
     /**
-     * Obtenir les Unitats Formatives del Mòdul Professional.
-     * Mètode en plural.
+     * Training Units.
+     * Get the training units for the professional module.
      */
     public function trainingUnits()
     {
-        // hasMany() Un MP té N UF.
-        return $this->hasMany('Rogerforner\ScoolProgramming\Models\ProfessionalModule');
+        return $this->hasMany(TrainingUnit::class);
     }
 }

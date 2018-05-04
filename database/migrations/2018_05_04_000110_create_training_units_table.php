@@ -19,9 +19,17 @@ class CreateTrainingUnitsTable extends Migration
             $table->string('name', 150);
             $table->dateTime('date_start'); // Data d'inici de la UF.
             $table->dateTime('date_end');   // Data de finalització de la UF.
+            $table->string('section1')->nullable(); // Activitats.
+            $table->string('section2')->nullable(); // Resultats d’aprenentatge i criteris d’avaluació.
+            $table->string('section3')->nullable(); // Continguts.
+            $table->string('section4')->nullable(); // Criteris avaluació.
+            $table->boolean('approved')->default(false); // Acceptada pel cap de departament?
+            $table->boolean('public')->default(true);    // Visible per a la resta d'usuaris del departament?
+            $table->unsignedInteger('created_by');
+            $table->unsignedInteger('updated_by');
             $table->timestamps();
             // Una Unitat Formativa pertany a un Mòdul Professional.
-            $table->integer('professional_module_id')->unsigned();
+            $table->unsignedInteger('professional_module_id');
             $table->foreign('professional_module_id')->references('id')->on('professional_modules')->onDelete('cascade');
         });
     }

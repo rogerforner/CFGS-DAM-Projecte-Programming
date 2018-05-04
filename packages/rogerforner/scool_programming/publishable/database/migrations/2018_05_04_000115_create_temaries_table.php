@@ -15,13 +15,16 @@ class CreateTemariesTable extends Migration
     {
         Schema::create('temaries', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('nf'); // 1 = NF1, 2 = NF2...
-            $table->unsignedInteger('duration');
+            $table->unsignedInteger('nf');       // 1 = NF1, 2 = NF2...
+            $table->unsignedInteger('duration'); // n hores
             $table->string('name', 150);
             $table->string('description')->nullable();
+            $table->boolean('public')->default(true); // Visible per als usuaris del departament.
+            $table->unsignedInteger('created_by');
+            $table->unsignedInteger('updated_by');
             $table->timestamps();
             // Un Nucli Formatiu pertany a una Unitat Formativa.
-            $table->integer('training_unit_id')->unsigned();
+            $table->unsignedInteger('training_unit_id');
             $table->foreign('training_unit_id')->references('id')->on('training_units')->onDelete('cascade');
         });
     }

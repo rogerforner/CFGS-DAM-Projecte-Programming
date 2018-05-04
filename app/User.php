@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
+use Rogerforner\ScoolProgramming\Models\Department;
 
 class User extends Authenticatable
 {
@@ -27,4 +28,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Eloquent: Relationships.
+     **************************************************************************/
+    /**
+     * The departments that belong to the user.
+     */
+    public function departments()
+    {
+        return $this->belongsToMany(Department::class);
+    }
 }

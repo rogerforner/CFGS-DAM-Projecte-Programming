@@ -3,33 +3,51 @@
 namespace Rogerforner\ScoolProgramming\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Rogerforner\ScoolProgramming\Models\ProfessionalModule;
+use Rogerforner\ScoolProgramming\Models\Temary;
 
 class TrainingUnit extends Model
 {
+    /**
+     * Inserting & Updating Models.
+     **************************************************************************/
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['uf', 'name', 'date_start', 'date_end'];
+    protected $fillable = [
+        'uf',
+        'name',
+        'date_start',
+        'date_end',
+        'section1',
+        'section2',
+        'section3',
+        'section4',
+        'approved',
+        'public',
+        'professional_module_id'
+    ];
 
     /**
-     * Obtenir el Mòdul Professional de la Unitat Formativa.
-     * Mètode en singular.
+     * Eloquent: Relationships.
+     **************************************************************************/
+    /**
+     * Professional Module.
+     * Get the professional module of the training unit.
      */
     public function professionalModule()
     {
-        // belongsTo() Una UF pertany a un MP.
-        return $this->belongsTo('Rogerforner\ScoolProgramming\Models\ProfessionalModule');
+        return $this->belongsTo(ProfessionalModule::class)->withDefault();
     }
 
     /**
-     * Obtenir els Nuclis Formatius de la Unitat Formativa.
-     * Mètode en plural.
+     * Temaries.
+     * Get the temaries for the training unit.
      */
     public function temaries()
     {
-        // hasMany() Una UF té N NF.
-        return $this->hasMany('Rogerforner\ScoolProgramming\Models\Temary');
+        return $this->hasMany(Temary::class);
     }
 }

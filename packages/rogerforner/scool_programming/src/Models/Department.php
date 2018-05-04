@@ -2,10 +2,11 @@
 
 namespace Rogerforner\ScoolProgramming\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
-use Rogerforner\ScoolProgramming\Models\TrainingUnit;
+use Rogerforner\ScoolProgramming\Models\ProfessionalModule;
 
-class Temary extends Model
+class Department extends Model
 {
     /**
      * Inserting & Updating Models.
@@ -16,18 +17,27 @@ class Temary extends Model
      * @var array
      */
     protected $fillable = [
-        'nf', 'duration', 'name', 'description', 'public', 'training_unit_id'
+        'name', 'description'
     ];
 
     /**
      * Eloquent: Relationships.
      **************************************************************************/
     /**
-     * Training Unit.
-     * Get the training unit of the temary.
+     * Users.
+     * The users that belong to the department.
      */
-    public function trainingUnit()
+    public function users()
     {
-        return $this->belongsTo(TrainingUnit::class)->withDefault();
+        return $this->belongsToMany(User::class);
+    }
+
+    /**
+     * Professional Modules.
+     * Get the professional modules for the department.
+     */
+    public function professionalModules()
+    {
+        return $this->hasMany(ProfessionalModule::class);
     }
 }
