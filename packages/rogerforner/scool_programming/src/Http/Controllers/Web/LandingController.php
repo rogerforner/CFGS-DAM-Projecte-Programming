@@ -5,7 +5,7 @@ namespace Rogerforner\ScoolProgramming\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class MainController extends Controller
+class LandingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,12 @@ class MainController extends Controller
      */
     public function index()
     {
-        // Retornem la vista "programming.blade.php". Es seleccionada gràcies al scool-programming::vista.
-        // scool-programming:: es definit en la instanciació de les vistes en el ServiceProvider del paquet.
-        return view('scool-programming::landingpage');
+        // Retornem la vista "landing.blade.php". Es seleccionada gràcies al
+        // scool-programming::nomVista.
+        // scool-programming:: es definit en la instanciació de les vistes en el
+        // ServiceProvider del paquet i serveix per cridar vistes que hi hagi
+        // en el directori resources/views del propi paquet.
+        return view('scool-programming::landing');
     }
 
     /**

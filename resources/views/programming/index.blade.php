@@ -8,12 +8,14 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Informació del lloc web -->
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <meta name="description" content="xxxxxxxxxxx">
+    <meta name="description" content="A Vue API SPA Scool Programming App.">
     <!-- CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   </head>
   <body>
-    
+    <div id="app">
+        <router-view></router-view>
+    </div>
     <!-- JavaScript -->
     <script src="{{ asset('js/app.js') }}"></script>
   </body>

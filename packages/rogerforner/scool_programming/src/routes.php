@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
-use Rogerforner\ScoolProgramming\Http\Controllers\Web\MainController;
+use Rogerforner\ScoolProgramming\Http\Controllers\Web\AppController;
+use Rogerforner\ScoolProgramming\Http\Controllers\Web\LandingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,9 @@ Route::group(['prefix' => 'programming', 'middleware' => 'auth:api'], function (
 | php artisan route:list (veure rutes: scool-programming)
 |
 */
-// Fem que només sigui generada la ruta corresponent al mètode index() del controlador.
-Route::resource('scool-programming', MainController::class, [
-    'only' => ['index']
-]);
+Route::group(['prefix'=>'programming'], function () {
+    // Vistes del propi paquet.
+    Route::resource('scool', LandingController::class, ['only' => ['index']]);
+    // Vistes a publicar amb vendor:publish.
+    Route::resource('/', AppController::class, ['only' => ['index']]);
+});
