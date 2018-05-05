@@ -12,5 +12,5 @@
 */
 
 Route::get('/', function () {
-    return redirect('scool-programming');
+    return view('app');
 });
