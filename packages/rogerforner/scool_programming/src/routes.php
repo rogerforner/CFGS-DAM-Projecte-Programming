@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-use Rogerforner\ScoolProgramming\Http\Controllers\API\ProfessionalFamilyController;
-use Rogerforner\ScoolProgramming\Http\Controllers\API\TrainingCycleController;
+use Rogerforner\ScoolProgramming\Http\Controllers\API\DepartmentController;
 use Rogerforner\ScoolProgramming\Http\Controllers\API\ProfessionalModuleController;
 use Rogerforner\ScoolProgramming\Http\Controllers\API\TrainingUnitController;
 use Rogerforner\ScoolProgramming\Http\Controllers\API\TemaryController;
@@ -22,8 +21,7 @@ use Rogerforner\ScoolProgramming\Http\Controllers\Web\LandingController;
 |
 */
 Route::group(['prefix' => 'programming', 'middleware' => 'auth:api'], function () {
-    Route::resource('fp', ProfessionalFamilyController::class);
-    Route::resource('cf', TrainingCycleController::class);
+    Route::resource('fp', DepartmentController::class);
     Route::resource('mp', ProfessionalModuleController::class);
     Route::resource('uf', TrainingUnitController::class);
     Route::resource('nf', TemaryController::class);
