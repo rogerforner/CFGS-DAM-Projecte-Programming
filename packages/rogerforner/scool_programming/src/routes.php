@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Rogerforner\ScoolProgramming\Http\Controllers\Web\MainController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,6 @@ Route::group(['prefix' => 'programming', 'middleware' => 'auth:api'], function (
 |
 */
 // Fem que només sigui generada la ruta corresponent al mètode index() del controlador.
-Route::resource('scool-programming', 'Rogerforner\ScoolProgramming\Http\Controllers\MainController', [
+Route::resource('scool-programming', MainController::class, [
     'only' => ['index']
 ]);
