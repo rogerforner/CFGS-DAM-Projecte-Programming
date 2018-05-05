@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Http\Request;
+use Rogerforner\ScoolProgramming\Http\Controllers\API\ProfessionalFamilyController;
+use Rogerforner\ScoolProgramming\Http\Controllers\API\TrainingCycleController;
+use Rogerforner\ScoolProgramming\Http\Controllers\API\ProfessionalModuleController;
+use Rogerforner\ScoolProgramming\Http\Controllers\API\TrainingUnitController;
+use Rogerforner\ScoolProgramming\Http\Controllers\API\TemaryController;
 use Rogerforner\ScoolProgramming\Http\Controllers\Web\AppController;
 use Rogerforner\ScoolProgramming\Http\Controllers\Web\LandingController;
 
@@ -17,11 +22,11 @@ use Rogerforner\ScoolProgramming\Http\Controllers\Web\LandingController;
 |
 */
 Route::group(['prefix' => 'programming', 'middleware' => 'auth:api'], function () {
-    Route::resource('fp', 'Rogerforner\ScoolProgramming\Http\Controllers\API\ProfessionalFamilyController');
-    Route::resource('cf', 'Rogerforner\ScoolProgramming\Http\Controllers\API\TrainingCycleController');
-    Route::resource('mp', 'Rogerforner\ScoolProgramming\Http\Controllers\API\ProfessionalModuleController');
-    Route::resource('uf', 'Rogerforner\ScoolProgramming\Http\Controllers\API\TrainingUnitController');
-    Route::resource('nf', 'Rogerforner\ScoolProgramming\Http\Controllers\API\TemaryController');
+    Route::resource('fp', ProfessionalFamilyController::class);
+    Route::resource('cf', TrainingCycleController::class);
+    Route::resource('mp', ProfessionalModuleController::class);
+    Route::resource('uf', TrainingUnitController::class);
+    Route::resource('nf', TemaryController::class);
 });
 
 /*
