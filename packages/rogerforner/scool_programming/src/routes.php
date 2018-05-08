@@ -40,8 +40,5 @@ Route::group(['prefix' => 'programming', 'middleware' => 'auth:api'], function (
 |
 */
 Route::group(['prefix'=>'programming'], function () {
-    // Vistes del propi paquet.
     Route::resource('scool', LandingController::class, ['only' => ['index']]);
-    // Vistes a publicar amb vendor:publish.
-    Route::resource('/', AppController::class, ['only' => ['index']]);
 });
