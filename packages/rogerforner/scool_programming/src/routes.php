@@ -21,7 +21,7 @@ use Rogerforner\ScoolProgramming\Http\Controllers\Web\LandingController;
 |
 */
 Route::group(['prefix' => 'programming', 'middleware' => 'auth:api'], function () {
-    Route::resource('fp', DepartmentController::class);
+    Route::resource('dp', DepartmentController::class);
     Route::resource('mp', ProfessionalModuleController::class);
     Route::resource('uf', TrainingUnitController::class);
     Route::resource('nf', TemaryController::class);
