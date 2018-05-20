@@ -5,6 +5,7 @@ namespace Rogerforner\ScoolProgramming\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Rogerforner\ScoolProgramming\Models\Department;
 
 class DepartmentController extends Controller
@@ -47,8 +48,8 @@ class DepartmentController extends Controller
             'created_by'  => $user,
         ]);
 
-        // Retornem un JSON amb resposta 201 (creació d'una entitat).
-        return response()->json($department, 201);
+        // Retornem un JSON.
+        return response()->json($department);
     }
 
     /**
@@ -59,7 +60,11 @@ class DepartmentController extends Controller
      */
     public function show($id)
     {
-        //
+        // Obtenir el departament.
+        $department = Department::findOrFail($id);
+
+        // Retornem un JSON.
+        return response()->json($department);
     }
 
     /**
@@ -71,7 +76,32 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Obtenir el departament.
+        $department = Department::findOrFail($id);
+
+        // Obtenir l'usuari que duu a terme l'acció.
+        $user = Auth::user()->username;
+
+        // Validar dades obtingudes del formulari.
+        $data = $request->validate([
+            'name'        => [
+                'required',
+                'string',
+                'max:150',
+                Rule::unique('departments')->ignore($department->id)
+            ],
+            'description' => 'string|max:255',
+        ]);
+
+        // Actualitzar el departament (la validació ha sortit bé).
+        $department->update([
+            'name'        => $data['name'],
+            'description' => $data['description'],
+            'updated_by'  => $user,
+        ]);
+
+        // Retornem un JSON.
+        return response()->json($department);
     }
 
     /**
@@ -82,6 +112,9 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Obtenir el departament.
+        $department = Department::findOrFail($id);
+
+        $department->delete();
     }
 }
