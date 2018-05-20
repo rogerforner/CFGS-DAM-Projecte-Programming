@@ -1,3 +1,11 @@
+/*
+|-------------------------------------------------------------------------------
+| VUEX store.js
+|-------------------------------------------------------------------------------
+| Builds the data store from all of the modules for the Roast app.
+|
+*/
+
 // Adds the promise polyfill for IE 11
 require('es6-promise').polyfill();
 
