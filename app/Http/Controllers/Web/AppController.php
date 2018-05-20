@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 
 class AppController extends Controller
 {
-    public function getApp()
+    public function getHome()
     {
-        return view('app');
+        return view('home');
     }
 
     public function getLogin()

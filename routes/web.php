@@ -10,8 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 // Si estem autenticats anirem a la / de l'aplicació.
-Route::get( '/', 'Web\AppController@getApp' )->middleware('auth');
+Route::get( '/', 'Web\AppController@getHome' )->middleware('auth');
 
 // Si no estem autenticats serem enviats a la pàgina de login.
 // Des de aquesta escollirem amb quina xarxa social dur-lo a terme, passant el
