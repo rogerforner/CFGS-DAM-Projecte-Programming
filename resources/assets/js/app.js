@@ -7,9 +7,7 @@
 
 require('./bootstrap');
 
-import Vue from 'vue';
-import router from './routes.js';
-import store from './store.js';
+window.Vue = require('vue');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -17,7 +15,8 @@ import store from './store.js';
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-new Vue({
-    router,
-    store
-}).$mount('#app');
+Vue.component('example-component', require('./components/ExampleComponent.vue'));
+
+const app = new Vue({
+    el: '#app'
+});
