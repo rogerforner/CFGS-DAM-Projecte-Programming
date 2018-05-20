@@ -3,7 +3,7 @@
  */
 var api_url = '';
 
-switch( process.env.NODE_ENV ){
+switch(process.env.NODE_ENV){
   case 'development':
     api_url = 'http://programming.oo/api';
   break;
