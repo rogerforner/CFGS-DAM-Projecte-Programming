@@ -28,6 +28,6 @@ class Temary extends Model
      */
     public function trainingUnit()
     {
-        return $this->belongsTo(TrainingUnit::class)->withDefault();
+        return $this->belongsTo(TrainingUnit::class);
     }
 }

@@ -39,7 +39,7 @@ class TrainingUnit extends Model
      */
     public function professionalModule()
     {
-        return $this->belongsTo(ProfessionalModule::class)->withDefault();
+        return $this->belongsTo(ProfessionalModule::class);
     }
 
     /**

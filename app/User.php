@@ -37,6 +37,6 @@ class User extends Authenticatable
      */
     public function departments()
     {
-        return $this->belongsToMany(Department::class);
+        return $this->belongsToMany(Department::class)->withPivot('id');
     }
 }
