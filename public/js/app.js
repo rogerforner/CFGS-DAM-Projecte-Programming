@@ -47620,57 +47620,57 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
     },
     // Departments
     {
-        path: '/departments',
+        path: '/programming/dp',
         name: 'dps',
         component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Departments', __webpack_require__(65))
     }, {
-        path: '/departments/new',
+        path: '/programming/dp/new',
         name: 'newdp',
         component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('NewDepartment', __webpack_require__(70))
     }, {
-        path: '/departments/:id',
+        path: '/programming/dp/:id',
         name: 'dp',
         component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Department', __webpack_require__(75))
     },
     // Professional Modules
     {
-        path: '/professional-modules',
+        path: '/programming/mp',
         name: 'mps',
         component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('ProfessionalModules', __webpack_require__(80))
     }, {
-        path: '/professional-modules/new',
+        path: '/programming/mp/new',
         name: 'newmp',
         component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('NewProfessionalModule', __webpack_require__(85))
     }, {
-        path: '/professional-modules/:id',
+        path: '/programming/mp/:id',
         name: 'mp',
         component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('ProfessionalModule', __webpack_require__(90))
     },
     // Training Units
     {
-        path: '/training-units',
+        path: '/programming/uf',
         name: 'ufs',
         component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('TrainingUnits', __webpack_require__(95))
     }, {
-        path: '/training-units/new',
+        path: '/programming/uf/new',
         name: 'newuf',
         component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('NewTrainingUnit', __webpack_require__(100))
     }, {
-        path: '/training-units/:id',
+        path: '/programming/uf/:id',
         name: 'uf',
         component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('TrainingUnit', __webpack_require__(105))
     },
     // Temaries
     {
-        path: '/temaries',
+        path: '/programming/nf',
         name: 'nfs',
         component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Temaries', __webpack_require__(110))
     }, {
-        path: '/temaries/new',
+        path: '/programming/nf/new',
         name: 'newnf',
         component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('NewTemary', __webpack_require__(115))
     }, {
-        path: '/temaries/:id',
+        path: '/programming/nf/:id',
         name: 'nf',
         component: __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Temary', __webpack_require__(120))
     }]
