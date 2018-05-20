@@ -1,6 +1,4 @@
-/**
- * Defines the API route we are using.
- */
+// Defines the API route we are using.
 var api_url = '';
 
 switch(process.env.NODE_ENV){

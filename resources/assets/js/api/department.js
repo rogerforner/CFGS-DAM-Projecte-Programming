@@ -1,6 +1,4 @@
-/**
- * Imports the Roast API URL from the config.
- */
+// Imports the Roast API URL from the config.
 import { ROAST_CONFIG } from '../config.js';
 
 export default {
