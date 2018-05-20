@@ -30,6 +30,6 @@ class CreateDepartmentUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('departments_users');
+        Schema::dropIfExists('department_user');
     }
 }
