@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
@@ -8,7 +8,7 @@ use Auth;
 use Illuminate\Http\Request;
 use Socialite;
 
-class AuthenticationController extends Controller
+class SocialAuthController extends Controller
 {
     public function getSocialRedirect($account)
     {

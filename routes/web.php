@@ -11,18 +11,23 @@
 |
 */
 
-// Si estem autenticats anirem a la / de l'aplicació.
-Route::get( '/', 'Web\AppController@getHome' )->middleware('auth');
+Route::get('/', 'Web\WebController@getDashboard')->middleware('auth');
+
+Auth::routes();
+
+Route::group(['prefix'=>'dashboard', 'middleware' => 'auth'], function () {
+    
+});
+
+// // Si estem autenticats anirem a la / de l'aplicació.
+// Route::get( '/', 'Web\AppController@getHome' )->middleware('auth');
 
 // Si no estem autenticats serem enviats a la pàgina de login.
 // Des de aquesta escollirem amb quina xarxa social dur-lo a terme, passant el
 // nom d'aquesta com a un /{paràmetre} de la url.
 // - /login/github => /{social} on /{social} = /{github}
 Route::group(['prefix' => 'login', 'middleware' => 'guest'], function () {
-    Route::get('/', 'Web\AppController@getLogin' )->name('login');
-    Route::get('/{social}', 'Web\AuthenticationController@getSocialRedirect');
-    Route::get('/{social}/callback', 'Web\AuthenticationController@getSocialCallback');
+    Route::get('/', 'Web\WebController@getLogin' )->name('login');
+    Route::get('/{social}', 'Auth\SocialAuthController@getSocialRedirect');
+    Route::get('/{social}/callback', 'Auth\SocialAuthController@getSocialCallback');
 });
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

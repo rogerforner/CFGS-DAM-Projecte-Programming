@@ -17,14 +17,22 @@ use Rogerforner\ScoolProgramming\Http\Controllers\Web\LandingController;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-| php artisan route:list (veure rutes: scool-programming)
+| php artisan route:list (veure rutes: programming)
 |
 */
 Route::group(['prefix' => 'programming', 'middleware' => 'auth:api'], function () {
-    Route::resource('dp', DepartmentController::class);
-    Route::resource('mp', ProfessionalModuleController::class);
-    Route::resource('uf', TrainingUnitController::class);
-    Route::resource('nf', TemaryController::class);
+    Route::resource('departments', DepartmentController::class, [
+        'except' => ['edit']
+    ]);
+    Route::resource('professional-modules', ProfessionalModuleController::class, [
+        'except' => ['edit']
+    ]);
+    Route::resource('training-units', TrainingUnitController::class, [
+        'except' => ['edit']
+    ]);
+    Route::resource('temaries', TemaryController::class, [
+        'except' => ['edit']
+    ]);
 });
 
 /*
@@ -36,9 +44,11 @@ Route::group(['prefix' => 'programming', 'middleware' => 'auth:api'], function (
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-| php artisan route:list (veure rutes: scool-programming)
+| php artisan route:list (veure rutes: programming)
 |
 */
 Route::group(['prefix'=>'programming'], function () {
-    Route::resource('scool', LandingController::class, ['only' => ['index']]);
+    Route::resource('scool', LandingController::class, [
+        'only' => ['index']
+    ]);
 });
