@@ -23,3 +23,6 @@ Route::group(['prefix' => 'login', 'middleware' => 'guest'], function () {
     Route::get('/{social}', 'Web\AuthenticationController@getSocialRedirect');
     Route::get('/{social}/callback', 'Web\AuthenticationController@getSocialCallback');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
