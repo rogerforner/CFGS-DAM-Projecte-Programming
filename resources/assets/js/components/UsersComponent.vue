@@ -83,6 +83,7 @@
 </template>
 
 <script>
+toastr.success('toastr now works with Laravel 5.6+')
 export default {
     created: function() {
         this.getUsers();
