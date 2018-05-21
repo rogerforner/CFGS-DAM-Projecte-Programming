@@ -9,9 +9,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- Info WebSite -->
+    <!-- WebSite: info -->
     <title>{{ config('app.name', 'Laravel') }}</title>
     <meta name="description" content="A Vue API SPA Scool Programming App.">
+
+    <!-- WebSite: favicon -->
 
     <!-- CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
