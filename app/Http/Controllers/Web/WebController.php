@@ -8,7 +8,7 @@ class WebController extends Controller
 {
     public function getDashboard()
     {
-        return redirect()->action('DashboardController@index');
+        return redirect()->action('Web\DashboardController@index');
     }
 
     public function getLogin()

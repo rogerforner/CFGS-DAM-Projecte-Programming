@@ -15,8 +15,10 @@ Route::get('/', 'Web\WebController@getDashboard')->middleware('auth');
 
 Auth::routes();
 
-Route::group(['prefix'=>'dashboard', 'middleware' => 'auth'], function () {
-    
+Route::group(['prefix'=>'dashboard'], function () {
+    Route::resource('/', 'Web\DashboardController', [
+        'only' => ['index']
+    ]);
 });
 
 // // Si estem autenticats anirem a la / de l'aplicació.
