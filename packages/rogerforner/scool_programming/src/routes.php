@@ -20,7 +20,7 @@ use Rogerforner\ScoolProgramming\Http\Controllers\Web\LandingController;
 | php artisan route:list (veure rutes: programming)
 |
 */
-Route::group(['prefix' => 'programming', 'middleware' => 'auth:api'], function () {
+Route::group(['prefix' => 'api/scool/programming', 'middleware' => 'auth:api'], function () {
     Route::resource('departments', DepartmentController::class, [
         'except' => ['edit']
     ]);
@@ -47,8 +47,8 @@ Route::group(['prefix' => 'programming', 'middleware' => 'auth:api'], function (
 | php artisan route:list (veure rutes: programming)
 |
 */
-Route::group(['prefix'=>'programming'], function () {
-    Route::resource('scool', LandingController::class, [
+Route::group(['prefix'=>'scool'], function () {
+    Route::resource('programming', LandingController::class, [
         'only' => ['index']
     ]);
 });
