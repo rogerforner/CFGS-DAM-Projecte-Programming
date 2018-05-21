@@ -15,11 +15,24 @@ Route::get('/', 'Web\WebController@getDashboard')->middleware('auth');
 
 Auth::routes();
 
-Route::group(['prefix'=>'dashboard'], function () {
-    Route::resource('/', 'Web\DashboardController', [
-        'only' => ['index']
-    ]);
-});
+Route::resource('dashboard', 'Web\DashboardController', [
+    'only' => ['index']
+]);
+Route::resource('dashboard/departments', 'Web\DepartmentController', [
+    'only' => ['index']
+]);
+Route::resource('dashboard/professional-modules', 'Web\ProfessionalModuleController', [
+    'only' => ['index']
+]);
+Route::resource('dashboard/temaries', 'Web\TemaryController', [
+    'only' => ['index']
+]);
+Route::resource('dashboard/training-units', 'Web\TrainingUnitController', [
+    'only' => ['index']
+]);
+Route::resource('dashboard/users', 'Web\UserController', [
+    'only' => ['index']
+]);
 
 // // Si estem autenticats anirem a la / de l'aplicació.
 // Route::get( '/', 'Web\AppController@getHome' )->middleware('auth');

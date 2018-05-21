@@ -22,16 +22,16 @@ use Rogerforner\ScoolProgramming\Http\Controllers\Web\LandingController;
 */
 Route::group(['prefix' => 'api/scool/programming', 'middleware' => 'auth:api'], function () {
     Route::resource('departments', DepartmentController::class, [
-        'except' => ['edit']
+        'except' => ['create', 'edit']
     ]);
     Route::resource('professional-modules', ProfessionalModuleController::class, [
-        'except' => ['edit']
+        'except' => ['create', 'edit']
     ]);
     Route::resource('training-units', TrainingUnitController::class, [
-        'except' => ['edit']
+        'except' => ['create', 'edit']
     ]);
     Route::resource('temaries', TemaryController::class, [
-        'except' => ['edit']
+        'except' => ['create', 'edit']
     ]);
 });
 
