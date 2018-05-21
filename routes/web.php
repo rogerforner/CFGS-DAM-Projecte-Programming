@@ -15,6 +15,9 @@ Route::get('/', 'Web\WebController@getDashboard')->middleware('auth');
 
 Auth::routes();
 
+Route::resource('dashboard/access-tokens', 'Web\AccessTokenController', [
+    'only' => ['index']
+]);
 Route::resource('dashboard', 'Web\DashboardController', [
     'only' => ['index']
 ]);
@@ -33,9 +36,6 @@ Route::resource('dashboard/training-units', 'Web\TrainingUnitController', [
 Route::resource('dashboard/users', 'Web\UserController', [
     'only' => ['index']
 ]);
-
-// // Si estem autenticats anirem a la / de l'aplicació.
-// Route::get( '/', 'Web\AppController@getHome' )->middleware('auth');
 
 // Si no estem autenticats serem enviats a la pàgina de login.
 // Des de aquesta escollirem amb quina xarxa social dur-lo a terme, passant el

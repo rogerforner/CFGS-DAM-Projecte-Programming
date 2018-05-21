@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Web;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class DashboardController extends Controller
+class AccessTokenController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -26,7 +26,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        return view('dashboard.access-tokens.index');
     }
 
     /**

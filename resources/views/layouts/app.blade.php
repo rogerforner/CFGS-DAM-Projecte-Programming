@@ -32,7 +32,9 @@
 </head>
 <body>
     <div id="app">
-        @include('layouts.partials.navbar')
+        @auth
+            @include('layouts.partials.navbar')
+        @endauth
 
         <main class="py-4">
             @yield('content')

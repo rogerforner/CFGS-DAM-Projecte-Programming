@@ -10,20 +10,23 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
+                <li class="nav-item {{ Request::is('dashboard/users') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ action('Web\UserController@index') }}">Users</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ Request::is('dashboard/departments') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ action('Web\DepartmentController@index') }}">Departments</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ Request::is('dashboard/professional-modules') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ action('Web\ProfessionalModuleController@index') }}">Professional Modules</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ Request::is('dashboard/training-units') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ action('Web\TrainingUnitController@index') }}">Training Units</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ Request::is('dashboard/temaries') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ action('Web\TemaryController@index') }}">Temaries</a>
+                </li>
+                <li class="nav-item {{ Request::is('dashboard/access-tokens') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ action('Web\AccessTokenController@index') }}">Access Tokens</a>
                 </li>
             </ul>
 

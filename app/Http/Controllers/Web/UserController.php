@@ -8,13 +8,25 @@ use App\Http\Controllers\Controller;
 class UserController extends Controller
 {
     /**
+     * Create a new controller instance.
+     * Only authenticated users will be able to interact with the methods of
+     * this Controller.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        return view('dashboard.users.index');
     }
 
     /**

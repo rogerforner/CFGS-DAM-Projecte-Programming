@@ -5,7 +5,10 @@
     <!-- BREADCRUMBS -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+            <li class="breadcrumb-item">
+                <a href="{{ action('Web\DashboardController@index') }}">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Temaries</li>
         </ol>
     </nav>
     
