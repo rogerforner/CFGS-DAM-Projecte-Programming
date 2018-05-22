@@ -169,7 +169,9 @@ export default {
             var url = '/api/users';
 
             axios.get(url).then(response => {
-                this.users = response.data;
+                var users = response.data.arrData;
+
+                this.users = users;
             });
         },
         // POST => API\UserController@store
@@ -190,8 +192,16 @@ export default {
             var url             = '/api/users/' + btnAttrValue;
 
             axios.delete(url).then(response => {
-                this.getUsers();                      // Llistar (refrescar).
-                toastr.success('Removed correctly.'); // Notificar.
+                var success = response.data.success;
+                var type    = response.data.type;
+                var message = response.data.message;
+
+                if (success == false) {
+                    toastr.warning(message); // Notificar Error.
+                } else {
+                    this.getUsers();         // Llistar (refrescar).
+                    toastr.success(message); // Notificar OK.
+                }
             });
         },
         /* Components

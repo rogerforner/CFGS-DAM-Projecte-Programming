@@ -50454,7 +50454,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var url = '/api/users';
 
             axios.get(url).then(function (response) {
-                _this.users = response.data;
+                var users = response.data.arrData;
+
+                _this.users = users;
             });
         },
         // POST => API\UserController@store
@@ -50477,8 +50479,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var url = '/api/users/' + btnAttrValue;
 
             axios.delete(url).then(function (response) {
-                _this2.getUsers(); // Llistar (refrescar).
-                toastr.success('Removed correctly.'); // Notificar.
+                var success = response.data.success;
+                var type = response.data.type;
+                var message = response.data.message;
+
+                if (success == false) {
+                    toastr.warning(message); // Notificar Error.
+                } else {
+                    _this2.getUsers(); // Llistar (refrescar).
+                    toastr.success(message); // Notificar OK.
+                }
             });
         },
         /* Components
