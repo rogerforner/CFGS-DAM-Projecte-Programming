@@ -23,8 +23,8 @@ class CreateProfessionalModulesTable extends Migration
             $table->string('section4')->nullable(); // Dual.
             $table->boolean('approved')->default(false); // Acceptada pel cap de departament?
             $table->boolean('public')->default(true);    // Visible per a la resta d'usuaris del departament?
-            $table->unsignedInteger('created_by');
-            $table->unsignedInteger('updated_by');
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
             // Un Mòdul Professional pertany a un Departament.
             $table->unsignedInteger('department_id');

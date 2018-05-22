@@ -6,6 +6,8 @@ use App\Http\Controllers\API\ApiResponseController;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Validator;
 
 class UserController extends ApiResponseController
 {
@@ -44,7 +46,33 @@ class UserController extends ApiResponseController
      */
     public function store(Request $request)
     {
-        //
+        // Obtenir l'usuari que duu a terme l'acció.
+        $user = Auth::user()->username;
+
+        // Dades del formulari.
+        $data = $request->all();
+
+        // Validar les dades.
+        $validator = Validator::make($data, [
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        // Si la validació de les dades introduïdes no es satisfactoria avisem.
+        if ($validator->fails()) {
+            return $this->sendError('A validation error has occurred.', $validator->errors());
+        }
+
+        // Crear l'usuari (la validació ha sortit bé).
+        $user = User::create([
+            'name'       => $data['name'],
+            'email'      => $data['email'],
+            'password'   => bcrypt($data['password']),
+            'created_by' => $user,
+        ]);
+
+        return $this->sendResponse(null, 'User created successfully.');
     }
 
     /**
@@ -67,7 +95,43 @@ class UserController extends ApiResponseController
      */
     public function update(Request $request, $id)
     {
-        //
+        // Obtenir l'usuari.
+        $user = User::findOrFail($id);
+
+        // Dades del formulari.
+        $data = $request->all();
+
+        // Validar les dades.
+        $validator = Validator::make($data, [
+            'name'     => 'required|string|max:255',
+            'email'    => [
+                'required',
+                'strings',
+                'email',
+                'max:255',
+                Rule::unique('users')->ignore($user->id)
+            ],
+            'password' => 'confirmed', // No obligatori (en edició).
+        ]);
+
+        // Si la validació de les dades introduïdes no es satisfactoria avisem.
+        if ($validator->fails()) {
+            return $this->sendError('A validation error has occurred.', $validator->errors());
+        }
+
+        // Tractar el camp Password per si no és null (no és "required").
+        if ($data['password'] != null) {
+            // Encriptar password en cas de que s'hagi inserit.
+            $data['password'] = bcrypt($data['password']);
+        } else {
+            // El treiem del array $data en cas de que no s'hagi inserit.
+            unset($data['password']);
+        }
+
+        // Actualitzar l'usuari.
+        $user->update($data);
+
+        return $this->sendResponse(null, 'User updated successfully.');
     }
 
     /**
@@ -88,6 +152,7 @@ class UserController extends ApiResponseController
         } elseif ($user->id == Auth::user()->id) {
             return $this->sendError('You can not delete your user.');
         } else {
+            $user->delete();
             return $this->sendResponse(null, 'User removed successfully.');
         }
     }

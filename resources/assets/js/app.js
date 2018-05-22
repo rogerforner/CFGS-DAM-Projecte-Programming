@@ -21,16 +21,8 @@ Vue.component('passport-clients', require('./components/passport/Clients.vue'));
 Vue.component('passport-authorized-clients', require('./components/passport/AuthorizedClients.vue'));
 Vue.component('passport-personal-access-tokens', require('./components/passport/PersonalAccessTokens.vue'));
 // Users
-Vue.component('users-component', require('./components/UsersComponent.vue'));
+Vue.component('users-component', require('./components/users/UsersComponent.vue'));
 
 const app = new Vue({
     el: '#app'
-});
-
-/**
- * BOOTSTRAP
- * Activate Twitter Bootstrap components.
- */
-$(function () {
-    $('[tooltip="tooltip"]').tooltip()
 });

@@ -14316,18 +14316,10 @@ Vue.component('passport-clients', __webpack_require__(44));
 Vue.component('passport-authorized-clients', __webpack_require__(50));
 Vue.component('passport-personal-access-tokens', __webpack_require__(55));
 // Users
-Vue.component('users-component', __webpack_require__(60));
+Vue.component('users-component', __webpack_require__(67));
 
 var app = new Vue({
   el: '#app'
-});
-
-/**
- * BOOTSTRAP
- * Activate Twitter Bootstrap components.
- */
-$(function () {
-  $('[tooltip="tooltip"]').tooltip();
 });
 
 /***/ }),
@@ -50229,15 +50221,27 @@ if (false) {
 }
 
 /***/ }),
-/* 60 */
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(61)
+var __vue_script__ = __webpack_require__(68)
 /* template */
-var __vue_template__ = __webpack_require__(62)
+var __vue_template__ = __webpack_require__(69)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -50254,7 +50258,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\UsersComponent.vue"
+Component.options.__file = "resources\\assets\\js\\components\\users\\UsersComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -50263,9 +50267,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6847888c", Component.options)
+    hotAPI.createRecord("data-v-7d2c73a0", Component.options)
   } else {
-    hotAPI.reload("data-v-6847888c", Component.options)
+    hotAPI.reload("data-v-7d2c73a0", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -50276,7 +50280,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 61 */
+/* 68 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50434,21 +50438,105 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     created: function created() {
-        this.getUsers();
+        this.indexUsers();
     },
     data: function data() {
         return {
-            users: []
+            // Array d'usuaris.
+            users: [],
+
+            // Formulari.
+            inputUserId: '',
+            inputName: '',
+            inputEmail: '',
+            inputPassword: '',
+            inputPasswordConfirm: ''
         };
     },
     methods: {
         /* Peticions HTTP
         --------------------------------------------------------------------- */
         // GET => API\UserController@index
-        getUsers: function getUsers() {
+        indexUsers: function indexUsers() {
             var _this = this;
 
             var url = '/api/users';
@@ -50460,19 +50548,133 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         // POST => API\UserController@store
-        postUser: function postUser() {
+        storeUser: function storeUser() {
+            var _this2 = this;
+
             var url = '/api/users';
 
-            // axios.post(url).then(response => {
-            //     this.users = response.data;
-            // });
+            axios.post(url, {
+                name: this.inputName,
+                email: this.inputEmail,
+                password: this.inputPassword,
+                password_confirmation: this.inputPasswordConfirm
+            }).then(function (response) {
+                var success = response.data.success;
+                var type = response.data.type;
+                var message = response.data.message;
+                var errors = response.data.arrData;
+
+                if (success == false) {
+                    if (type == 'warning') {
+                        toastr.warning(message); // Notificar Warning.
+                    } else {
+                        toastr.error(message); // Notificar Error.
+
+                        // Aplicar classes Bootstrap als formularis segons si les
+                        // dades són vàlides o no. També afegim el missatge de
+                        // l'error, aquest lligat a cada input pel seu "name".
+                        if (errors.name) {
+                            $('input[name=name]').addClass('is-invalid');
+                            $('#mcfiName').text(errors.name);
+                        } else {
+                            $('input[name=name]').removeClass('is-invalid').addClass('is-valid');
+                        }
+                        if (errors.email) {
+                            $('input[name=email]').addClass('is-invalid');
+                            $('#mcfiEmail').text(errors.email);
+                        } else {
+                            $('input[name=email]').removeClass('is-invalid').addClass('is-valid');
+                        }
+                        if (errors.password) {
+                            $('input[name=password]').addClass('is-invalid');
+                            $('input[name=password_confirmation]').addClass('is-invalid');
+                            $('#mcfiPass').text(errors.password);
+                        } else {
+                            $('input[name=password]').removeClass('is-invalid').addClass('is-valid');
+                            $('input[name=password_confirmation]').removeClass('is-invalid').addClass('is-valid');
+                        }
+                    }
+                } else {
+                    _this2.indexUsers(); // Llistar (refrescar).
+                    _this2.inputName = ''; // Reset valor input...
+                    _this2.inputEmail = '';
+                    _this2.inputPassword = '';
+                    _this2.inputPasswordConfirm = '';
+                    $('input[name=name]').removeClass('is-invalid is-valid'); // Reset color input...
+                    $('input[name=email]').removeClass('is-invalid is-valid');
+                    $('input[name=password]').removeClass('is-invalid is-valid');
+                    $('input[name=password_confirmation]').removeClass('is-invalid is-valid');
+                    $('#modal-cform-user').modal('hide'); // Tancar modal.
+                    toastr.success(message); // Notificar OK.
+                }
+            });
+        },
+        // UPDATE => API\UserController@update
+        updateUser: function updateUser() {
+            var _this3 = this;
+
+            var url = '/api/users/' + id;
+
+            axios.post(url, {
+                name: this.inputName,
+                email: this.inputEmail,
+                password: this.inputPassword,
+                password_confirmation: this.inputPasswordConfirm
+            }).then(function (response) {
+                var success = response.data.success;
+                var type = response.data.type;
+                var message = response.data.message;
+                var errors = response.data.arrData;
+
+                if (success == false) {
+                    if (type == 'warning') {
+                        toastr.warning(message); // Notificar Warning.
+                    } else {
+                        toastr.error(message); // Notificar Error.
+
+                        // Aplicar classes Bootstrap als formularis segons si les
+                        // dades són vàlides o no. També afegim el missatge de
+                        // l'error, aquest lligat a cada input pel seu "name".
+                        if (errors.name) {
+                            $('input[name=name]').addClass('is-invalid');
+                            $('#mcfiName').text(errors.name);
+                        } else {
+                            $('input[name=name]').removeClass('is-invalid').addClass('is-valid');
+                        }
+                        if (errors.email) {
+                            $('input[name=email]').addClass('is-invalid');
+                            $('#mcfiEmail').text(errors.email);
+                        } else {
+                            $('input[name=email]').removeClass('is-invalid').addClass('is-valid');
+                        }
+                        if (errors.password) {
+                            $('input[name=password]').addClass('is-invalid');
+                            $('input[name=password_confirmation]').addClass('is-invalid');
+                            $('#mcfiPass').text(errors.password);
+                        } else {
+                            $('input[name=password]').removeClass('is-invalid').addClass('is-valid');
+                            $('input[name=password_confirmation]').removeClass('is-invalid').addClass('is-valid');
+                        }
+                    }
+                } else {
+                    _this3.indexUsers(); // Llistar (refrescar).
+                    _this3.inputName = ''; // Reset valor input...
+                    _this3.inputEmail = '';
+                    _this3.inputPassword = '';
+                    _this3.inputPasswordConfirm = '';
+                    $('input[name=name]').removeClass('is-invalid is-valid'); // Reset color input...
+                    $('input[name=email]').removeClass('is-invalid is-valid');
+                    $('input[name=password]').removeClass('is-invalid is-valid');
+                    $('input[name=password_confirmation]').removeClass('is-invalid is-valid');
+                    $('#modal-form-user').modal('hide'); // Tancar modal.
+                    toastr.success(message); // Notificar OK.
+                }
+            });
         },
         // DELETE => API\UserController@destroy
         // Cridat a través del mètode deleteUserModal().
-        deleteUser: function deleteUser(event) {
-            var _this2 = this;
-
-            $('#modal-delete-user').modal('hide'); // Tancar modal.
+        destroyUser: function destroyUser(event) {
+            var _this4 = this;
 
             var btnDeleteObject = event.target;
             var btnAttrValue = btnDeleteObject.getAttribute('userid');
@@ -50480,13 +50682,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.delete(url).then(function (response) {
                 var success = response.data.success;
-                var type = response.data.type;
                 var message = response.data.message;
 
                 if (success == false) {
                     toastr.warning(message); // Notificar Error.
                 } else {
-                    _this2.getUsers(); // Llistar (refrescar).
+                    _this4.indexUsers(); // Llistar (refrescar).
+                    $('#modal-delete-user').modal('hide'); // Tancar modal.
                     toastr.success(message); // Notificar OK.
                 }
             });
@@ -50495,20 +50697,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         --------------------------------------------------------------------- */
         deleteUserModal: function deleteUserModal(user) {
             $('#modal-delete-user').modal('show'); // Obrir modal.
+            $('#mduBtn').attr('userid', user.id); // Attr userid="n".
             $('#mduName').text(user.name); // Mostrar el Nom.
             $('#mduEmail').text(user.email); // Mostrar l'eMail.
-            $('#mduBtn').attr('userid', user.id); // Afegir attr "userid" amb valor id de l'usuari.
         },
         formNewUserModal: function formNewUserModal() {
-            $('#modal-form-user').modal('show'); // Obrir modal.
-            $('h5#modalFormUser').text('New user'); // Mostrar el títol.
-            $('#mfuBtn').text('Create'); // Text del botó (submit).
+            $('#modal-cform-user').modal('show'); // Obrir modal.
+        },
+        formEditUserModal: function formEditUserModal(user) {
+            $('#modal-eform-user').modal('show'); // Obrir modal.
+            $('input#eUserId').val(user.id); // Mostrar l'ID.
+            $('input#eName').val(user.name); // Mostrar el Nom.
+            $('input#eEmail').val(user.email); // Mostrar l'eMail.
         }
     }
 });
 
 /***/ }),
-/* 62 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -50572,18 +50778,26 @@ var render = function() {
                 _c("td", [
                   _vm._m(2, true),
                   _vm._v(" "),
-                  _vm._m(3, true),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-dark",
+                      attrs: { type: "button", title: "Edit" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.formEditUserModal(user)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fas fa-pencil-alt" })]
+                  ),
                   _vm._v(" "),
                   _c(
                     "button",
                     {
                       staticClass: "btn btn-danger",
-                      attrs: {
-                        type: "button",
-                        tooltip: "tooltip",
-                        "data-placement": "top",
-                        title: "Delete"
-                      },
+                      attrs: { type: "button", title: "Delete" },
                       on: {
                         click: function($event) {
                           $event.preventDefault()
@@ -50619,9 +50833,9 @@ var render = function() {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(4),
+              _vm._m(3),
               _vm._v(" "),
-              _vm._m(5),
+              _vm._m(4),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
                 _c(
@@ -50641,7 +50855,7 @@ var render = function() {
                     on: {
                       click: function($event) {
                         $event.preventDefault()
-                        _vm.deleteUser($event)
+                        _vm.destroyUser($event)
                       }
                     }
                   },
@@ -50663,10 +50877,10 @@ var render = function() {
       {
         staticClass: "modal fade",
         attrs: {
-          id: "modal-form-user",
+          id: "modal-cform-user",
           tabindex: "-1",
           role: "dialog",
-          "aria-labelledby": "modalFormUser",
+          "aria-labelledby": "modalFormCreateUser",
           "aria-hidden": "true"
         }
       },
@@ -50676,40 +50890,401 @@ var render = function() {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(6),
+              _vm._m(5),
               _vm._v(" "),
-              _c("form", { attrs: { action: "" } }, [
-                _vm._m(7),
-                _vm._v(" "),
-                _c("div", { staticClass: "modal-footer" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-secondary",
-                      attrs: { type: "button", "data-dismiss": "modal" }
-                    },
-                    [_vm._v("Close\n                        ")]
-                  ),
+              _c(
+                "form",
+                {
+                  attrs: { method: "post" },
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.storeUser($event)
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.inputName,
+                            expression: "inputName"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          id: "cName",
+                          name: "name",
+                          value: "",
+                          required: ""
+                        },
+                        domProps: { value: _vm.inputName },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.inputName = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", {
+                        staticClass: "invalid-feedback",
+                        attrs: { id: "mcfiName" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "email" } }, [
+                        _vm._v("E-Mail Address")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.inputEmail,
+                            expression: "inputEmail"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "email",
+                          id: "cEmail",
+                          name: "email",
+                          value: "",
+                          required: ""
+                        },
+                        domProps: { value: _vm.inputEmail },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.inputEmail = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", {
+                        staticClass: "invalid-feedback",
+                        attrs: { id: "mcfiEmail" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "password" } }, [
+                        _vm._v("Password")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.inputPassword,
+                            expression: "inputPassword"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "password",
+                          id: "cPassword",
+                          name: "password",
+                          autocomplete: "off",
+                          required: ""
+                        },
+                        domProps: { value: _vm.inputPassword },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.inputPassword = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", {
+                        staticClass: "invalid-feedback",
+                        attrs: { id: "mcfiPass" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "password-confirm" } }, [
+                        _vm._v("Confirm Password")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.inputPasswordConfirm,
+                            expression: "inputPasswordConfirm"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "password",
+                          id: "cPassword-confirm",
+                          name: "password_confirmation",
+                          autocomplete: "off",
+                          required: ""
+                        },
+                        domProps: { value: _vm.inputPasswordConfirm },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.inputPasswordConfirm = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", {
+                        staticClass: "invalid-feedback",
+                        attrs: { id: "mcfiPassC" }
+                      })
+                    ])
+                  ]),
                   _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-danger",
-                      attrs: { type: "submit", id: "mfuBtn" },
+                  _vm._m(6)
+                ]
+              )
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "modal-eform-user",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "modalFormEditUser",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(7),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  attrs: { method: "post" },
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.updateUser($event)
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.inputUserId,
+                          expression: "inputUserId"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "hidden",
+                        id: "eUserId",
+                        name: "userid",
+                        value: ""
+                      },
+                      domProps: { value: _vm.inputUserId },
                       on: {
-                        click: function($event) {
-                          _vm.postUser($event)
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.inputUserId = $event.target.value
                         }
                       }
-                    },
-                    [
-                      _vm._v(
-                        "\n                            XXXXX\n                        "
-                      )
-                    ]
-                  )
-                ])
-              ])
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.inputName,
+                            expression: "inputName"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          id: "eName",
+                          name: "name",
+                          value: "",
+                          required: ""
+                        },
+                        domProps: { value: _vm.inputName },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.inputName = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", {
+                        staticClass: "invalid-feedback",
+                        attrs: { id: "mefiName" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "email" } }, [
+                        _vm._v("E-Mail Address")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.inputEmail,
+                            expression: "inputEmail"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "email",
+                          id: "eEmail",
+                          name: "email",
+                          value: "",
+                          required: ""
+                        },
+                        domProps: { value: _vm.inputEmail },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.inputEmail = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", {
+                        staticClass: "invalid-feedback",
+                        attrs: { id: "mefiEmail" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "password" } }, [
+                        _vm._v("Password")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.inputPassword,
+                            expression: "inputPassword"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "password",
+                          id: "ePassword",
+                          name: "password",
+                          autocomplete: "off"
+                        },
+                        domProps: { value: _vm.inputPassword },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.inputPassword = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", {
+                        staticClass: "invalid-feedback",
+                        attrs: { id: "mefiPass" }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "password-confirm" } }, [
+                        _vm._v("Confirm Password")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.inputPasswordConfirm,
+                            expression: "inputPasswordConfirm"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "password",
+                          id: "ePassword-confirm",
+                          name: "password_confirmation",
+                          autocomplete: "off"
+                        },
+                        domProps: { value: _vm.inputPasswordConfirm },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.inputPasswordConfirm = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", {
+                        staticClass: "invalid-feedback",
+                        attrs: { id: "mefiPassC" }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(8)
+                ]
+              )
             ])
           ]
         )
@@ -50754,32 +51329,9 @@ var staticRenderFns = [
       "button",
       {
         staticClass: "btn btn-primary",
-        attrs: {
-          type: "button",
-          tooltip: "tooltip",
-          "data-placement": "top",
-          title: "See"
-        }
+        attrs: { type: "button", title: "See" }
       },
       [_c("i", { staticClass: "far fa-eye" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "btn btn-dark",
-        attrs: {
-          type: "button",
-          tooltip: "tooltip",
-          "data-placement": "top",
-          title: "Edit"
-        }
-      },
-      [_c("i", { staticClass: "fas fa-pencil-alt" })]
     )
   },
   function() {
@@ -50845,7 +51397,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
-      _c("h5", { staticClass: "modal-title", attrs: { id: "modalFormUser" } }),
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "modalFormCreateUser" } },
+        [_vm._v("\n                        New User\n                    ")]
+      ),
       _vm._v(" "),
       _c(
         "button",
@@ -50865,67 +51421,68 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-body" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            id: "name",
-            name: "name",
-            value: "",
-            required: ""
-          }
-        })
-      ]),
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close\n                        ")]
+      ),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "email" } }, [_vm._v("E-Mail Address")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "email",
-            id: "email",
-            name: "email",
-            value: "",
-            required: ""
-          }
-        })
-      ]),
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        [
+          _vm._v(
+            "\n                            Create\n                        "
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "modalFormEditUser" } },
+        [_vm._v("\n                        Edit User\n                    ")]
+      ),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "password" } }, [_vm._v("Password")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
+      _c(
+        "button",
+        {
+          staticClass: "close",
           attrs: {
-            type: "password",
-            id: "password",
-            name: "password",
-            autocomplete: "off",
-            required: ""
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
           }
-        })
-      ]),
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close\n                        ")]
+      ),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "password-confirm" } }, [
-          _vm._v("Confirm Password")
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "password",
-            id: "password-confirm",
-            name: "password_confirmation",
-            autocomplete: "off",
-            required: ""
-          }
-        })
+      _c("button", { staticClass: "btn btn-dark", attrs: { type: "submit" } }, [
+        _vm._v("\n                            Edit\n                        ")
       ])
     ])
   }
@@ -50935,15 +51492,9 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-6847888c", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-7d2c73a0", module.exports)
   }
 }
-
-/***/ }),
-/* 63 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
