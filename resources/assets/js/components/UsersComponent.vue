@@ -6,7 +6,8 @@
                 <h5 class="card-title">Users</h5>
             </div>
             <div class="col-md-3">
-                <a class="btn btn-primary btn-block" href="#" role="button">New User</a>
+                <button type="button" class="btn btn-primary btn-block"
+                @click.prevent="formNewUserModal()">New User</button>
             </div>
         </div><!-- /.row -->
         <!-- LLISTA DE DEPARTAMENTS -->
@@ -103,28 +104,47 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalFormUser">XXXXX</h5>
+                        <h5 class="modal-title" id="modalFormUser"></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <!-- Formulari -->
-                        <div class="card">
-                            <div class="card-body">
-                                
+                    <form action="">
+                        <!-- Camps del formulari -->
+                        <div class="modal-body">
+                            <!-- Nom -->
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" value=""
+                                       class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-Mail Address</label>
+                                <input type="email" id="email" name="email" value=""
+                                       class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" name="password"
+                                       class="form-control" autocomplete="off" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password-confirm">Confirm Password</label>
+                                <input type="password" id="password-confirm" name="password_confirmation"
+                                       class="form-control" autocomplete="off" required>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"
-                                data-dismiss="modal">Close
-                        </button>
-                        <button id="mfuBtn" type="button" class="btn btn-danger"
-                                @click.prevent="storeUser($event)">
-                            XXXXX
-                        </button>
-                    </div>
+                        <!-- Botons -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                    data-dismiss="modal">Close
+                            </button>
+                            <button type="submit" id="mfuBtn" class="btn btn-danger"
+                                    @click="postUser($event)">
+                                XXXXX
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div><!-- /.modal -->
@@ -152,6 +172,14 @@ export default {
                 this.users = response.data;
             });
         },
+        // POST => API\UserController@store
+        postUser: function() {
+            var url = '/api/users';
+
+            // axios.post(url).then(response => {
+            //     this.users = response.data;
+            // });
+        },
         // DELETE => API\UserController@destroy
         // Cridat a través del mètode deleteUserModal().
         deleteUser: function(event) {
@@ -169,10 +197,15 @@ export default {
         /* Components
         --------------------------------------------------------------------- */
         deleteUserModal: function(user) {
-            $('#modal-delete-user').modal('show');   // Obrir modal.
-            $('#mduName').text(user.name);           // Mostrar el Nom.
-            $('#mduEmail').text(user.email);         // Mostrar l'eMail.
-            $('#mduBtn').attr('userid', user.id); // Afegir attr "userid" amb valor id de l'usuari.
+            $('#modal-delete-user').modal('show'); // Obrir modal.
+            $('#mduName').text(user.name);         // Mostrar el Nom.
+            $('#mduEmail').text(user.email);       // Mostrar l'eMail.
+            $('#mduBtn').attr('userid', user.id);  // Afegir attr "userid" amb valor id de l'usuari.
+        },
+        formNewUserModal: function() {
+            $('#modal-form-user').modal('show');    // Obrir modal.
+            $('h5#modalFormUser').text('New user'); // Mostrar el títol.
+            $('#mfuBtn').text('Create');            // Text del botó (submit).
         },
     }
 }

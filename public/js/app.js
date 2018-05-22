@@ -50414,6 +50414,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     created: function created() {
@@ -50436,6 +50456,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get(url).then(function (response) {
                 _this.users = response.data;
             });
+        },
+        // POST => API\UserController@store
+        postUser: function postUser() {
+            var url = '/api/users';
+
+            // axios.post(url).then(response => {
+            //     this.users = response.data;
+            // });
         },
         // DELETE => API\UserController@destroy
         // Cridat a través del mètode deleteUserModal().
@@ -50460,6 +50488,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             $('#mduName').text(user.name); // Mostrar el Nom.
             $('#mduEmail').text(user.email); // Mostrar l'eMail.
             $('#mduBtn').attr('userid', user.id); // Afegir attr "userid" amb valor id de l'usuari.
+        },
+        formNewUserModal: function formNewUserModal() {
+            $('#modal-form-user').modal('show'); // Obrir modal.
+            $('h5#modalFormUser').text('New user'); // Mostrar el títol.
+            $('#mfuBtn').text('Create'); // Text del botó (submit).
         }
     }
 });
@@ -50473,7 +50506,26 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "row" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary btn-block",
+            attrs: { type: "button" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.formNewUserModal()
+              }
+            }
+          },
+          [_vm._v("New User")]
+        )
+      ])
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "row mt-5" }, [
       _c("div", { staticClass: "table-responsive" }, [
@@ -50616,36 +50668,37 @@ var render = function() {
             _c("div", { staticClass: "modal-content" }, [
               _vm._m(6),
               _vm._v(" "),
-              _vm._m(7),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-footer" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-secondary",
-                    attrs: { type: "button", "data-dismiss": "modal" }
-                  },
-                  [_vm._v("Close\n                    ")]
-                ),
+              _c("form", { attrs: { action: "" } }, [
+                _vm._m(7),
                 _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-danger",
-                    attrs: { id: "mfuBtn", type: "button" },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        _vm.storeUser($event)
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-secondary",
+                      attrs: { type: "button", "data-dismiss": "modal" }
+                    },
+                    [_vm._v("Close\n                        ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      attrs: { type: "submit", id: "mfuBtn" },
+                      on: {
+                        click: function($event) {
+                          _vm.postUser($event)
+                        }
                       }
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n                        XXXXX\n                    "
-                    )
-                  ]
-                )
+                    },
+                    [
+                      _vm._v(
+                        "\n                            XXXXX\n                        "
+                      )
+                    ]
+                  )
+                ])
               ])
             ])
           ]
@@ -50659,21 +50712,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-9" }, [
-        _c("h5", { staticClass: "card-title" }, [_vm._v("Users")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-3" }, [
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-primary btn-block",
-            attrs: { href: "#", role: "button" }
-          },
-          [_vm._v("New User")]
-        )
-      ])
+    return _c("div", { staticClass: "col-md-9" }, [
+      _c("h5", { staticClass: "card-title" }, [_vm._v("Users")])
     ])
   },
   function() {
@@ -50795,9 +50835,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
-      _c("h5", { staticClass: "modal-title", attrs: { id: "modalFormUser" } }, [
-        _vm._v("XXXXX")
-      ]),
+      _c("h5", { staticClass: "modal-title", attrs: { id: "modalFormUser" } }),
       _vm._v(" "),
       _c(
         "button",
@@ -50818,8 +50856,66 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-body" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "card-body" })
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "name" } }, [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            id: "name",
+            name: "name",
+            value: "",
+            required: ""
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "email" } }, [_vm._v("E-Mail Address")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "email",
+            id: "email",
+            name: "email",
+            value: "",
+            required: ""
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "password" } }, [_vm._v("Password")]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "password",
+            id: "password",
+            name: "password",
+            autocomplete: "off",
+            required: ""
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "password-confirm" } }, [
+          _vm._v("Confirm Password")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "password",
+            id: "password-confirm",
+            name: "password_confirmation",
+            autocomplete: "off",
+            required: ""
+          }
+        })
       ])
     ])
   }
