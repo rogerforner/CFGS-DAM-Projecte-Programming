@@ -16,7 +16,14 @@ class Temary extends Model
      * @var array
      */
     protected $fillable = [
-        'nf', 'duration', 'name', 'description', 'public', 'training_unit_id'
+        'nf',
+        'duration',
+        'name',
+        'description',
+        'public',
+        'training_unit_id',
+        'created_by',
+        'updated_by',
     ];
 
     /**

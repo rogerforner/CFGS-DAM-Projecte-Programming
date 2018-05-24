@@ -82,7 +82,7 @@ new Vue({
                     toastr.warning(message, 'Warning');    // Notificar Error.
                 } else {
                     this.indexUsers();                     // Llistar (refrescar).
-                    $('#modal-delete-user').modal('hide'); // Tancar modal.
+                    $('#modal-delete').modal('hide'); // Tancar modal.
                     toastr.success(message, 'Success');    // Notificar OK.
                 }
             });
@@ -94,7 +94,7 @@ new Vue({
             this.user.name  = user.name;
             this.user.email = user.email;
 
-            $('#modal-delete-user').modal('show'); // Obrir modal.
+            $('#modal-delete').modal('show'); // Obrir modal.
         },
         /**
          * STORE

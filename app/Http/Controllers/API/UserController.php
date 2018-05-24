@@ -111,9 +111,11 @@ class UserController extends ApiResponseController
         // Dades del formulari.
         $data = $request->all();
 
-        // Obtenir l'usuari.
-        // Afegir-lo entre les dades obtingudes.
+        // Obtenir l'usuari a modificar.
         $user = User::findOrFail($id);
+
+        // Obtenir l'usuari que duu a terme l'acció i l'afegim entre les dades
+        // obtingudes per emplenar el camp "updated_by".
         $data['updated_by'] = Auth::user()->name;
 
         // Validar les dades.

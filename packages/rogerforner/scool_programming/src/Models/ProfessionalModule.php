@@ -25,7 +25,9 @@ class ProfessionalModule extends Model
         'section4',
         'approved',
         'public',
-        'department_id'
+        'department_id',
+        'created_by',
+        'updated_by',
     ];
 
     /**

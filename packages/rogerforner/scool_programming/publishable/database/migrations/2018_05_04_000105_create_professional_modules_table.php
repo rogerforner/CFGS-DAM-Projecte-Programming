@@ -22,7 +22,6 @@ class CreateProfessionalModulesTable extends Migration
             $table->string('section3')->nullable(); // Recursos.
             $table->string('section4')->nullable(); // Dual.
             $table->boolean('approved')->default(false); // Acceptada pel cap de departament?
-            $table->boolean('public')->default(true);    // Visible per a la resta d'usuaris del departament?
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();

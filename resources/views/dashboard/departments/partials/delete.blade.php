@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalDelete">Delete User</h5>
+                <h5 class="modal-title" id="modalDelete">Delete Department</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -11,7 +11,7 @@
             <!-- Cos -->
             <div class="modal-body">
                 <!-- Info avís -->
-                <p><strong>Are you sure to delete the user?</strong>,<br>
+                <p><strong>Are you sure to delete the department?</strong>,<br>
                 This action is irreversible, you will not be able to recover the data.</p>
                 <!-- Info dades -->
                 <div class="card">
@@ -19,9 +19,9 @@
                         <h6 class="card-subtitle mb-2 text-muted">Information</h6>
                         <dl class="row">
                             <dt class="col-sm-3">Name</dt>
-                            <dd class="col-sm-9">@{{ user.name }}</dd>
-                            <dt class="col-sm-3">eMail</dt>
-                            <dd class="col-sm-9">@{{ user.email }}</dd>
+                            <dd class="col-sm-9">@{{ department.name }}</dd>
+                            <dt class="col-sm-3">Description</dt>
+                            <dd class="col-sm-9">@{{ department.description }}</dd>
                         </dl>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                         data-dismiss="modal">Close
                 </button>
                 <button type="button" class="btn btn-danger"
-                        @click.prevent="destroyUser(user.id)">
+                        @click.prevent="destroyDepartment(department.id)">
                     Delete
                 </button>
             </div>

@@ -19,7 +19,6 @@ class CreateTemariesTable extends Migration
             $table->unsignedInteger('duration'); // n hores
             $table->string('name', 150);
             $table->string('description')->nullable();
-            $table->boolean('public')->default(true); // Visible per als usuaris del departament.
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();

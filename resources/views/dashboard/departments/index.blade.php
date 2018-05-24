@@ -11,73 +11,95 @@
             <li class="breadcrumb-item active" aria-current="page">Departments</li>
         </ol>
     </nav>
-    
     <!-- COS -->
-    <div class="row">
+    <div id="departmentsCrud" class="row">
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    <!-- TÍTOL + AFEGIR -->
-                    <div class="row">
-                        <div class="col-md-9">
-                            <h5 class="card-title">Departments</h5>
+                    <div class="container-fluid">
+                        <!-- TÍTOL + AFEGIR -->
+                        <div class="row">
+                            <div class="col-md-9">
+                                <h5 class="card-title">
+                                    Departments <span class="badge badge-primary" v-cloak>
+                                        @{{ pagination.total }}
+                                    </span>
+                                </h5>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-primary btn-block"
+                                        @click.prevent="createModal()">
+                                    <i class="fas fa-plus-circle"></i> New Department
+                                </button>
+                            </div>
+                        </div><!-- /.row -->
+                        <!-- SPINNER -->
+                        <div id="spinner" class="row align-items-center my-5"
+                             v-if="spinnerLoading">
+                            <div class="col-2 mx-auto">
+                                <i class="fas fa-spinner fa-pulse fa-5x text-primary"></i>
+                            </div>
                         </div>
-                        <div class="col-md-3">
-                            <a class="btn btn-primary btn-block" href="#" role="button">New Department</a>
-                        </div>
-                    </div><!-- /.row -->
-                    <!-- LLISTA DE DEPARTAMENTS -->
-                    <div class="row mt-5">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead class="bg-primary text-light">
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Description</th>
-                                        <th scope="col">In charge</th>
-                                        <th scope="col">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1000</th>
-                                        <td>Elena Nito del Bosque</td>
-                                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. In, alias!</td>
-                                        <td>Inco Foragr</td>
-                                        <td>
-                                            <button type="button" class="btn btn-primary"
-                                            tooltip="tooltip" data-placement="top"title="See">
-                                                <i class="far fa-eye"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-dark"
-                                            tooltip="tooltip" data-placement="top"title="Edit">
-                                                <i class="fas fa-pencil-alt"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-danger"
-                                            tooltip="tooltip" data-placement="top"title="Delete">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div><!-- /.table-responsive -->
-                    </div><!-- /.row -->
-                </div>
+                        <!-- LLISTA DE USUARIS -->
+                        <div class="row mt-5" v-cloak>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <caption><small>List of departments.</small></caption>
+                                    <thead class="bg-primary text-light">
+                                        <tr>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Created</th>
+                                            <th scope="col">Updated</th>
+                                            <th scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="department in departments" :key="department.id">
+                                            <td>@{{ department.name }}</td>
+                                            <td>@{{ department.description }}</td>
+                                            <td>
+                                                @{{ since(department.created_at) }}
+                                                <span class="text-muted d-block"
+                                                      v-if="department.created_by">
+                                                    <small>by @{{ department.created_by }}</small>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                @{{ since(department.updated_at) }}
+                                                <span class="text-muted d-block"
+                                                      v-if="department.updated_by">
+                                                    <small>by @{{ department.updated_by }}</small>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-dark"
+                                                        @click.prevent="editModal(department)">
+                                                    <i class="fas fa-pencil-alt"></i> Edit
+                                                </button>
+                                                <button type="button" class="btn btn-danger"
+                                                        @click.prevent="deleteModal(department)">
+                                                    <i class="fas fa-trash"></i> Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <pagination v-if="pagination.last_page > 1"
+                                            :pagination="pagination"
+                                            :offset="5" @paginate="indexDepartments()"
+                                            v-cloak>
+                                </pagination>
+                            </div><!-- /.table-responsive -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </div><!-- /.card-body -->
             </div><!-- /.card -->
         </div><!-- /.col -->
-    </div><!-- /.row -->
-
-    <!-- PROVISIONAL -->
-    <div class="row mt-5">
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-                    @{{ $data}}
-                </div>
-            </div><!-- /.card -->
-        </div><!-- /.col -->
+        <!-- MODALS -->
+        @include('dashboard.departments.partials.create')
+        @include('dashboard.departments.partials.edit')
+        @include('dashboard.departments.partials.delete')
     </div><!-- /.row -->
 </div><!-- /.container -->
 @endsection
