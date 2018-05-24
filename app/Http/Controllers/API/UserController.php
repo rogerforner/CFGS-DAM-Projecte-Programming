@@ -26,28 +26,41 @@ class UserController extends ApiResponseController
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return App\Http\Controllers\API\ApiResponseController
      */
     public function index()
     {
         // Obtenir tots els usuaris.
-        $users = User::all();
+        $users = User::paginate(8);
+
+        // Guardem en un array la paginació i els usuaris.
+        $response = [
+            'pagination' => [
+                'total'        => $users->total(),
+                'per_page'     => $users->perPage(),
+                'current_page' => $users->currentPage(),
+                'last_page'    => $users->lastPage(),
+                'from'         => $users->firstItem(),
+                'to'           => $users->lastItem()
+            ],
+            'data' => $users
+        ];
         
-        // Retornem tots els usuaris passant les dades a través del mètode
-        // sendResponse() de ApiResponseController.
-        return $this->sendResponse($users->toArray(), 'Users retrieved successfully.');
+        // Retornem l'array amb els usuaris i la paginació passant les dades
+        // d'aquest a través del mètode sendResponse() de ApiResponseController.
+        return $this->sendResponse($response, 'Users retrieved successfully.');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return App\Http\Controllers\API\ApiResponseController
      */
     public function store(Request $request)
     {
         // Obtenir l'usuari que duu a terme l'acció.
-        $user = Auth::user()->username;
+        $userAuth = Auth::user()->name;
 
         // Dades del formulari.
         $data = $request->all();
@@ -69,7 +82,7 @@ class UserController extends ApiResponseController
             'name'       => $data['name'],
             'email'      => $data['email'],
             'password'   => bcrypt($data['password']),
-            'created_by' => $user,
+            'created_by' => $userAuth,
         ]);
 
         return $this->sendResponse(null, 'User created successfully.');
@@ -79,7 +92,7 @@ class UserController extends ApiResponseController
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return App\Http\Controllers\API\ApiResponseController
      */
     public function show($id)
     {
@@ -91,22 +104,24 @@ class UserController extends ApiResponseController
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return App\Http\Controllers\API\ApiResponseController
      */
     public function update(Request $request, $id)
     {
-        // Obtenir l'usuari.
-        $user = User::findOrFail($id);
-
         // Dades del formulari.
         $data = $request->all();
+
+        // Obtenir l'usuari.
+        // Afegir-lo entre les dades obtingudes.
+        $user = User::findOrFail($id);
+        $data['updated_by'] = Auth::user()->name;
 
         // Validar les dades.
         $validator = Validator::make($data, [
             'name'     => 'required|string|max:255',
             'email'    => [
                 'required',
-                'strings',
+                'string',
                 'email',
                 'max:255',
                 Rule::unique('users')->ignore($user->id)
@@ -138,7 +153,7 @@ class UserController extends ApiResponseController
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return App\Http\Controllers\API\ApiResponseController
      */
     public function destroy($id)
     {

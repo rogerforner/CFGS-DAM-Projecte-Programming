@@ -16,13 +16,11 @@ window.toastr = require('toastr');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Passport
+// Passport.
 Vue.component('passport-clients', require('./components/passport/Clients.vue'));
 Vue.component('passport-authorized-clients', require('./components/passport/AuthorizedClients.vue'));
 Vue.component('passport-personal-access-tokens', require('./components/passport/PersonalAccessTokens.vue'));
-// Users
-Vue.component('users-component', require('./components/users/UsersComponent.vue'));
-
-const app = new Vue({
-    el: '#app'
-});
+// Paginació (importada en cada component).
+Vue.component('pagination', require('./components/PaginationComponent.vue'));
+// Users.
+Vue.component('users-component', require('./components/UsersComponent.vue'));

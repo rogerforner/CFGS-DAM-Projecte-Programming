@@ -11,21 +11,21 @@ class ApiResponseController extends Controller
      * Mètode emprat per a aquelles peticions que s'hagin dut endavant
      * satisfactoriament.
      * 
-     * Si passem 'null' al paràmetre "result" no mostrarem eliminem "arrData". No
-     * ens interessa passar un índex buit al array.
+     * Si passem 'null' al paràmetre "result" no el mostrarem, l'eliminem de
+     * "apiResponseData". No ens interessa passar un índex buit al array.
      *
      * @return \Illuminate\Http\Response
      */
     public function sendResponse($result, $message)
     {
         $response = [
-            'success' => true,
-            'arrData' => $result,
-            'message' => $message,
+            'success'         => true,
+            'apiResponseData' => $result,
+            'message'         => $message,
         ];
 
         if (is_null($result)) {
-            unset($response[1]); // Índex 1 = arrData.
+            unset($response[1]); // Índex 1 = apiResponseData.
         }
 
         return response()->json($response);
@@ -50,8 +50,8 @@ class ApiResponseController extends Controller
         ];
 
         if (!empty($errorMessages)) {
-            $response['arrData'] = $errorMessages;
-            $response['type']    = 'error';
+            $response['apiResponseData'] = $errorMessages;
+            $response['type']            = 'error';
         }
 
         return response()->json($response);

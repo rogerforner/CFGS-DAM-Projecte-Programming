@@ -10,3 +10,8 @@
 html, body {
   height: 100%;
 }
+
+// Vue (ocultar elements abans que hagin carregat).
+[v-cloak] {
+  display: none;
+}
