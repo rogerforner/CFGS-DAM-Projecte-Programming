@@ -64,8 +64,8 @@ new Vue({
                 var users      = response.data.apiResponseData.data.data;
                 var pagination = response.data.apiResponseData.pagination;
                 
-                this.users          = users;
-                this.pagination     = pagination;
+                this.users      = users;
+                this.pagination = pagination;
             });
         },
         /**
