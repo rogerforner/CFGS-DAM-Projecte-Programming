@@ -48,6 +48,13 @@ new Vue({
     },
     methods: {
         /**
+         * SINCE
+         * Formatar les dates.
+         **********************************************************************/
+        since: function(date) {
+            return moment(date).format('ll');
+        },
+        /**
          * INDEX
          * GET => API\UserController@index
          **********************************************************************/

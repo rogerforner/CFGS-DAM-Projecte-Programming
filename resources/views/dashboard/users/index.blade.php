@@ -68,14 +68,14 @@
                                             <td>@{{ user.email }}</td>
                                             <td>@{{ user.provider }}</td>
                                             <td>
-                                                @{{ user.created_at }}
+                                                @{{ since(user.created_at) }}
                                                 <span class="text-muted d-block"
                                                       v-if="user.created_by">
                                                     <small>by @{{ user.created_by }}</small>
                                                 </span>
                                             </td>
                                             <td>
-                                                @{{ user.updated_at }}
+                                                @{{ since(user.updated_at) }}
                                                 <span class="text-muted d-block"
                                                       v-if="user.updated_by">
                                                     <small>by @{{ user.updated_by }}</small>
