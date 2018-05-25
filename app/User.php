@@ -17,7 +17,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar', 'created_by', 'updated_by'
+        'name',
+        'email',
+        'password',
+        'avatar',
+        'created_by',
+        'updated_by',
+        'department_id'
     ];
 
     /**
@@ -32,6 +38,15 @@ class User extends Authenticatable
     /**
      * Eloquent: Relationships.
      **************************************************************************/
+    /**
+     * Department.
+     * Get the department that owns the user.
+     */
+    public function department()
+    {
+        return $this->hasOne(Department::class);
+    }
+
     /**
      * The departments that belong to the user.
      */
