@@ -67596,42 +67596,35 @@ new Vue({
     },
     data: function data() {
         return {
-            // Spinner.
+            // Complements.
             //---------------------
             spinnerLoading: false,
-
-            // Departaments.
-            //---------------------
-            departments: [],
-            department: {
-                'id': '',
-                'name': '',
-                'description': ''
-            },
-
-            // Relacions.
-            //---------------------
-            users: [],
-
-            // Paginació.
-            //---------------------
             pagination: {
                 'current_page': 1
             },
 
-            // Formulari Crear.
+            // Dades.
             //---------------------
-            createName: '',
-            createDescription: '',
-            createSelectedTeachers: [],
-            createDepartmentManager: '',
-
-            // Formulari Editar.
-            //---------------------
-            editName: '',
-            editDescription: '',
-            editSelectedTeachers: [],
-            editDepartmentManager: ''
+            index: {
+                departments: [],
+                users: []
+            },
+            show: {
+                department: '',
+                departmentM: '',
+                departmentUs: [],
+                departmentMP: []
+            },
+            form: {
+                createName: '',
+                createDescription: '',
+                createSelectedTeachers: [],
+                createDepartmentManager: '',
+                editName: '',
+                editDescription: '',
+                editSelectedTeachers: [],
+                editDepartmentManager: ''
+            }
         };
     },
     methods: {
@@ -67642,72 +67635,126 @@ new Vue({
         since: function since(date) {
             return moment(date).format('ll');
         },
+
         /**
-         * INDEX
+         * RESET
+         * Buidar variables.
+         **********************************************************************/
+        resetData: function resetData() {
+            this.show.department = '';
+            this.show.departmentM = '';
+            this.show.departmentUs = [];
+            this.show.departmentMP = [];
+
+            this.createName = '';
+            this.createDescription = '';
+            this.createSelectedTeachers = [];
+            this.createDepartmentManager = '';
+            this.editName = '';
+            this.editDescription = '';
+            this.editSelectedTeachers = [];
+            this.editDepartmentManager = '';
+        },
+
+        /**
+         * INDEX Departaments
          * GET => Rogerforner\ScoolProgramming\Http\Controllers\API\DepartmentController@index
          **********************************************************************/
         indexDepartments: function indexDepartments() {
             var _this = this;
 
-            var url = '/api/scool/programming/departments?page=' + this.pagination.current_page;
+            var url = '/api/scool/programming/departments?departments=' + this.index.current_page;
             axios.get(url).then(function (response) {
-                var departments = response.data.apiResponseData.data.data;
-                var pagination = response.data.apiResponseData.pagination;
-
-                _this.departments = departments;
-                _this.pagination = pagination;
+                _this.index.departments = response.data.apiResponseData.data.data;
+                _this.pagination = response.data.apiResponseData.pagination;
             });
         },
+        /**
+         * INDEX Usuaris
+         * GET => API\UserController@index
+         **********************************************************************/
         indexUsers: function indexUsers() {
             var _this2 = this;
 
-            var url = '/api/users';
+            var url = '/api/users?page=' + this.pagination.current_page;
             axios.get(url).then(function (response) {
-                var users = response.data.apiResponseData.data.data;
-                _this2.users = users;
+                _this2.index.users = response.data.apiResponseData.data.data;
             });
         },
-        //     /**
-        //      * DESTROY
-        //      * DELETE => Rogerforner\ScoolProgramming\Http\Controllers\API\DepartmentController@destroy
-        //      **********************************************************************/
-        //     destroyUser: function(id) {
-        //         var url = '/api/scool/programming/departments/' + id;
-        //         axios.delete(url).then(response => {
-        //             var success = response.data.success;
-        //             var message = response.data.message;
 
-        //             if (success == false) {
-        //                 toastr.warning(message, 'Warning');    // Notificar Error.
-        //             } else {
-        //                 this.indexDepartments();                     // Llistar (refrescar).
-        //                 $('#modal-delete').modal('hide'); // Tancar modal.
-        //                 toastr.success(message, 'Success');    // Notificar OK.
-        //             }
-        //         });
-        //     },
-        //     /* Modal
-        //     --------------------------------------------------------------------- */
-        //     deleteModal: function(user) {
-        //         this.user.id    = user.id;
-        //         this.user.name  = user.name;
-        //         this.user.email = user.email;
+        /**
+         * SHOW
+         * GET => Rogerforner\ScoolProgramming\Http\Controllers\API\DepartmentController@show
+         **********************************************************************/
+        showDepartment: function showDepartment(id) {
+            var _this3 = this;
 
-        //         $('#modal-delete').modal('show'); // Obrir modal.
-        //     },
+            var url = '/api/scool/programming/departments/' + id;
+            axios.get(url).then(function (response) {
+                var success = response.data.success;
+                var message = response.data.message;
+
+                if (success == false) {
+                    console.log('Woops! ' + message);
+                } else {
+                    console.log('OK ' + message);
+                }
+
+                _this3.show.department = response.data.apiResponseData.department;
+                _this3.show.departmentM = response.data.apiResponseData.departmentM;
+                _this3.show.departmentUs = response.data.apiResponseData.departmentUs;
+                _this3.show.departmentMP = response.data.apiResponseData.departmentMP;
+            });
+        },
+        /* Modal
+        --------------------------------------------------------------------- */
+        showModal: function showModal(id) {
+            this.showDepartment(id);
+            $('#modal-show').modal('show'); // Obrir modal.
+        },
+
+        /**
+         * DESTROY
+         * DELETE => Rogerforner\ScoolProgramming\Http\Controllers\API\DepartmentController@destroy
+         **********************************************************************/
+        destroyDepartment: function destroyDepartment(id) {
+            var _this4 = this;
+
+            var url = '/api/scool/programming/departments/' + id;
+            axios.delete(url).then(function (response) {
+                var success = response.data.success;
+                var message = response.data.message;
+
+                if (success == false) {
+                    toastr.warning(message, 'Warning'); // Notificar Error.
+                } else {
+                    _this4.indexDepartments(); // Llistar (refrescar).
+                    _this4.resetData(); // Buidar camps.
+                    $('#modal-delete').modal('hide'); // Tancar modal.
+                    toastr.success(message, 'Success'); // Notificar OK.
+                }
+            });
+        },
+        /* Modal
+        --------------------------------------------------------------------- */
+        deleteModal: function deleteModal(id) {
+            this.showDepartment(id);
+            $('#modal-delete').modal('show'); // Obrir modal.
+        },
+
         /**
          * STORE
          * POST => Rogerforner\ScoolProgramming\Http\Controllers\API\DepartmentController@store
          **********************************************************************/
         storeDepartment: function storeDepartment() {
-            var _this3 = this;
+            var _this5 = this;
 
             var url = '/api/scool/programming/departments';
             axios.post(url, {
-                name: this.createName,
-                description: this.createDescription,
-                teachers: this.createSelectedTeachers,
-                manager: this.createDepartmentManager
+                name: this.form.createName,
+                description: this.form.createDescription,
+                teachers: this.form.createSelectedTeachers,
+                manager: this.form.createDepartmentManager
             }).then(function (response) {
                 var success = response.data.success;
                 var type = response.data.type;
@@ -67719,29 +67766,16 @@ new Vue({
                         toastr.warning(message, 'Warning'); // Notificar Warning.
                     } else {
                         toastr.error(message, 'Error'); // Notificar Error.
-
-                        // Aplicar classes Bootstrap als formularis segons si les
-                        // dades són vàlides o no. També afegim el missatge de
-                        // l'error, aquest lligat a cada input pel seu "name".
-                        if (errors.name) {
-                            $('input[name=name]').addClass('is-invalid');
-                            $('#feedCreateName').text(errors.name);
-                        } else {
-                            $('input[name=name]').removeClass('is-invalid').addClass('is-valid');
-                        }
-                        if (errors.description) {
-                            $('textarea[name=description]').addClass('is-invalid');
-                            $('#feedCreateEmail').text(errors.description);
-                        } else {
-                            $('textarea[name=description]').removeClass('is-invalid').addClass('is-valid');
-                        }
+                        $.each(errors, function (key, value) {
+                            // Info error.
+                            toastr.warning('<em>' + value + '</em>', 'Information', {
+                                timeOut: 10000
+                            });
+                        });
                     }
                 } else {
-                    _this3.indexDepartments(); // Llistar (refrescar).
-                    _this3.createName = ''; // Reset valor input...
-                    _this3.createDescription = '';
-                    $('input[name=name]').removeClass('is-invalid is-valid'); // Reset errors input...
-                    $('textarea[name=description]').removeClass('is-invalid is-valid');
+                    _this5.indexDepartments(); // Llistar (refrescar).
+                    _this5.resetData(); // Buidar camps.
                     $('#modal-create').modal('hide'); // Tancar modal.
                     toastr.success(message, 'Success'); // Notificar OK.
                 }
@@ -67750,114 +67784,67 @@ new Vue({
         /* Modal
         --------------------------------------------------------------------- */
         createModal: function createModal() {
-            $('input[name=name]').removeClass('is-invalid is-valid'); // Reset errors input...
-            $('textarea[name=description]').removeClass('is-invalid is-valid');
-
             $('#modal-create').modal('show'); // Obrir modal.
         },
-        /* Reset Create Form
+        /* Botó Reset
         --------------------------------------------------------------------- */
         resetCreateForm: function resetCreateForm() {
-            // Feed de validació.
-            $('input[name=name]').removeClass('is-invalid is-valid');
-            $('textarea[name=description]').removeClass('is-invalid is-valid');
+            this.form.createName = '';
+            this.form.createDescription = '';
+            this.form.createSelectedTeachers = [];
+            this.form.createDepartmentManager = '';
+        },
+        /**
+         * UPDATE
+         * UPDATE => Rogerforner\ScoolProgramming\Http\Controllers\API\DepartmentController@update
+         **********************************************************************/
+        updateDepartment: function updateDepartment(id) {
+            var _this6 = this;
 
-            // Contingut dels camps.
-            this.createName = '';
-            this.createDescription = '';
-            this.createSelectedTeachers = [];
-            this.createDepartmentManager = '';
+            var url = '/api/scool/programming/departments/' + id;
+            axios.put(url, {
+                name: this.form.editName,
+                description: this.form.editDescription,
+                teachers: this.form.editSelectedTeachers,
+                manager: this.form.editDepartmentManager
+            }).then(function (response) {
+                var success = response.data.success;
+                var type = response.data.type;
+                var message = response.data.message;
+                var errors = response.data.apiResponseData;
+
+                if (success == false) {
+                    if (type == 'warning') {
+                        toastr.warning(message, 'Warning'); // Notificar Warning.
+                    } else {
+                        toastr.error(message, 'Error'); // Notificar Error.
+                        $.each(errors, function (key, value) {
+                            // Info error.
+                            toastr.warning('<em>' + value + '</em>', 'Information', {
+                                timeOut: 10000
+                            });
+                        });
+                    }
+                } else {
+                    _this6.indexDepartments(); // Llistar (refrescar).
+                    _this6.resetData(); // Buidar camps.
+                    $('#modal-edit').modal('hide'); // Tancar modal.
+                    toastr.success(message, 'Success'); // Notificar OK.
+                }
+            });
+        },
+        /* Modal
+        --------------------------------------------------------------------- */
+        editModal: function editModal(id) {
+            this.showDepartment(id);
+
+            this.form.editName = this.show.department.name;
+            this.form.editDescription = this.show.department.description;
+            this.form.editSelectedTeachers = this.show.departmentUs;
+            this.form.editDepartmentManager = this.show.departmentM;
+
+            $('#modal-edit').modal('show'); // Obrir modal.
         }
-        // /**
-        //  * UPDATE
-        //  * UPDATE => Rogerforner\ScoolProgramming\Http\Controllers\API\DepartmentController@update
-        //  **********************************************************************/
-        // updateDepartment: function(id) {
-        //     var url = '/api/scool/programming/departments/' + id;
-        //     axios.put(url, {
-        //         name: this.editName,
-        //         description: this.editDescription,
-        //     }).then(response => {
-        //         var success = response.data.success;
-        //         var type    = response.data.type;
-        //         var message = response.data.message;
-        //         var errors  = response.data.apiResponseData;
-
-        //         if (success == false) {
-        //             if (type == 'warning') {
-        //                 toastr.warning(message, 'Warning'); // Notificar Warning.
-        //             } else {
-        //                 toastr.error(message, 'Error');     // Notificar Error.
-
-        //                 // Aplicar classes Bootstrap als formularis segons si les
-        //                 // dades són vàlides o no. També afegim el missatge de
-        //                 // l'error, aquest lligat a cada input pel seu "name".
-        //                 if (errors.name) {
-        //                     $('input[name=name]').addClass('is-invalid');
-        //                     $('#feedEditName').text(errors.name);
-        //                 } else {
-        //                     $('input[name=name]')
-        //                         .removeClass('is-invalid')
-        //                         .addClass('is-valid');
-        //                 }
-        //                 if (errors.email) {
-        //                     $('textarea[name=description]').addClass('is-invalid');
-        //                     $('#feedEditEmail').text(errors.email);
-        //                 } else {
-        //                     $('textarea[name=description]')
-        //                         .removeClass('is-invalid')
-        //                         .addClass('is-valid');
-        //                 }
-        //                 if (errors.password) {
-        //                     $('input[name=password]').addClass('is-invalid');
-        //                     $('input[name=password_confirmation]').addClass('is-invalid');
-        //                     $('#feedEditPass').text(errors.password);
-        //                 } else {
-        //                     $('input[name=password]')
-        //                         .removeClass('is-invalid')
-        //                         .addClass('is-valid');
-        //                     $('input[name=password_confirmation]')
-        //                         .removeClass('is-invalid')
-        //                         .addClass('is-valid');
-        //                 }
-        //             }
-        //         } else {
-        //             this.indexDepartments();      // Llistar (refrescar).
-        //             this.editName     = ''; // Reset valor input...
-        //             this.editEmail    = '';
-        //             this.editPassword = '';
-        //             this.editPasswordConfirm = '';
-        //             $('input[name=name]').removeClass('is-invalid is-valid'); // Reset errors input...
-        //             $('textarea[name=description]').removeClass('is-invalid is-valid');
-        //             $('input[name=password]').removeClass('is-invalid is-valid');
-        //             $('input[name=password_confirmation]').removeClass('is-invalid is-valid');
-        //             $('#modal-edit').modal('hide');     // Tancar modal.
-        //             toastr.success(message, 'Success'); // Notificar OK.
-        //         }
-        //     });
-        // },
-        // /* Modal
-        // --------------------------------------------------------------------- */
-        // editModal: function(user) {
-        //     // data           user             // Emplenar valors input...
-        //     this.user.id    = user.id;
-        //     this.user.name  = user.name;
-        //     this.user.email = user.email;
-
-        //     // data          data
-        //     this.editName  = this.user.name;
-        //     this.editEmail = this.user.email;
-
-        //     this.editPassword        = ''; // Reset valors password inputs...
-        //     this.editPasswordConfirm = '';
-
-        //     $('input[name=name]').removeClass('is-invalid is-valid'); // Reset errors input...
-        //     $('textarea[name=description]').removeClass('is-invalid is-valid');
-        //     $('input[name=password]').removeClass('is-invalid is-valid');
-        //     $('input[name=password_confirmation]').removeClass('is-invalid is-valid');
-
-        //     $('#modal-edit').modal('show'); // Obrir modal.
-        // },
     }
 });
 

@@ -21,7 +21,7 @@
                         <input type="text" id="createName"
                                name="name"
                                class="form-control" required
-                               v-model="createName">
+                               v-model="form.createName">
                         <div id="feedCreateName" class="invalid-feedback"></div>
                     </div>
 
@@ -31,7 +31,7 @@
                         <textarea rows="3" id="createDescription"
                                   name="description"
                                   class="form-control"
-                                  v-model="createDescription"></textarea>
+                                  v-model="form.createDescription"></textarea>
                         <div id="feedCreateDescription" class="invalid-feedback"></div>
                     </div>
 
@@ -39,9 +39,10 @@
                     <div class="form-group">
                         <label for="createSelectedTeachers">Teachers</label>
                         <select multiple id="createSelectedTeachers"
+                                name="teachers"
                                 class="form-control"
-                                v-model="createSelectedTeachers">
-                            <option v-for="user in users" :key="user.id"
+                                v-model="form.createSelectedTeachers">
+                            <option v-for="user in index.users" :key="user.id"
                                     :value="user.id">
                                 @{{ user.name }}
                             </option>
@@ -53,10 +54,11 @@
                     <div class="form-group">
                         <label for="createDepartmentManager">Manager</label>
                         <select id="createDepartmentManager"
-                                class="form-control"
-                                v-model="createDepartmentManager">
+                                name="manager"
+                                class="form-control" required
+                                v-model="form.createDepartmentManager">
                             <option disabled value="">Select a department manager</option>
-                            <option v-for="user in users" :key="user.id"
+                            <option v-for="user in index.users" :key="user.id"
                                     :value="user.id">
                                 @{{ user.name }}
                             </option>

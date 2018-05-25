@@ -24,14 +24,6 @@ class Department extends Model
      * Eloquent: Relationships.
      **************************************************************************/
     /**
-     * User.
-     * Get the user that owns the department.
-     */
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-    /**
      * Users.
      * The users that belong to the department.
      */

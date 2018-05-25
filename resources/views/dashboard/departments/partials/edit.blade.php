@@ -12,27 +12,58 @@
             </div>
 
             <!-- FORMULARI -->
-            <form method="post" v-on:submit.prevent="updateDepartment(department.id)">
+            <form method="post" v-on:submit.prevent="updateDepartment(show.department.id)">
                 <!-- Camps del formulari -->
                 <div class="modal-body">
                     <!-- Nom -->
                     <div class="form-group">
-                        <label for="createName">Name</label>
-                        <input type="text" id="createName"
+                        <label for="editName">Name</label>
+                        <input type="text" id="editName"
                                name="name"
                                class="form-control" required
-                               v-model="createName">
+                               v-model="form.editName">
                         <div id="feedCreateName" class="invalid-feedback"></div>
                     </div>
 
                     <!-- Descripció -->
                     <div class="form-group">
-                        <label for="createDescription">Description</label>
-                        <textarea rows="3" id="createDescription"
+                        <label for="editDescription">Description</label>
+                        <textarea rows="3" id="editDescription"
                                   name="description"
                                   class="form-control"
-                                  v-model="createDescription"></textarea>
+                                  v-model="form.editDescription"></textarea>
                         <div id="feedCreateDescription" class="invalid-feedback"></div>
+                    </div>
+
+                    <!-- Professors -->
+                    <div class="form-group">
+                        <label for="editSelectedTeachers">Teachers</label>
+                        <select multiple id="editSelectedTeachers"
+                                name="teachers"
+                                class="form-control"
+                                v-model="form.editSelectedTeachers">
+                            <option v-for="user in index.users" :key="user.id"
+                                    :value="user.id">
+                                @{{ user.name }}
+                            </option>
+                        </select>
+                        <div id="feedCreateTeachers" class="invalid-feedback"></div>
+                    </div>
+
+                    <!-- Cap de departament -->
+                    <div class="form-group">
+                        <label for="editDepartmentManager">Manager</label>
+                        <select id="editDepartmentManager"
+                                name="manager"
+                                class="form-control" required
+                                v-model="form.editDepartmentManager">
+                            <option disabled value="">Select a department manager</option>
+                            <option v-for="user in index.users" :key="user.id"
+                                    :value="user.id">
+                                @{{ user.name }}
+                            </option>
+                        </select>
+                        <div id="feedDepartmentManager" class="invalid-feedback"></div>
                     </div>
                 </div>
 

@@ -18,10 +18,10 @@
                     <div class="card-body">
                         <h6 class="card-subtitle mb-2 text-muted">Information</h6>
                         <dl class="row">
-                            <dt class="col-sm-3">Name</dt>
-                            <dd class="col-sm-9">@{{ department.name }}</dd>
-                            <dt class="col-sm-3">Description</dt>
-                            <dd class="col-sm-9">@{{ department.description }}</dd>
+                            <dt class="col-sm-4">Name</dt>
+                            <dd class="col-sm-8">@{{ show.department.name }}</dd>
+                            <dt class="col-sm-4">Description</dt>
+                            <dd class="col-sm-8">@{{ show.department.description }}</dd>
                         </dl>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                         data-dismiss="modal">Close
                 </button>
                 <button type="button" class="btn btn-danger"
-                        @click.prevent="destroyDepartment(department.id)">
+                        @click.prevent="destroyDepartment(show.department.id)">
                     Delete
                 </button>
             </div>
