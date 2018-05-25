@@ -31,7 +31,7 @@ class UserController extends ApiResponseController
     public function index()
     {
         // Obtenir tots els usuaris.
-        $users = User::paginate(8);
+        $users = User::orderBy('name', 'ASC')->paginate(8);
 
         // Guardem en un array la paginació i els usuaris.
         $response = [

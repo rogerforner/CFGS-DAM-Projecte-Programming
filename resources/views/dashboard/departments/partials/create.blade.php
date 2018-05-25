@@ -34,12 +34,45 @@
                                   v-model="createDescription"></textarea>
                         <div id="feedCreateDescription" class="invalid-feedback"></div>
                     </div>
+
+                    <!-- Professors -->
+                    <div class="form-group">
+                        <label for="createSelectedTeachers">Teachers</label>
+                        <select multiple id="createSelectedTeachers"
+                                class="form-control"
+                                v-model="createSelectedTeachers">
+                            <option v-for="user in users" :key="user.id"
+                                    :value="user.id">
+                                @{{ user.name }}
+                            </option>
+                        </select>
+                        <div id="feedCreateTeachers" class="invalid-feedback"></div>
+                    </div>
+
+                    <!-- Cap de departament -->
+                    <div class="form-group">
+                        <label for="createDepartmentManager">Manager</label>
+                        <select id="createDepartmentManager"
+                                class="form-control"
+                                v-model="createDepartmentManager">
+                            <option disabled value="">Select a department manager</option>
+                            <option v-for="user in users" :key="user.id"
+                                    :value="user.id">
+                                @{{ user.name }}
+                            </option>
+                        </select>
+                        <div id="feedDepartmentManager" class="invalid-feedback"></div>
+                    </div>
                 </div>
 
                 <!-- Botons -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"
                             data-dismiss="modal">Close
+                    </button>
+                    <button type="button" class="btn btn-warning"
+                            @click.prevent="resetCreateForm()">
+                        Reset
                     </button>
                     <button type="submit" class="btn btn-primary">
                         Create

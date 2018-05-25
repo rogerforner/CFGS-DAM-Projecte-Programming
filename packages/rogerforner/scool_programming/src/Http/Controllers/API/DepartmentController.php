@@ -83,6 +83,22 @@ class DepartmentController extends ApiResponseController
             'created_by'  => $userAuth,
         ]);
 
+        // Un cop creat el departament ja es poden insertar els professors i el
+        // cap de departament seleccionats. Primer obtenim l'id del departament
+        // que ha estat creat.
+        $departmentCreatedId = $department->id;
+        $departmentCreated   = Department::find($departmentCreatedId);
+
+        // Obtenim els/les professors/res seleccionats/des.
+        // Obtenim el/la cap de departament.
+        $arrTeachers = $request['teachers'];
+        $manager     = $request['manager'];
+
+        // Afegir les dades a la taula pivot "department_user".
+        // users() Relació Eloquent "belongsToMany" del model Department.
+        $departmentCreated->users()->sync($arrTeachers);
+
+
         return $this->sendResponse(null, 'Department created successfully.');
     }
 

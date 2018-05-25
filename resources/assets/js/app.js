@@ -7,9 +7,9 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
-window.toastr = require('toastr');
-window.moment = require('moment');
+window.Vue         = require('vue');
+window.toastr      = require('toastr');
+window.moment      = require('moment');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -21,7 +21,12 @@ window.moment = require('moment');
 Vue.component('passport-clients', require('./components/passport/Clients.vue'));
 Vue.component('passport-authorized-clients', require('./components/passport/AuthorizedClients.vue'));
 Vue.component('passport-personal-access-tokens', require('./components/passport/PersonalAccessTokens.vue'));
+
 // Paginació (importada en cada component).
 Vue.component('pagination', require('./components/PaginationComponent.vue'));
+
 // Users.
-Vue.component('users-component', require('./components/UsersComponent.vue'));
+Vue.component('users', require('./components/UsersComponent.vue'));
+
+// Scool Programming.
+Vue.component('departments', require('./components/scool-programming/DepartmentsComponent.vue'));

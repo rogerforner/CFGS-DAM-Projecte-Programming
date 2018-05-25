@@ -15,6 +15,7 @@ class CreateDepartmentUserTable extends Migration
     {
         Schema::create('department_user', function (Blueprint $table) {
             $table->increments('id');
+            $table->boolean('manager')->default(false); // Cap de departament.
             // Relacionem departaments amb usuaris.
             $table->unsignedInteger('department_id');
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');

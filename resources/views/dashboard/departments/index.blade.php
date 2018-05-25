@@ -44,7 +44,8 @@
                         <div class="row mt-5" v-cloak>
                             <div class="table-responsive">
                                 <table class="table table-striped">
-                                    <caption><small>List of departments.</small></caption>
+                                    <caption v-if="departments.length != 0"><small>List of departments.</small></caption>
+                                    <caption v-else><small>No data yet.</small></caption>
                                     <thead class="bg-primary text-light">
                                         <tr>
                                             <th scope="col">Name</th>

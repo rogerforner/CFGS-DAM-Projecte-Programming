@@ -44,7 +44,8 @@
                         <div class="row mt-5" v-cloak>
                             <div class="table-responsive">
                                 <table class="table table-striped">
-                                    <caption><small>User list.</small></caption>
+                                    <caption v-if="users.length != 0"><small>User list.</small></caption>
+                                    <caption v-else><small>No data yet.</small></caption>
                                     <thead class="bg-primary text-light">
                                         <tr>
                                             <th scope="col">Avatar</th>

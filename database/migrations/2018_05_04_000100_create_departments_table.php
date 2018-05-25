@@ -17,8 +17,8 @@ class CreateDepartmentsTable extends Migration
             $table->increments('id');
             $table->string('name', 150)->unique();
             $table->string('description')->nullable();
-            $table->unsignedInteger('created_by');
-            $table->unsignedInteger('updated_by');
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

@@ -24,9 +24,8 @@ class CreateTrainingUnitsTable extends Migration
             $table->string('section3')->nullable(); // Continguts.
             $table->string('section4')->nullable(); // Criteris avaluació.
             $table->boolean('approved')->default(false); // Acceptada pel cap de departament?
-            $table->boolean('public')->default(true);    // Visible per a la resta d'usuaris del departament?
-            $table->unsignedInteger('created_by');
-            $table->unsignedInteger('updated_by');
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
             // Una Unitat Formativa pertany a un Mòdul Professional.
             $table->unsignedInteger('professional_module_id');
