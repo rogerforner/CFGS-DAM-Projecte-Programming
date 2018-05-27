@@ -18,7 +18,7 @@ class CreateTemariesTable extends Migration
             $table->unsignedInteger('nf');       // 1 = NF1, 2 = NF2...
             $table->unsignedInteger('duration'); // n hores
             $table->string('name', 150);
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();

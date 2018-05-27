@@ -21,8 +21,10 @@ new Vue({
             // Dades.
             //---------------------
             index: {
+                departmentswp: [], // With pagination.
                 departments: [],
                 users: [],
+                userAuth: '',
             },
             show: {
                 department: '',
@@ -61,14 +63,14 @@ new Vue({
             this.show.departmentUs = [];
             this.show.departmentMP = [];
 
-            this.createName              = '';
-            this.createDescription       = '';
-            this.createSelectedTeachers  = [];
-            this.createDepartmentManager = '';
-            this.editName                = '';
-            this.editDescription         = '';
-            this.editSelectedTeachers    = [];
-            this.editDepartmentManager   = '';
+            this.form.createName              = '';
+            this.form.createDescription       = '';
+            this.form.createSelectedTeachers  = [];
+            this.form.createDepartmentManager = '';
+            this.form.editName                = '';
+            this.form.editDescription         = '';
+            this.form.editSelectedTeachers    = [];
+            this.form.editDepartmentManager   = '';
         },
 
         /**
@@ -76,10 +78,13 @@ new Vue({
          * GET => Rogerforner\ScoolProgramming\Http\Controllers\API\DepartmentController@index
          **********************************************************************/
         indexDepartments: function() {
-            var url = '/api/scool/programming/departments?departments=' + this.index.current_page;
+            var url = '/api/scool/programming/departments?departments=' + this.pagination.current_page;
             axios.get(url).then(response => {
-                this.index.departments = response.data.apiResponseData.data.data;
-                this.pagination  = response.data.apiResponseData.pagination;
+                this.index.departmentswp = response.data.apiResponseData.departmentswp.data;
+                this.index.departments   = response.data.apiResponseData.departments;
+                this.index.userAuth      = response.data.apiResponseData.userAuth;
+
+                this.pagination = response.data.apiResponseData.pagination;
             });
         },
         /**

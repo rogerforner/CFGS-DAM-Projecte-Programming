@@ -6,7 +6,9 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Rogerforner\ScoolProgramming\Http\Controllers\API\ApiResponseController;
+use Rogerforner\ScoolProgramming\Models\Department;
 use Rogerforner\ScoolProgramming\Models\ProfessionalModule;
+use Rogerforner\ScoolProgramming\Models\TrainingUnit;
 use Validator;
 
 class ProfessionalModuleController extends ApiResponseController
@@ -30,20 +32,26 @@ class ProfessionalModuleController extends ApiResponseController
      */
     public function index()
     {
-        // Obtenir tots els MPs.
-        $professionalModules = ProfessionalModule::paginate(8);
+        // Obtenir tots els MPs + Departaments + Usuari que fa la petició.
+        $professionalModulesWithPagination = ProfessionalModule::paginate(8, ['*'], 'promodules');
+        $professionalModules               = ProfessionalModule::all();
+        $departments                       = Department::all();
+        $userAuth                          = Auth::user();
 
         // Guardem en un array la paginació i els MPs.
         $response = [
             'pagination' => [
-                'total'        => $professionalModules->total(),
-                'per_page'     => $professionalModules->perPage(),
-                'current_page' => $professionalModules->currentPage(),
-                'last_page'    => $professionalModules->lastPage(),
-                'from'         => $professionalModules->firstItem(),
-                'to'           => $professionalModules->lastItem()
+                'total'        => $professionalModulesWithPagination->total(),
+                'per_page'     => $professionalModulesWithPagination->perPage(),
+                'current_page' => $professionalModulesWithPagination->currentPage(),
+                'last_page'    => $professionalModulesWithPagination->lastPage(),
+                'from'         => $professionalModulesWithPagination->firstItem(),
+                'to'           => $professionalModulesWithPagination->lastItem()
             ],
-            'data' => $professionalModules
+            'promoduleswp' => $professionalModulesWithPagination,
+            'promodules'   => $professionalModules,
+            'departments'  => $departments,
+            'userAuth'     => $userAuth,
         ];
         
         // Retornem l'array amb els MPs i la paginació passant les dades
@@ -59,8 +67,15 @@ class ProfessionalModuleController extends ApiResponseController
      */
     public function store(Request $request)
     {
+        // Només es poden crear MPs si existeix algun departament. Si no hi ha
+        // departaments a la BD retornem un missatge avisant.
+        $departments = Department::all();
+        if ($departments->isEmpty()) {
+            return $this->sendError('To create Professional Modules, departments are necessary. Create at least one department.',null);
+        }
+
         // Obtenir l'usuari que duu a terme l'acció.
-        $userAuth = Auth::user()->name;
+        $userAuth = Auth::user()->email;
 
         // Dades del formulari.
         $data = $request->all();
@@ -73,8 +88,7 @@ class ProfessionalModuleController extends ApiResponseController
             'section2'      => 'nullable',
             'section3'      => 'nullable',
             'section4'      => 'nullable',
-            'approved'      => 'required|boolean',
-            'department_id' => 'nullable',
+            'department_id' => 'required|integer',
         ]);
 
         // Si la validació de les dades introduïdes no es satisfactoria avisem.
@@ -90,7 +104,6 @@ class ProfessionalModuleController extends ApiResponseController
             'section2'      => $data['section2'],
             'section3'      => $data['section3'],
             'section4'      => $data['section4'],
-            'approved'      => $data['approved'],
             'department_id' => $data['department_id'],
             'created_by'    => $userAuth,
         ]);
@@ -106,7 +119,19 @@ class ProfessionalModuleController extends ApiResponseController
      */
     public function show($id)
     {
-        //
+        // Obtenir el MP.
+        $professionalModule = ProfessionalModule::findOrFail($id);
+
+        // Guardem en un array les dades del MP, incloses les seves relacions.
+        $response = [
+            'promodule'  => $professionalModule,
+            'promoduleD' => $professionalModule['department'],
+            'promoduleT' => $professionalModule['trainingUnits'],
+        ];
+        
+        // Retornem l'array amb els departaments i la paginació passant les dades
+        // d'aquest a través del mètode sendResponse() de ApiResponseController.
+        return $this->sendResponse($response, 'Professional Module data retrieved successfully.');
     }
 
     /**
@@ -126,19 +151,26 @@ class ProfessionalModuleController extends ApiResponseController
 
         // Obtenir l'usuari que duu a terme l'acció i l'afegim entre les dades
         // obtingudes per emplenar el camp "updated_by".
-        $data['updated_by'] = Auth::user()->name;
+        $data['updated_by'] = Auth::user()->email;
 
         // Validar les dades.
-        $validator = Validator::make($data, [
-            'mp'            => 'required|integer',
-            'name'          => 'required|string|max:150',
-            'section1'      => 'nullable',
-            'section2'      => 'nullable',
-            'section3'      => 'nullable',
-            'section4'      => 'nullable',
-            'approved'      => 'required|boolean',
-            'department_id' => 'nullable',
-        ]);
+        // "appoved" només serà validad si es duu a terme l'acció d'arpovar un MP.
+        if ($data['approved'] == true || $data['approved'] == false) {
+            $validator = Validator::make($data, [
+                'approved' => 'boolean',
+            ]);
+            
+        } else {
+            $validator = Validator::make($data, [
+                'mp'            => 'required|integer',
+                'name'          => 'required|string|max:150',
+                'section1'      => 'nullable',
+                'section2'      => 'nullable',
+                'section3'      => 'nullable',
+                'section4'      => 'nullable',
+                'department_id' => 'required|integer',
+            ]);
+        }
 
         // Si la validació de les dades introduïdes no es satisfactoria avisem.
         if ($validator->fails()) {

@@ -17,10 +17,10 @@ class CreateProfessionalModulesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('mp');  // 1 = MP1, 2 = MP2...
             $table->string('name', 150);
-            $table->string('section1')->nullable(); // Estratègies metodològiques.
-            $table->string('section2')->nullable(); // Criteris d'avaluació.
-            $table->string('section3')->nullable(); // Recursos.
-            $table->string('section4')->nullable(); // Dual.
+            $table->mediumText('section1')->nullable();  // Estratègies metodològiques.
+            $table->mediumText('section2')->nullable();  // Criteris d'avaluació.
+            $table->mediumText('section3')->nullable();  // Recursos.
+            $table->mediumText('section4')->nullable();  // Dual.
             $table->boolean('approved')->default(false); // Acceptada pel cap de departament?
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

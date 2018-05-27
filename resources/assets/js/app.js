@@ -29,4 +29,11 @@ Vue.component('pagination', require('./components/PaginationComponent.vue'));
 Vue.component('users', require('./components/UsersComponent.vue'));
 
 // Scool Programming.
-Vue.component('departments', require('./components/scool-programming/DepartmentsComponent.vue'));
+Vue.component(
+    'scool-programming-departments',
+    require('./components/scool-programming/DepartmentsComponent.vue'
+));
+Vue.component(
+    'scool-programming-professional-modules',
+    require('./components/scool-programming/ProfessionalModulesComponent.vue'
+));

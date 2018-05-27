@@ -44,7 +44,7 @@
                         <div class="row mt-5" v-cloak>
                             <div class="table-responsive">
                                 <table class="table table-striped">
-                                    <caption v-if="index.departments.length != 0"><small>List of departments.</small></caption>
+                                    <caption v-if="index.departmentswp.length != 0"><small>List of departments.</small></caption>
                                     <caption v-else><small>No data yet.</small></caption>
                                     <thead class="bg-primary text-light">
                                         <tr>
@@ -56,7 +56,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="department in index.departments" :key="department.id">
+                                        <tr v-for="department in index.departmentswp" :key="department.id">
                                             <td>@{{ department.name }}</td>
                                             <td>@{{ department.description }}</td>
                                             <td>
@@ -74,14 +74,17 @@
                                                 </span>
                                             </td>
                                             <td>
+                                                <!-- MOSTRAR -->
                                                 <button type="button" class="btn btn-primary"
                                                     @click.prevent="showModal(department.id)">
                                                     <i class="fas fa-eye"></i> Show
                                                 </button>
+                                                <!-- EDITAR -->
                                                 <button type="button" class="btn btn-dark"
                                                         @click.prevent="editModal(department.id)">
                                                     <i class="fas fa-pencil-alt"></i> Edit
                                                 </button>
+                                                <!-- ELIMINAR -->
                                                 <button type="button" class="btn btn-danger"
                                                         @click.prevent="deleteModal(department.id)">
                                                     <i class="fas fa-trash"></i> Delete

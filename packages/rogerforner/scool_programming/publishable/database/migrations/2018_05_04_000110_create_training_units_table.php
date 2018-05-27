@@ -19,10 +19,10 @@ class CreateTrainingUnitsTable extends Migration
             $table->string('name', 150);
             $table->dateTime('date_start'); // Data d'inici de la UF.
             $table->dateTime('date_end');   // Data de finalització de la UF.
-            $table->string('section1')->nullable(); // Activitats.
-            $table->string('section2')->nullable(); // Resultats d’aprenentatge i criteris d’avaluació.
-            $table->string('section3')->nullable(); // Continguts.
-            $table->string('section4')->nullable(); // Criteris avaluació.
+            $table->mediumText('section1')->nullable();  // Activitats.
+            $table->mediumText('section2')->nullable();  // Resultats d’aprenentatge i criteris d’avaluació.
+            $table->mediumText('section3')->nullable();  // Continguts.
+            $table->mediumText('section4')->nullable();  // Criteris avaluació.
             $table->boolean('approved')->default(false); // Acceptada pel cap de departament?
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

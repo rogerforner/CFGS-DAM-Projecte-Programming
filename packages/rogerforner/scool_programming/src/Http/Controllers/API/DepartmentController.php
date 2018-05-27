@@ -31,20 +31,24 @@ class DepartmentController extends ApiResponseController
      */
     public function index()
     {
-        // Obtenir tots els departaments.
-        $departments = Department::paginate(8, ['*'], 'departments');
+        // Obtenir tots els departaments + Usuari que fa la petició.
+        $departmentsWithPagination = Department::paginate(8, ['*'], 'departments');
+        $departments               = Department::all();
+        $userAuth                  = Auth::user();
 
         // Guardem en un array la paginació i els departaments.
         $response = [
             'pagination' => [
-                'total'        => $departments->total(),
-                'per_page'     => $departments->perPage(),
-                'current_page' => $departments->currentPage(),
-                'last_page'    => $departments->lastPage(),
-                'from'         => $departments->firstItem(),
-                'to'           => $departments->lastItem()
+                'total'        => $departmentsWithPagination->total(),
+                'per_page'     => $departmentsWithPagination->perPage(),
+                'current_page' => $departmentsWithPagination->currentPage(),
+                'last_page'    => $departmentsWithPagination->lastPage(),
+                'from'         => $departmentsWithPagination->firstItem(),
+                'to'           => $departmentsWithPagination->lastItem()
             ],
-            'data' => $departments
+            'departmentswp' => $departmentsWithPagination,
+            'departments'   => $departments,
+            'userAuth'      => $userAuth,
         ];
         
         // Retornem l'array amb els departaments i la paginació passant les dades
@@ -61,7 +65,7 @@ class DepartmentController extends ApiResponseController
     public function store(Request $request)
     {
         // Obtenir l'usuari que duu a terme l'acció.
-        $userAuth = Auth::user()->name;
+        $userAuth = Auth::user()->email;
 
         // Dades del formulari.
         $data = $request->all();
@@ -168,7 +172,7 @@ class DepartmentController extends ApiResponseController
 
         // Obtenir l'usuari que duu a terme l'acció i l'afegim entre les dades
         // obtingudes per emplenar el camp "updated_by".
-        $data['updated_by'] = Auth::user()->name;
+        $data['updated_by'] = Auth::user()->email;
 
         // Validar les dades.
         // ---------------------------------------------------------------------

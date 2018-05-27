@@ -5336,6 +5336,57 @@ function applyToTag (styleElement, obj) {
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(186)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(188)
+/* template */
+var __vue_template__ = __webpack_require__(189)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\PaginationComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d6113348", Component.options)
+  } else {
+    hotAPI.reload("data-v-d6113348", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
  * jQuery JavaScript Library v3.3.1
  * https://jquery.com/
@@ -15704,7 +15755,7 @@ return jQuery;
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15806,57 +15857,6 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 module.exports = defaults;
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(186)
-}
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(188)
-/* template */
-var __vue_template__ = __webpack_require__(189)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\PaginationComponent.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-d6113348", Component.options)
-  } else {
-    hotAPI.reload("data-v-d6113348", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
 
 /***/ }),
 /* 9 */
@@ -30723,7 +30723,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(141);
-module.exports = __webpack_require__(194);
+module.exports = __webpack_require__(196);
 
 
 /***/ }),
@@ -30755,13 +30755,14 @@ Vue.component('passport-authorized-clients', __webpack_require__(176));
 Vue.component('passport-personal-access-tokens', __webpack_require__(181));
 
 // Paginació (importada en cada component).
-Vue.component('pagination', __webpack_require__(8));
+Vue.component('pagination', __webpack_require__(6));
 
 // Users.
 Vue.component('users', __webpack_require__(190));
 
 // Scool Programming.
-Vue.component('departments', __webpack_require__(192));
+Vue.component('scool-programming-departments', __webpack_require__(192));
+Vue.component('scool-programming-professional-modules', __webpack_require__(194));
 
 /***/ }),
 /* 142 */
@@ -30778,7 +30779,7 @@ window.Popper = __webpack_require__(10).default;
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(6);
+  window.$ = window.jQuery = __webpack_require__(7);
 
   __webpack_require__(144);
 } catch (e) {}
@@ -47947,7 +47948,7 @@ if (token) {
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
-   true ? factory(exports, __webpack_require__(6), __webpack_require__(10)) :
+   true ? factory(exports, __webpack_require__(7), __webpack_require__(10)) :
   typeof define === 'function' && define.amd ? define(['exports', 'jquery', 'popper.js'], factory) :
   (factory((global.bootstrap = {}),global.jQuery,global.Popper));
 }(this, (function (exports,$,Popper) { 'use strict';
@@ -51886,7 +51887,7 @@ module.exports = __webpack_require__(146);
 var utils = __webpack_require__(1);
 var bind = __webpack_require__(11);
 var Axios = __webpack_require__(148);
-var defaults = __webpack_require__(7);
+var defaults = __webpack_require__(8);
 
 /**
  * Create an instance of Axios
@@ -51969,7 +51970,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(7);
+var defaults = __webpack_require__(8);
 var utils = __webpack_require__(1);
 var InterceptorManager = __webpack_require__(157);
 var dispatchRequest = __webpack_require__(158);
@@ -52508,7 +52509,7 @@ module.exports = InterceptorManager;
 var utils = __webpack_require__(1);
 var transformData = __webpack_require__(159);
 var isCancel = __webpack_require__(15);
-var defaults = __webpack_require__(7);
+var defaults = __webpack_require__(8);
 var isAbsoluteURL = __webpack_require__(160);
 var combineURLs = __webpack_require__(161);
 
@@ -64005,7 +64006,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
  */
 /* global define */
 (function (define) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = (function ($) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(7)], __WEBPACK_AMD_DEFINE_RESULT__ = (function ($) {
         return (function () {
             var $container;
             var listener;
@@ -67261,7 +67262,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue__);
 
 
@@ -67581,7 +67582,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue__);
 
 
@@ -67606,8 +67607,10 @@ new Vue({
             // Dades.
             //---------------------
             index: {
+                departmentswp: [], // With pagination.
                 departments: [],
-                users: []
+                users: [],
+                userAuth: ''
             },
             show: {
                 department: '',
@@ -67646,14 +67649,14 @@ new Vue({
             this.show.departmentUs = [];
             this.show.departmentMP = [];
 
-            this.createName = '';
-            this.createDescription = '';
-            this.createSelectedTeachers = [];
-            this.createDepartmentManager = '';
-            this.editName = '';
-            this.editDescription = '';
-            this.editSelectedTeachers = [];
-            this.editDepartmentManager = '';
+            this.form.createName = '';
+            this.form.createDescription = '';
+            this.form.createSelectedTeachers = [];
+            this.form.createDepartmentManager = '';
+            this.form.editName = '';
+            this.form.editDescription = '';
+            this.form.editSelectedTeachers = [];
+            this.form.editDepartmentManager = '';
         },
 
         /**
@@ -67663,9 +67666,12 @@ new Vue({
         indexDepartments: function indexDepartments() {
             var _this = this;
 
-            var url = '/api/scool/programming/departments?departments=' + this.index.current_page;
+            var url = '/api/scool/programming/departments?departments=' + this.pagination.current_page;
             axios.get(url).then(function (response) {
-                _this.index.departments = response.data.apiResponseData.data.data;
+                _this.index.departmentswp = response.data.apiResponseData.departmentswp.data;
+                _this.index.departments = response.data.apiResponseData.departments;
+                _this.index.userAuth = response.data.apiResponseData.userAuth;
+
                 _this.pagination = response.data.apiResponseData.pagination;
             });
         },
@@ -67850,6 +67856,383 @@ new Vue({
 
 /***/ }),
 /* 194 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(195)
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\scool-programming\\ProfessionalModulesComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-687ca670", Component.options)
+  } else {
+    hotAPI.reload("data-v-687ca670", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 195 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue__);
+
+
+
+new Vue({
+    el: '#promodulesCrud',
+    created: function created() {
+        this.spinnerLoading = true;
+        this.indexProfessionalModules();
+        this.spinnerLoading = false;
+    },
+    data: function data() {
+        return {
+            // Complements.
+            //---------------------
+            spinnerLoading: false,
+            pagination: {
+                'current_page': 1
+            },
+
+            // Dades.
+            //---------------------
+            index: {
+                promoduleswp: [], // With pagination.
+                promodules: [],
+                departments: [],
+                userAuth: ''
+            },
+            show: {
+                promodule: '',
+                promoduleD: '',
+                promoduleT: []
+            },
+            form: {
+                createMp: '',
+                createName: '',
+                createSection1: '',
+                createSection2: '',
+                createSection3: '',
+                createSection4: '',
+                createDepartment: '',
+                editMp: '',
+                editName: '',
+                editSection1: '',
+                editSection2: '',
+                editSection3: '',
+                editSection4: '',
+                editDepartment: ''
+            }
+        };
+    },
+    methods: {
+        /**
+         * SINCE
+         * Formatar les dates.
+         **********************************************************************/
+        since: function since(date) {
+            return moment(date).format('ll');
+        },
+
+        /**
+         * RESET
+         * Buidar variables.
+         **********************************************************************/
+        resetData: function resetData() {
+            this.show.promodule = '';
+            this.show.promoduleD = '';
+            this.show.promoduleT = [];
+
+            this.form.createMp = '';
+            this.form.createName = '';
+            this.form.createSection1 = '';
+            this.form.createSection2 = '';
+            this.form.createSection3 = '';
+            this.form.createSection4 = '';
+            this.form.createDepartment = '';
+
+            this.form.editMp = '';
+            this.form.editName = '';
+            this.form.editSection1 = '';
+            this.form.editSection2 = '';
+            this.form.editSection3 = '';
+            this.form.editSection4 = '';
+            this.form.editDepartment = '';
+        },
+
+        /**
+         * INDEX Departaments
+         * GET => Rogerforner\ScoolProgramming\Http\Controllers\API\ProfessionalModuleController@index
+         **********************************************************************/
+        indexProfessionalModules: function indexProfessionalModules() {
+            var _this = this;
+
+            var url = '/api/scool/programming/professional-modules?promodules=' + this.pagination.current_page;
+            axios.get(url).then(function (response) {
+                _this.index.promoduleswp = response.data.apiResponseData.promoduleswp.data;
+                _this.index.promodules = response.data.apiResponseData.promodules;
+                _this.index.departments = response.data.apiResponseData.departments;
+                _this.index.userAuth = response.data.apiResponseData.userAuth;
+
+                _this.pagination = response.data.apiResponseData.pagination;
+            });
+        },
+
+        /**
+         * SHOW
+         * GET => Rogerforner\ScoolProgramming\Http\Controllers\API\ProfessionalModuleController@show
+         **********************************************************************/
+        showProfessionalModule: function showProfessionalModule(id) {
+            var _this2 = this;
+
+            var url = '/api/scool/programming/professional-modules/' + id;
+            axios.get(url).then(function (response) {
+                var success = response.data.success;
+                var message = response.data.message;
+
+                if (success == false) {
+                    console.log('Woops! ' + message);
+                } else {
+                    console.log('OK ' + message);
+                }
+
+                _this2.show.promodule = response.data.apiResponseData.promodule;
+                _this2.show.promoduleD = response.data.apiResponseData.promoduleD;
+                _this2.show.promoduleT = response.data.apiResponseData.promoduleT;
+            });
+        },
+        /* Modal
+        --------------------------------------------------------------------- */
+        showModal: function showModal(id) {
+            this.showProfessionalModule(id);
+            $('#modal-show').modal('show'); // Obrir modal.
+        },
+
+        /**
+         * DESTROY
+         * DELETE => Rogerforner\ScoolProgramming\Http\Controllers\API\ProfessionalModuleController@destroy
+         **********************************************************************/
+        destroyProfessionalModule: function destroyProfessionalModule(id) {
+            var _this3 = this;
+
+            var url = '/api/scool/programming/professional-modules/' + id;
+            axios.delete(url).then(function (response) {
+                var success = response.data.success;
+                var message = response.data.message;
+
+                if (success == false) {
+                    toastr.warning(message, 'Warning'); // Notificar Error.
+                } else {
+                    _this3.indexProfessionalModules(); // Llistar (refrescar).
+                    _this3.resetData(); // Buidar camps.
+                    $('#modal-delete').modal('hide'); // Tancar modal.
+                    toastr.success(message, 'Success'); // Notificar OK.
+                }
+            });
+        },
+        /* Modal
+        --------------------------------------------------------------------- */
+        deleteModal: function deleteModal(id) {
+            this.showProfessionalModule(id);
+            $('#modal-delete').modal('show'); // Obrir modal.
+        },
+
+        /**
+         * STORE
+         * POST => Rogerforner\ScoolProgramming\Http\Controllers\API\ProfessionalModuleController@store
+         **********************************************************************/
+        storeProfessionalModule: function storeProfessionalModule() {
+            var _this4 = this;
+
+            var url = '/api/scool/programming/professional-modules';
+            axios.post(url, {
+                mp: this.form.createMp,
+                name: this.form.createName,
+                section1: this.form.createSection1,
+                section2: this.form.createSection2,
+                section3: this.form.createSection3,
+                section4: this.form.createSection4,
+                department_id: this.form.createDepartment
+            }).then(function (response) {
+                var success = response.data.success;
+                var type = response.data.type;
+                var message = response.data.message;
+                var errors = response.data.apiResponseData;
+
+                if (success == false) {
+                    if (type == 'warning') {
+                        toastr.warning(message, 'Warning'); // Notificar Warning.
+                    } else {
+                        toastr.error(message, 'Error'); // Notificar Error.
+                        $.each(errors, function (key, value) {
+                            // Info error.
+                            toastr.warning('<em>' + value + '</em>', 'Information', {
+                                timeOut: 10000
+                            });
+                        });
+                    }
+                } else {
+                    _this4.indexProfessionalModules(); // Llistar (refrescar).
+                    _this4.resetData(); // Buidar camps.
+                    $('#modal-create').modal('hide'); // Tancar modal.
+                    toastr.success(message, 'Success'); // Notificar OK.
+                }
+            });
+        },
+        /* Modal
+        --------------------------------------------------------------------- */
+        createModal: function createModal() {
+            $('#modal-create').modal('show'); // Obrir modal.
+        },
+        /* Botó Reset
+        --------------------------------------------------------------------- */
+        resetCreateForm: function resetCreateForm() {
+            this.form.createMp = '';
+            this.form.createName = '';
+            this.form.createSection1 = '';
+            this.form.createSection2 = '';
+            this.form.createSection3 = '';
+            this.form.createSection4 = '';
+            this.form.createDepartment = '';
+        },
+        /**
+         * UPDATE
+         * UPDATE => Rogerforner\ScoolProgramming\Http\Controllers\API\ProfessionalModuleController@update
+         **********************************************************************/
+        updateProfessionalModule: function updateProfessionalModule(id) {
+            var _this5 = this;
+
+            var url = '/api/scool/programming/professional-modules/' + id;
+            axios.put(url, {
+                mp: this.form.editMp,
+                name: this.form.editName,
+                section1: this.form.editSection1,
+                section2: this.form.editSection2,
+                section3: this.form.editSection3,
+                section4: this.form.editSection4,
+                department_id: this.form.editDepartment,
+                approved: false
+            }).then(function (response) {
+                var success = response.data.success;
+                var type = response.data.type;
+                var message = response.data.message;
+                var errors = response.data.apiResponseData;
+
+                if (success == false) {
+                    if (type == 'warning') {
+                        toastr.warning(message, 'Warning'); // Notificar Warning.
+                    } else {
+                        toastr.error(message, 'Error'); // Notificar Error.
+                        $.each(errors, function (key, value) {
+                            // Info error.
+                            toastr.warning('<em>' + value + '</em>', 'Information', {
+                                timeOut: 10000
+                            });
+                        });
+                    }
+                } else {
+                    _this5.indexProfessionalModules(); // Llistar (refrescar).
+                    _this5.resetData(); // Buidar camps.
+                    $('#modal-edit').modal('hide'); // Tancar modal.
+                    toastr.success(message, 'Success'); // Notificar OK.
+                }
+            });
+        },
+        /* Modal
+        --------------------------------------------------------------------- */
+        editModal: function editModal(id) {
+            this.showProfessionalModule(id);
+
+            this.form.editMp = this.show.promodule.mp;
+            this.form.editName = this.show.promodule.name;
+            this.form.editSection1 = this.show.promodule.section1;
+            this.form.editSection2 = this.show.promodule.section2;
+            this.form.editSection3 = this.show.promodule.section3;
+            this.form.editSection4 = this.show.promodule.section4;
+            this.form.editDepartment = this.show.promodule.department_id;
+
+            $('#modal-edit').modal('show'); // Obrir modal.
+        },
+        /**
+         * APPROVE & DISAPPROVE
+         * UPDATE => Rogerforner\ScoolProgramming\Http\Controllers\API\ProfessionalModuleController@update
+         **********************************************************************/
+        approveProfessionalModule: function approveProfessionalModule(id, isApproved) {
+            var _this6 = this;
+
+            var url = '/api/scool/programming/professional-modules/' + id;
+            axios.put(url, {
+                approved: isApproved
+            }).then(function (response) {
+                var success = response.data.success;
+                var type = response.data.type;
+                var message = response.data.message;
+                var errors = response.data.apiResponseData;
+
+                if (success == false) {
+                    if (type == 'warning') {
+                        toastr.warning(message, 'Warning'); // Notificar Warning.
+                    } else {
+                        toastr.error(message, 'Error'); // Notificar Error.
+                        $.each(errors, function (key, value) {
+                            // Info error.
+                            toastr.warning('<em>' + value + '</em>', 'Information', {
+                                timeOut: 10000
+                            });
+                        });
+                    }
+                } else {
+                    _this6.indexProfessionalModules(); // Llistar (refrescar).
+                    $('#modal-approve').modal('hide'); // Tancar modal.
+                    toastr.success(message, 'Success'); // Notificar OK.
+                }
+            });
+        },
+        /* Modal
+        --------------------------------------------------------------------- */
+        approveModal: function approveModal(id) {
+            this.showProfessionalModule(id);
+            $('#modal-approve').modal('show'); // Obrir modal.
+        }
+    }
+});
+
+/***/ }),
+/* 196 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
