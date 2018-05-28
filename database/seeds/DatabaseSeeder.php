@@ -12,11 +12,30 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
+        // Esborrar taules.
+        $this->truncateTables([
+            // ...
+        ]);
 
-        /* USUARIS/RIES
-        --------------------------------------------------------------------- */
+        // Registrar Seeders per a executar-los.
+        // Parar compte amb l'ordre perquè hi ha taules que depenen d'altres.
+        $this->call(RolesAndPermissionsSeeder::class);
         $this->call(UsersTableSeeder::class);
-        $this->command->info('Users table populated!');
+    }
+
+    /*
+    # truncateTables()
+    Emprat per a esborrar les taules.
+    ------------------------------------------------------------------------- */
+    protected function truncateTables(array $tables)
+    {
+        // 1. Desactivar revisió claus foranes. -> DB::statement...
+        // 2. Esborrat de taules.               -> truncate()...
+        // 3. Reactivar revisó de claus foranes.
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+        foreach ($tables as $table) {
+            DB::table($table)->truncate();
+        }
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
     }
 }

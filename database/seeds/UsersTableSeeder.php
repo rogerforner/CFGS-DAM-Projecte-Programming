@@ -18,32 +18,35 @@ class UsersTableSeeder extends Seeder
         $password = env('USER_ADMIN_PASS');
 
         // Administrador/ra
-        User::create([
+        $adminUser = User::create([
             'name'     => $name,
             'email'    => $email,
             'password' => bcrypt($password)
         ]);
 
-        // Usuaris de prova
-        User::create([
-            'name'     => 'Usuari A',
-            'email'    => 'usuaria@example.com',
+        // Professors/res
+        $teacherA = User::create([
+            'name'     => 'Profe A',
+            'email'    => 'profea@example.com',
             'password' => bcrypt(123456)
         ]);
-        User::create([
-            'name'     => 'Usuari B',
-            'email'    => 'usuarib@example.com',
+        $teacherB = User::create([
+            'name'     => 'Profe B',
+            'email'    => 'profeb@example.com',
             'password' => bcrypt(123456)
         ]);
-        User::create([
-            'name'     => 'Usuari C',
-            'email'    => 'usuaric@example.com',
+
+        // Estudiants
+        $studentUser = User::create([
+            'name'     => 'Estudiant',
+            'email'    => 'estudiant@example.com',
             'password' => bcrypt(123456)
         ]);
-        User::create([
-            'name'     => 'Usuari D',
-            'email'    => 'usuarid@example.com',
-            'password' => bcrypt(123456)
-        ]);
+
+        // Assignació dels rols.
+        $adminUser->assignRole('admin');
+        $teacherA->assignRole('teacher');
+        $teacherB->assignRole('teacher');
+        $studentUser->assignRole('student');
     }
 }
