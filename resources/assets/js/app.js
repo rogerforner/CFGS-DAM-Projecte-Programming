@@ -37,3 +37,11 @@ Vue.component(
     'scool-programming-professional-modules',
     require('./components/scool-programming/ProfessionalModulesComponent.vue'
 ));
+Vue.component(
+    'scool-programming-training-units',
+    require('./components/scool-programming/TrainingUnitsComponent.vue'
+));
+Vue.component(
+    'scool-programming-temaries',
+    require('./components/scool-programming/TemariesComponent.vue'
+));

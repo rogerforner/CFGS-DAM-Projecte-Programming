@@ -26,7 +26,6 @@ class TrainingUnit extends Model
         'section3',
         'section4',
         'approved',
-        'public',
         'professional_module_id',
         'created_by',
         'updated_by',

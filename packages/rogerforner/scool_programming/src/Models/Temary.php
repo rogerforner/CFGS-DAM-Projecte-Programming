@@ -20,7 +20,6 @@ class Temary extends Model
         'duration',
         'name',
         'description',
-        'public',
         'training_unit_id',
         'created_by',
         'updated_by',

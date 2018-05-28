@@ -47,7 +47,7 @@
                                 <i class="fas fa-spinner fa-pulse fa-5x text-primary"></i>
                             </div>
                         </div>
-                        <!-- LLISTA DE USUARIS -->
+                        <!-- LLISTA DE MÒDULS PROFESSIONALS -->
                         <div class="row mt-5" v-cloak>
                             <div class="table-responsive">
                                 <table class="table table-striped">

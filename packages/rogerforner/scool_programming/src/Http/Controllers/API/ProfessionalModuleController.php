@@ -8,7 +8,6 @@ use Illuminate\Validation\Rule;
 use Rogerforner\ScoolProgramming\Http\Controllers\API\ApiResponseController;
 use Rogerforner\ScoolProgramming\Models\Department;
 use Rogerforner\ScoolProgramming\Models\ProfessionalModule;
-use Rogerforner\ScoolProgramming\Models\TrainingUnit;
 use Validator;
 
 class ProfessionalModuleController extends ApiResponseController
@@ -129,8 +128,6 @@ class ProfessionalModuleController extends ApiResponseController
             'promoduleT' => $professionalModule['trainingUnits'],
         ];
         
-        // Retornem l'array amb els departaments i la paginació passant les dades
-        // d'aquest a través del mètode sendResponse() de ApiResponseController.
         return $this->sendResponse($response, 'Professional Module data retrieved successfully.');
     }
 
@@ -154,7 +151,7 @@ class ProfessionalModuleController extends ApiResponseController
         $data['updated_by'] = Auth::user()->email;
 
         // Validar les dades.
-        // "appoved" només serà validad si es duu a terme l'acció d'arpovar un MP.
+        // "appoved" només serà validat si es duu a terme l'acció d'arpovar un MP.
         if ($data['approved'] == true || $data['approved'] == false) {
             $validator = Validator::make($data, [
                 'approved' => 'boolean',

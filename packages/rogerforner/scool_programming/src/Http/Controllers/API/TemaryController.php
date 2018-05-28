@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Rogerforner\ScoolProgramming\Http\Controllers\API\ApiResponseController;
 use Rogerforner\ScoolProgramming\Models\Temary;
+use Rogerforner\ScoolProgramming\Models\TrainingUnit;
 use Validator;
 
 class TemaryController extends ApiResponseController
@@ -31,19 +32,25 @@ class TemaryController extends ApiResponseController
     public function index()
     {
         // Obtenir tots els NFs.
-        $temaries = Temary::paginate(8);
+        $temarieswp = Temary::paginate(8, ['*'], 'temaries');
+        $temaries   = Temary::all();
+        $tunits     = TrainingUnit::all();
+        $userAuth   = Auth::user();
 
         // Guardem en un array la paginació i els NFs.
         $response = [
             'pagination' => [
-                'total'        => $temaries->total(),
-                'per_page'     => $temaries->perPage(),
-                'current_page' => $temaries->currentPage(),
-                'last_page'    => $temaries->lastPage(),
-                'from'         => $temaries->firstItem(),
-                'to'           => $temaries->lastItem()
+                'total'        => $temarieswp->total(),
+                'per_page'     => $temarieswp->perPage(),
+                'current_page' => $temarieswp->currentPage(),
+                'last_page'    => $temarieswp->lastPage(),
+                'from'         => $temarieswp->firstItem(),
+                'to'           => $temarieswp->lastItem()
             ],
-            'data' => $temaries
+            'temarieswp' => $temarieswp,
+            'temaries'   => $temaries,
+            'tunits'     => $tunits,
+            'userAuth'   => $userAuth,
         ];
         
         // Retornem l'array amb els NFs i la paginació passant les dades
@@ -59,8 +66,15 @@ class TemaryController extends ApiResponseController
      */
     public function store(Request $request)
     {
+        // Només es poden crear NFs si existeix alguna UF. Si no hi ha UFs a la
+        // BD retornem un missatge avisant.
+        $promodules = TrainingUnit::all();
+        if ($promodules->isEmpty()) {
+            return $this->sendError('To create Temaries, training units are necessary. Create at least one training unit.',null);
+        }
+
         // Obtenir l'usuari que duu a terme l'acció.
-        $userAuth = Auth::user()->name;
+        $userAuth = Auth::user()->email;
 
         // Dades del formulari.
         $data = $request->all();
@@ -71,7 +85,7 @@ class TemaryController extends ApiResponseController
             'duration'         => 'required|integer',
             'name'             => 'required|string|max:150',
             'description'      => 'nullable',
-            'training_unit_id' => 'nullable',
+            'training_unit_id' => 'required|integer',
         ]);
 
         // Si la validació de les dades introduïdes no es satisfactoria avisem.
@@ -100,7 +114,16 @@ class TemaryController extends ApiResponseController
      */
     public function show($id)
     {
-        //
+        // Obtenir el NF.
+        $temary = Temary::findOrFail($id);
+
+        // Guardem en un array les dades del NF, incloses les seves relacions.
+        $response = [
+            'temary'  => $temary,
+            'temaryT' => $temary['trainingUnit'],
+        ];
+        
+        return $this->sendResponse($response, 'Temary data retrieved successfully.');
     }
 
     /**
@@ -120,7 +143,7 @@ class TemaryController extends ApiResponseController
 
         // Obtenir l'usuari que duu a terme l'acció i l'afegim entre les dades
         // obtingudes per emplenar el camp "updated_by".
-        $data['updated_by'] = Auth::user()->name;
+        $data['updated_by'] = Auth::user()->email;
 
         // Validar les dades.
         $validator = Validator::make($data, [
@@ -128,7 +151,7 @@ class TemaryController extends ApiResponseController
             'duration'         => 'required|integer',
             'name'             => 'required|string|max:150',
             'description'      => 'nullable',
-            'training_unit_id' => 'nullable',
+            'training_unit_id' => 'required|integer',
         ]);
 
         // Si la validació de les dades introduïdes no es satisfactoria avisem.

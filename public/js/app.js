@@ -5024,6 +5024,57 @@ module.exports = g;
 
 /***/ }),
 /* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(186)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(188)
+/* template */
+var __vue_template__ = __webpack_require__(189)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\PaginationComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d6113348", Component.options)
+  } else {
+    hotAPI.reload("data-v-d6113348", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports) {
 
 /*
@@ -5105,7 +5156,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -5330,57 +5381,6 @@ function applyToTag (styleElement, obj) {
     styleElement.appendChild(document.createTextNode(css))
   }
 }
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(186)
-}
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(188)
-/* template */
-var __vue_template__ = __webpack_require__(189)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\PaginationComponent.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-d6113348", Component.options)
-  } else {
-    hotAPI.reload("data-v-d6113348", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
 
 
 /***/ }),
@@ -30723,7 +30723,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(141);
-module.exports = __webpack_require__(196);
+module.exports = __webpack_require__(198);
 
 
 /***/ }),
@@ -30755,7 +30755,7 @@ Vue.component('passport-authorized-clients', __webpack_require__(176));
 Vue.component('passport-personal-access-tokens', __webpack_require__(181));
 
 // Paginació (importada en cada component).
-Vue.component('pagination', __webpack_require__(6));
+Vue.component('pagination', __webpack_require__(4));
 
 // Users.
 Vue.component('users', __webpack_require__(190));
@@ -30763,6 +30763,8 @@ Vue.component('users', __webpack_require__(190));
 // Scool Programming.
 Vue.component('scool-programming-departments', __webpack_require__(192));
 Vue.component('scool-programming-professional-modules', __webpack_require__(194));
+Vue.component('scool-programming-training-units', __webpack_require__(196));
+Vue.component('scool-programming-temaries', __webpack_require__(202));
 
 /***/ }),
 /* 142 */
@@ -64804,7 +64806,7 @@ var content = __webpack_require__(172);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("a44a1dd2", content, false, {});
+var update = __webpack_require__(6)("a44a1dd2", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -64823,7 +64825,7 @@ if(false) {
 /* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(5)(false);
 // imports
 
 
@@ -65853,7 +65855,7 @@ var content = __webpack_require__(178);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("437dd684", content, false, {});
+var update = __webpack_require__(6)("437dd684", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -65872,7 +65874,7 @@ if(false) {
 /* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(5)(false);
 // imports
 
 
@@ -66173,7 +66175,7 @@ var content = __webpack_require__(183);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("174f2f0a", content, false, {});
+var update = __webpack_require__(6)("174f2f0a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -66192,7 +66194,7 @@ if(false) {
 /* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(5)(false);
 // imports
 
 
@@ -66913,7 +66915,7 @@ var content = __webpack_require__(187);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(5)("7165a8ed", content, false, {});
+var update = __webpack_require__(6)("7165a8ed", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -66932,7 +66934,7 @@ if(false) {
 /* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(4)(false);
+exports = module.exports = __webpack_require__(5)(false);
 // imports
 
 
@@ -67262,7 +67264,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue__);
 
 
@@ -67582,7 +67584,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue__);
 
 
@@ -67907,7 +67909,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue__);
 
 
@@ -68233,9 +68235,721 @@ new Vue({
 
 /***/ }),
 /* 196 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(197)
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\scool-programming\\TrainingUnitsComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-785681d3", Component.options)
+  } else {
+    hotAPI.reload("data-v-785681d3", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 197 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue__);
+
+
+
+new Vue({
+    el: '#tunitsCrud',
+    created: function created() {
+        this.spinnerLoading = true;
+        this.indexTrainingUnits();
+        this.spinnerLoading = false;
+    },
+    data: function data() {
+        return {
+            // Complements.
+            //---------------------
+            spinnerLoading: false,
+            pagination: {
+                'current_page': 1
+            },
+
+            // Dades.
+            //---------------------
+            index: {
+                tunitswp: [], // With pagination.
+                tunits: [],
+                promodules: [],
+                userAuth: ''
+            },
+            show: {
+                tunit: '',
+                tunitP: '',
+                tunitT: []
+            },
+            form: {
+                createUf: '',
+                createName: '',
+                createDateStart: '',
+                createDateEnd: '',
+                createSection1: '',
+                createSection2: '',
+                createSection3: '',
+                createSection4: '',
+                createPromodule: '',
+                editUf: '',
+                editName: '',
+                editDateStart: '',
+                editDateEnd: '',
+                editSection1: '',
+                editSection2: '',
+                editSection3: '',
+                editSection4: '',
+                editPromodule: ''
+            }
+        };
+    },
+    methods: {
+        /**
+         * SINCE
+         * Formatar les dates.
+         **********************************************************************/
+        since: function since(date) {
+            return moment(date).format('ll');
+        },
+
+        /**
+         * RESET
+         * Buidar variables.
+         **********************************************************************/
+        resetData: function resetData() {
+            this.show.tunit = '';
+            this.show.tunitP = '';
+            this.show.tunitT = [];
+
+            this.form.createUf = '';
+            this.form.createName = '';
+            this.form.createDateStart = '';
+            this.form.createDateEnd = '';
+            this.form.createSection1 = '';
+            this.form.createSection2 = '';
+            this.form.createSection3 = '';
+            this.form.createSection4 = '';
+            this.form.createPromodule = '';
+
+            this.form.editUf = '';
+            this.form.editName = '';
+            this.form.editDateStart = '';
+            this.form.editDateEnd = '';
+            this.form.editSection1 = '';
+            this.form.editSection2 = '';
+            this.form.editSection3 = '';
+            this.form.editSection4 = '';
+            this.form.editPromodule = '';
+        },
+
+        /**
+         * INDEX Departaments
+         * GET => Rogerforner\ScoolProgramming\Http\Controllers\API\TrainingUnitController@index
+         **********************************************************************/
+        indexTrainingUnits: function indexTrainingUnits() {
+            var _this = this;
+
+            var url = '/api/scool/programming/training-units?tunits=' + this.pagination.current_page;
+            axios.get(url).then(function (response) {
+                _this.index.tunitswp = response.data.apiResponseData.tunitswp.data;
+                _this.index.tunits = response.data.apiResponseData.tunits;
+                _this.index.promodules = response.data.apiResponseData.promodules;
+                _this.index.userAuth = response.data.apiResponseData.userAuth;
+
+                _this.pagination = response.data.apiResponseData.pagination;
+            });
+        },
+
+        /**
+         * SHOW
+         * GET => Rogerforner\ScoolProgramming\Http\Controllers\API\TrainingUnitController@show
+         **********************************************************************/
+        showTrainingUnit: function showTrainingUnit(id) {
+            var _this2 = this;
+
+            var url = '/api/scool/programming/training-units/' + id;
+            axios.get(url).then(function (response) {
+                var success = response.data.success;
+                var message = response.data.message;
+
+                if (success == false) {
+                    console.log('Woops! ' + message);
+                } else {
+                    console.log('OK ' + message);
+                }
+
+                _this2.show.tunit = response.data.apiResponseData.tunit;
+                _this2.show.tunitP = response.data.apiResponseData.tunitP;
+                _this2.show.tunitT = response.data.apiResponseData.tunitT;
+            });
+        },
+        /* Modal
+        --------------------------------------------------------------------- */
+        showModal: function showModal(id) {
+            this.showTrainingUnit(id);
+            $('#modal-show').modal('show'); // Obrir modal.
+        },
+
+        /**
+         * DESTROY
+         * DELETE => Rogerforner\ScoolProgramming\Http\Controllers\API\TrainingUnitController@destroy
+         **********************************************************************/
+        destroyTrainingUnit: function destroyTrainingUnit(id) {
+            var _this3 = this;
+
+            var url = '/api/scool/programming/training-units/' + id;
+            axios.delete(url).then(function (response) {
+                var success = response.data.success;
+                var message = response.data.message;
+
+                if (success == false) {
+                    toastr.warning(message, 'Warning'); // Notificar Error.
+                } else {
+                    _this3.indexTrainingUnits(); // Llistar (refrescar).
+                    _this3.resetData(); // Buidar camps.
+                    $('#modal-delete').modal('hide'); // Tancar modal.
+                    toastr.success(message, 'Success'); // Notificar OK.
+                }
+            });
+        },
+        /* Modal
+        --------------------------------------------------------------------- */
+        deleteModal: function deleteModal(id) {
+            this.showTrainingUnit(id);
+            $('#modal-delete').modal('show'); // Obrir modal.
+        },
+
+        /**
+         * STORE
+         * POST => Rogerforner\ScoolProgramming\Http\Controllers\API\TrainingUnitController@store
+         **********************************************************************/
+        storeTrainingUnit: function storeTrainingUnit() {
+            var _this4 = this;
+
+            var url = '/api/scool/programming/training-units';
+            axios.post(url, {
+                uf: this.form.createUf,
+                name: this.form.createName,
+                date_start: this.form.createDateStart,
+                date_end: this.form.createDateEnd,
+                section1: this.form.createSection1,
+                section2: this.form.createSection2,
+                section3: this.form.createSection3,
+                section4: this.form.createSection4,
+                professional_module_id: this.form.createPromodule
+            }).then(function (response) {
+                var success = response.data.success;
+                var type = response.data.type;
+                var message = response.data.message;
+                var errors = response.data.apiResponseData;
+
+                if (success == false) {
+                    if (type == 'warning') {
+                        toastr.warning(message, 'Warning'); // Notificar Warning.
+                    } else {
+                        toastr.error(message, 'Error'); // Notificar Error.
+                        $.each(errors, function (key, value) {
+                            // Info error.
+                            toastr.warning('<em>' + value + '</em>', 'Information', {
+                                timeOut: 10000
+                            });
+                        });
+                    }
+                } else {
+                    _this4.indexTrainingUnits(); // Llistar (refrescar).
+                    _this4.resetData(); // Buidar camps.
+                    $('#modal-create').modal('hide'); // Tancar modal.
+                    toastr.success(message, 'Success'); // Notificar OK.
+                }
+            });
+        },
+        /* Modal
+        --------------------------------------------------------------------- */
+        createModal: function createModal() {
+            $('#modal-create').modal('show'); // Obrir modal.
+        },
+        /* Botó Reset
+        --------------------------------------------------------------------- */
+        resetCreateForm: function resetCreateForm() {
+            this.form.createUf = '';
+            this.form.createName = '';
+            this.form.editDateStart = '';
+            this.form.editDateEnd = '';
+            this.form.createSection1 = '';
+            this.form.createSection2 = '';
+            this.form.createSection3 = '';
+            this.form.createSection4 = '';
+            this.form.createPromodule = '';
+        },
+        /**
+         * UPDATE
+         * UPDATE => Rogerforner\ScoolProgramming\Http\Controllers\API\TrainingUnitController@update
+         **********************************************************************/
+        updateTrainingUnit: function updateTrainingUnit(id) {
+            var _this5 = this;
+
+            var url = '/api/scool/programming/training-units/' + id;
+            axios.put(url, {
+                uf: this.form.editUf,
+                name: this.form.editName,
+                date_start: this.form.editDateStart,
+                date_end: this.form.editDateEnd,
+                section1: this.form.editSection1,
+                section2: this.form.editSection2,
+                section3: this.form.editSection3,
+                section4: this.form.editSection4,
+                professional_module_id: this.form.editPromodule,
+                approved: false
+            }).then(function (response) {
+                var success = response.data.success;
+                var type = response.data.type;
+                var message = response.data.message;
+                var errors = response.data.apiResponseData;
+
+                if (success == false) {
+                    if (type == 'warning') {
+                        toastr.warning(message, 'Warning'); // Notificar Warning.
+                    } else {
+                        toastr.error(message, 'Error'); // Notificar Error.
+                        $.each(errors, function (key, value) {
+                            // Info error.
+                            toastr.warning('<em>' + value + '</em>', 'Information', {
+                                timeOut: 10000
+                            });
+                        });
+                    }
+                } else {
+                    _this5.indexTrainingUnits(); // Llistar (refrescar).
+                    _this5.resetData(); // Buidar camps.
+                    $('#modal-edit').modal('hide'); // Tancar modal.
+                    toastr.success(message, 'Success'); // Notificar OK.
+                }
+            });
+        },
+        /* Modal
+        --------------------------------------------------------------------- */
+        editModal: function editModal(id) {
+            this.showTrainingUnit(id);
+
+            this.form.editUf = this.show.tunit.uf;
+            this.form.editName = this.show.tunit.name;
+            this.form.editDateStart = this.show.tunit.date_start;
+            this.form.editDateEnd = this.show.tunit.date_end;
+            this.form.editSection1 = this.show.tunit.section1;
+            this.form.editSection2 = this.show.tunit.section2;
+            this.form.editSection3 = this.show.tunit.section3;
+            this.form.editSection4 = this.show.tunit.section4;
+            this.form.editPromodule = this.show.tunit.professional_module_id;
+
+            $('#modal-edit').modal('show'); // Obrir modal.
+        },
+        /**
+         * APPROVE & DISAPPROVE
+         * UPDATE => Rogerforner\ScoolProgramming\Http\Controllers\API\TrainingUnitController@update
+         **********************************************************************/
+        approveTrainingUnit: function approveTrainingUnit(id, isApproved) {
+            var _this6 = this;
+
+            var url = '/api/scool/programming/training-units/' + id;
+            axios.put(url, {
+                approved: isApproved
+            }).then(function (response) {
+                var success = response.data.success;
+                var type = response.data.type;
+                var message = response.data.message;
+                var errors = response.data.apiResponseData;
+
+                if (success == false) {
+                    if (type == 'warning') {
+                        toastr.warning(message, 'Warning'); // Notificar Warning.
+                    } else {
+                        toastr.error(message, 'Error'); // Notificar Error.
+                        $.each(errors, function (key, value) {
+                            // Info error.
+                            toastr.warning('<em>' + value + '</em>', 'Information', {
+                                timeOut: 10000
+                            });
+                        });
+                    }
+                } else {
+                    _this6.indexTrainingUnits(); // Llistar (refrescar).
+                    $('#modal-approve').modal('hide'); // Tancar modal.
+                    toastr.success(message, 'Success'); // Notificar OK.
+                }
+            });
+        },
+        /* Modal
+        --------------------------------------------------------------------- */
+        approveModal: function approveModal(id) {
+            this.showTrainingUnit(id);
+            $('#modal-approve').modal('show'); // Obrir modal.
+        }
+    }
+});
+
+/***/ }),
+/* 198 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(203)
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\scool-programming\\TemariesComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-83b2f510", Component.options)
+  } else {
+    hotAPI.reload("data-v-83b2f510", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 203 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__PaginationComponent_vue__);
+
+
+
+new Vue({
+    el: '#temariesCrud',
+    created: function created() {
+        this.spinnerLoading = true;
+        this.indexTemaries();
+        this.spinnerLoading = false;
+    },
+    data: function data() {
+        return {
+            // Complements.
+            //---------------------
+            spinnerLoading: false,
+            pagination: {
+                'current_page': 1
+            },
+
+            // Dades.
+            //---------------------
+            index: {
+                temarieswp: [], // With pagination.
+                temaries: [],
+                tunits: [],
+                userAuth: ''
+            },
+            show: {
+                temary: '',
+                temaryT: ''
+            },
+            form: {
+                createNf: '',
+                createDuration: '',
+                createName: '',
+                createDescription: '',
+                createTunit: '',
+                editNf: '',
+                editDuration: '',
+                editName: '',
+                editDescription: '',
+                editTunit: ''
+            }
+        };
+    },
+    methods: {
+        /**
+         * SINCE
+         * Formatar les dates.
+         **********************************************************************/
+        since: function since(date) {
+            return moment(date).format('ll');
+        },
+
+        /**
+         * RESET
+         * Buidar variables.
+         **********************************************************************/
+        resetData: function resetData() {
+            this.show.temary = '';
+            this.show.temaryT = '';
+
+            this.form.createNf = '';
+            this.form.createDuration = '';
+            this.form.createName = '';
+            this.form.createDescription = '';
+            this.form.createTunit = '';
+
+            this.form.editNf = '';
+            this.form.editDuration = '';
+            this.form.editName = '';
+            this.form.editDescription = '';
+            this.form.editTunit = '';
+        },
+
+        /**
+         * INDEX Departaments
+         * GET => Rogerforner\ScoolProgramming\Http\Controllers\API\TemaryController@index
+         **********************************************************************/
+        indexTemaries: function indexTemaries() {
+            var _this = this;
+
+            var url = '/api/scool/programming/temaries?temaries=' + this.pagination.current_page;
+            axios.get(url).then(function (response) {
+                _this.index.temarieswp = response.data.apiResponseData.temarieswp.data;
+                _this.index.temaries = response.data.apiResponseData.temaries;
+                _this.index.tunits = response.data.apiResponseData.tunits;
+                _this.index.userAuth = response.data.apiResponseData.userAuth;
+
+                _this.pagination = response.data.apiResponseData.pagination;
+            });
+        },
+
+        /**
+         * SHOW
+         * GET => Rogerforner\ScoolProgramming\Http\Controllers\API\TemaryController@show
+         **********************************************************************/
+        showTemary: function showTemary(id) {
+            var _this2 = this;
+
+            var url = '/api/scool/programming/temaries/' + id;
+            axios.get(url).then(function (response) {
+                var success = response.data.success;
+                var message = response.data.message;
+
+                if (success == false) {
+                    console.log('Woops! ' + message);
+                } else {
+                    console.log('OK ' + message);
+                }
+
+                _this2.show.temary = response.data.apiResponseData.temary;
+                _this2.show.temaryT = response.data.apiResponseData.temaryT;
+            });
+        },
+        /* Modal
+        --------------------------------------------------------------------- */
+        showModal: function showModal(id) {
+            this.showTemary(id);
+            $('#modal-show').modal('show'); // Obrir modal.
+        },
+
+        /**
+         * DESTROY
+         * DELETE => Rogerforner\ScoolProgramming\Http\Controllers\API\TemaryController@destroy
+         **********************************************************************/
+        destroyTemary: function destroyTemary(id) {
+            var _this3 = this;
+
+            var url = '/api/scool/programming/temaries/' + id;
+            axios.delete(url).then(function (response) {
+                var success = response.data.success;
+                var message = response.data.message;
+
+                if (success == false) {
+                    toastr.warning(message, 'Warning'); // Notificar Error.
+                } else {
+                    _this3.indexTemaries(); // Llistar (refrescar).
+                    _this3.resetData(); // Buidar camps.
+                    $('#modal-delete').modal('hide'); // Tancar modal.
+                    toastr.success(message, 'Success'); // Notificar OK.
+                }
+            });
+        },
+        /* Modal
+        --------------------------------------------------------------------- */
+        deleteModal: function deleteModal(id) {
+            this.showTemary(id);
+            $('#modal-delete').modal('show'); // Obrir modal.
+        },
+
+        /**
+         * STORE
+         * POST => Rogerforner\ScoolProgramming\Http\Controllers\API\TemaryController@store
+         **********************************************************************/
+        storeTemary: function storeTemary() {
+            var _this4 = this;
+
+            var url = '/api/scool/programming/temaries';
+            axios.post(url, {
+                nf: this.form.createNf,
+                duration: this.form.createDuration,
+                name: this.form.createName,
+                description: this.form.createDescription,
+                training_unit_id: this.form.createTunit
+            }).then(function (response) {
+                var success = response.data.success;
+                var type = response.data.type;
+                var message = response.data.message;
+                var errors = response.data.apiResponseData;
+
+                if (success == false) {
+                    if (type == 'warning') {
+                        toastr.warning(message, 'Warning'); // Notificar Warning.
+                    } else {
+                        toastr.error(message, 'Error'); // Notificar Error.
+                        $.each(errors, function (key, value) {
+                            // Info error.
+                            toastr.warning('<em>' + value + '</em>', 'Information', {
+                                timeOut: 10000
+                            });
+                        });
+                    }
+                } else {
+                    _this4.indexTemaries(); // Llistar (refrescar).
+                    _this4.resetData(); // Buidar camps.
+                    $('#modal-create').modal('hide'); // Tancar modal.
+                    toastr.success(message, 'Success'); // Notificar OK.
+                }
+            });
+        },
+        /* Modal
+        --------------------------------------------------------------------- */
+        createModal: function createModal() {
+            $('#modal-create').modal('show'); // Obrir modal.
+        },
+        /* Botó Reset
+        --------------------------------------------------------------------- */
+        resetCreateForm: function resetCreateForm() {
+            this.form.createNf = '';
+            this.form.createDuration = '';
+            this.form.createName = '';
+            this.form.createDescription = '';
+            this.form.createTunit = '';
+        },
+        /**
+         * UPDATE
+         * UPDATE => Rogerforner\ScoolProgramming\Http\Controllers\API\TemaryController@update
+         **********************************************************************/
+        updateTemary: function updateTemary(id) {
+            var _this5 = this;
+
+            var url = '/api/scool/programming/temaries/' + id;
+            axios.put(url, {
+                nf: this.form.editNf,
+                duration: this.form.editDuration,
+                name: this.form.editName,
+                description: this.form.editDescription,
+                training_unit_id: this.form.editTunit
+            }).then(function (response) {
+                var success = response.data.success;
+                var type = response.data.type;
+                var message = response.data.message;
+                var errors = response.data.apiResponseData;
+
+                if (success == false) {
+                    if (type == 'warning') {
+                        toastr.warning(message, 'Warning'); // Notificar Warning.
+                    } else {
+                        toastr.error(message, 'Error'); // Notificar Error.
+                        $.each(errors, function (key, value) {
+                            // Info error.
+                            toastr.warning('<em>' + value + '</em>', 'Information', {
+                                timeOut: 10000
+                            });
+                        });
+                    }
+                } else {
+                    _this5.indexTemaries(); // Llistar (refrescar).
+                    _this5.resetData(); // Buidar camps.
+                    $('#modal-edit').modal('hide'); // Tancar modal.
+                    toastr.success(message, 'Success'); // Notificar OK.
+                }
+            });
+        },
+        /* Modal
+        --------------------------------------------------------------------- */
+        editModal: function editModal(id) {
+            this.showTemary(id);
+
+            this.form.editNf = this.show.temary.nf;
+            this.form.editDuration = this.show.temary.duration;
+            this.form.editName = this.show.temary.name;
+            this.form.editDescription = this.show.temary.description;
+            this.form.editTunit = this.show.temary.training_unit_id;
+
+            $('#modal-edit').modal('show'); // Obrir modal.
+        }
+    }
+});
 
 /***/ })
 /******/ ]);
