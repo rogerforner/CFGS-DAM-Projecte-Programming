@@ -63,10 +63,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+        // Creació de l'usuari.
+        $user = User::create([
+            'name'     => $data['name'],
+            'email'    => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        // Contem els usuaris de la base de dades. Si només hi ha un usuari, és
+        // a dir, és el primer usuari que es registra, li assignem el rol "admin".
+        // Si hi ha més d'un usuari, assignarem el rol "student".
+        $userCount = User::count();
+
+        if ($userCount == 1) {
+            $user->assignRole('admin');
+        } else {
+            $user->assignRole('student');
+        }
+
+        return $user;
     }
 }
