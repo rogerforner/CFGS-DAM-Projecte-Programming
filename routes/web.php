@@ -15,10 +15,12 @@ Route::get('/', 'Web\WebController@getDashboard')->middleware('auth');
 
 Auth::routes();
 
+
 // Dashboard: Home.
 Route::resource('dashboard', 'Web\DashboardController', [
     'only' => ['index']
 ]);
+
 
 // Només l'usuari administrador té accés a les següents rutes.
 Route::middleware(['role:admin'])->group(function () {
@@ -38,6 +40,7 @@ Route::middleware(['role:admin'])->group(function () {
     ]);
 });
 
+
 // En les següents rutes només podran accedir els/les Administradors/res i Professors/res.
 Route::middleware(['role:admin|teacher'])->group(function () {
     // Dashboard: Programming, Professional Modules.
@@ -56,6 +59,7 @@ Route::middleware(['role:admin|teacher'])->group(function () {
     ]);
 });
 
+
 // Si no estem autenticats serem enviats a la pàgina de login.
 // Des de aquesta escollirem amb quina xarxa social dur-lo a terme, passant el
 // nom d'aquesta com a un /{paràmetre} de la url.
@@ -65,3 +69,8 @@ Route::group(['prefix' => 'login', 'middleware' => 'guest'], function () {
     Route::get('/{social}', 'Auth\SocialAuthController@getSocialRedirect');
     Route::get('/{social}/callback', 'Auth\SocialAuthController@getSocialCallback');
 });
+
+
+// Imprimir PDFs
+Route::get('dashboard/print-mp/{id}', 'PDF\ProfessionalModuleController@printPdf');
+Route::get('dashboard/print-uf/{id}', 'PDF\TrainingUnitController@printPdf');

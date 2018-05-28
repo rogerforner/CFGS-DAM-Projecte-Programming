@@ -29,29 +29,33 @@
                             <div class="table-responsive">
                                 
                                 <ul class="list-group list-group-flush mb-4">
-                                    @forelse ($mpsApproved as $mp)
+                                    @forelse ($mpsApproved as $promodule)
                                         <li class="list-group-item">
                                             <div class="row">
                                                 <!-- Nom del Departament -->
                                                 <div class="col">
-                                                    {{ $mp->department->name }}
+                                                    {{ $promodule->department->name }}
                                                 </div>
                                                 <!-- Informació del mòdul -->
                                                 <div class="col">
                                                     <div class="row">
                                                         <dt class="col-sm-3">
-                                                            <a href="#" class="text-danger"><i class="far fa-file-pdf"></i></a> 
-                                                            MP {{ $mp->mp }}
+                                                            <a href="{{ url('dashboard/print-mp/'.$promodule->id) }}" class="text-danger">
+                                                                <i class="far fa-file-pdf"></i>
+                                                            </a> 
+                                                            MP {{ $promodule->mp }}
                                                         </dt>
-                                                        <dd class="col-sm-9">{{ $mp->name }}</dd>
+                                                        <dd class="col-sm-9">{{ $promodule->name }}</dd>
                                                     </div>
                                                 </div>
                                                 <div class="col">
-                                                    @foreach ($mp->trainingUnits as $tunit)
+                                                    @foreach ($promodule->trainingUnits as $tunit)
                                                         @if ($tunit->approved == true)
                                                             <div class="row">
                                                                 <dt class="col-sm-3">
-                                                                    <a href="#" class="text-danger"><i class="far fa-file-pdf"></i></a> 
+                                                                    <a href="{{ url('dashboard/print-mp/'.$tunit->id) }}" class="text-danger">
+                                                                        <i class="far fa-file-pdf"></i>
+                                                                    </a> 
                                                                     UF {{ $tunit->uf }}
                                                                 </dt>
                                                                 <dd class="col-sm-9">{{ $tunit->name }}</dd>
