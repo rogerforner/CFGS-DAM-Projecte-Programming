@@ -35,7 +35,13 @@ class ProfessionalModuleController extends Controller
         // Tot seguit es renderitza.
         $pdf =  \PDF::loadView('pdf.mp', compact('data'));
 
-        return $pdf->download('mp.pdf');
+        // Definir el títol del document.
+        $year       = date("Y");
+        $dMp        = $data->mp;
+        $dName      = str_replace(' ', '-', $data->name);
+        $dNameToMin = strtolower($dName);
+
+        return $pdf->download($year.'-mp'.$dMp.'-'.$dNameToMin.'.pdf');
     }
 
     /**

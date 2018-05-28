@@ -33,9 +33,15 @@ class TrainingUnitController extends Controller
 
         // Crea l'objecte View amb la vista del disseny i les dades.
         // Tot seguit es renderitza.
-        $pdf =  \PDF::loadView('pdf.mp', compact('data'));
+        $pdf =  \PDF::loadView('pdf.uf', compact('data'));
 
-        return $pdf->download('uf.pdf');
+        // Definir el títol del document.
+        $year       = date("Y");
+        $dUf        = $data->uf;
+        $dName      = str_replace(' ', '-', $data->name);
+        $dNameToMin = strtolower($dName);
+
+        return $pdf->download($year.'-uf'.$dUf.'-'.$dNameToMin.'.pdf');
     }
 
     /**

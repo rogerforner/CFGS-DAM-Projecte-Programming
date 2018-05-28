@@ -53,7 +53,7 @@
                                                         @if ($tunit->approved == true)
                                                             <div class="row">
                                                                 <dt class="col-sm-3">
-                                                                    <a href="{{ url('dashboard/print-mp/'.$tunit->id) }}" class="text-danger">
+                                                                    <a href="{{ url('dashboard/print-uf/'.$tunit->id) }}" class="text-danger">
                                                                         <i class="far fa-file-pdf"></i>
                                                                     </a> 
                                                                     UF {{ $tunit->uf }}
