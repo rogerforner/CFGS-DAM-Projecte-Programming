@@ -10,14 +10,76 @@
     </nav>
     
     <!-- COS -->
-    <div class="row">
+    <div id="usersCrud" class="row">
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    This is some text within a card body.
-                </div>
+                    <div class="container-fluid">
+                        <!-- TÍTOL + AFEGIR -->
+                        <div class="row">
+                            <div class="col-md-9">
+                                <h5 class="card-title">
+                                    Programming
+                                </h5>
+                            </div>
+                        </div><!-- /.row -->
+                        
+                        <!-- LLISTA DE MÒDULS PROFESSIONALS APROVATS -->
+                        <div class="row mt-5">
+                            <div class="table-responsive">
+                                
+                                <ul class="list-group list-group-flush">
+                                    @forelse ($mpsApproved as $mp)
+                                        <li class="list-group-item">
+                                            <div class="row">
+                                                <!-- Nom del Departament -->
+                                                <div class="col">
+                                                    {{ $mp->department->name }}
+                                                </div>
+                                                <!-- Informació del mòdul -->
+                                                <div class="col">
+                                                    <div class="row">
+                                                        <dt class="col-sm-3">
+                                                            <a href="#" class="text-danger"><i class="far fa-file-pdf"></i></a> 
+                                                            MP {{ $mp->mp }}
+                                                        </dt>
+                                                        <dd class="col-sm-9">{{ $mp->name }}</dd>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    @foreach ($mp->trainingUnits as $tunit)
+                                                        @if ($tunit->approved == true)
+                                                            <div class="row">
+                                                                <dt class="col-sm-3">
+                                                                    <a href="#" class="text-danger"><i class="far fa-file-pdf"></i></a> 
+                                                                    UF {{ $tunit->uf }}
+                                                                </dt>
+                                                                <dd class="col-sm-9">{{ $tunit->name }}</dd>
+                                                                <dt class="col-sm-3">Starts</dt>
+                                                                <dd class="col-sm-9">{{ $tunit->date_start }}</dd>
+                                                                <dt class="col-sm-3">Ends</dt>
+                                                                <dd class="col-sm-9">{{ $tunit->date_end }}</dd><hr>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </li>
+                                    @empty
+                                        <li class="list-group-item">No data yet.</li>
+                                    @endforelse
+                                </ul>
+                                
+                            </div><!-- /.table-responsive -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </div><!-- /.card-body -->
             </div><!-- /.card -->
         </div><!-- /.col -->
+        <!-- MODALS -->
+        @include('dashboard.users.partials.create')
+        @include('dashboard.users.partials.edit')
+        @include('dashboard.users.partials.delete')
     </div><!-- /.row -->
 </div><!-- /.container -->
 @endsection

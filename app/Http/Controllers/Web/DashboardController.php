@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Rogerforner\ScoolProgramming\Models\ProfessionalModule;
+use Rogerforner\ScoolProgramming\Models\TrainingUnit;
 
 class DashboardController extends Controller
 {
@@ -26,7 +28,12 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        // Obtenir tots els Mòduls Professionals aprovats.
+        $mpsApproved = ProfessionalModule::where('approved', '=', true)
+            ->orderBy('department_id', 'asc') 
+            ->paginate(8, ['*'], 'promodules');
+
+        return view('dashboard.index', compact('mpsApproved'));
     }
 
     /**
