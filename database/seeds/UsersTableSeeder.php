@@ -35,6 +35,16 @@ class UsersTableSeeder extends Seeder
             'email'    => 'profeb@example.com',
             'password' => bcrypt(123456)
         ]);
+        $teacherC = User::create([
+            'name'     => 'Profe C',
+            'email'    => 'profec@example.com',
+            'password' => bcrypt(123456)
+        ]);
+        $teacherD = User::create([
+            'name'     => 'Profe D',
+            'email'    => 'profed@example.com',
+            'password' => bcrypt(123456)
+        ]);
 
         // Estudiants
         $studentUser = User::create([
@@ -47,6 +57,8 @@ class UsersTableSeeder extends Seeder
         $adminUser->assignRole('admin');
         $teacherA->assignRole('teacher');
         $teacherB->assignRole('teacher');
+        $teacherC->assignRole('teacher');
+        $teacherD->assignRole('teacher');
         $studentUser->assignRole('student');
     }
 }

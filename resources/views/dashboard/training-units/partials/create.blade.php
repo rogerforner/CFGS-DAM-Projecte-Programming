@@ -162,7 +162,7 @@
                             <option v-for="promodule in index.promodules" :key="promodule.id"
                                     :value="promodule.id"
                                     v-if="index.userAuth.email == promodule.created_by">
-                                @{{ promodule.name }}
+                                M@{{ promodule.mp }}, @{{ promodule.name }}
                             </option>
                         </select>
                     </div>

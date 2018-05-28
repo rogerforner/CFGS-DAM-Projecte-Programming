@@ -72,6 +72,7 @@
                                             <tr v-for="temary in index.temarieswp"
                                                 :key="temary.id"
                                                 v-if="temary.created_by == index.userAuth.email ||
+                                                      index.userAuth.email == 'profea@example.com' ||
                                                       index.userAuth.id == 1">
                                                 <th scope="row">@{{ temary.training_unit_id }}</th>
                                                 <td>@{{ temary.nf }}</td>

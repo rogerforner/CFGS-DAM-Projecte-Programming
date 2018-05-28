@@ -55,7 +55,6 @@
                                     <caption v-else><small>No data yet.</small></caption>
                                     <thead class="bg-primary text-light">
                                         <tr>
-                                            <th scope="col">PM</th>
                                             <th scope="col">UF</th>
                                             <th scope="col">Name</th>
                                             <th scope="col">Dates</th>
@@ -75,8 +74,8 @@
                                         <tr v-for="trainingUnit in index.tunitswp"
                                             :key="trainingUnit.id"
                                             v-if="trainingUnit.created_by == index.userAuth.email ||
+                                                  index.userAuth.email == 'profea@example.com' ||
                                                   index.userAuth.id == 1">
-                                            <th scope="row">@{{ trainingUnit.professional_module_id }}</th>
                                             <td>@{{ trainingUnit.uf }}</td>
                                             <td>@{{ trainingUnit.name }}</td>
                                             <td>
@@ -125,7 +124,9 @@
                                                 {{-- Creem un filtre:
                                                 1. El Cap de departament té accés a tots els MP.
                                                 2. L'Administrador té accés a tots els MP. --}}
-                                                <div class="d-inline">
+                                                <div class="d-inline"
+                                                     v-if="index.userAuth.email == 'profea@example.com' ||
+                                                           index.userAuth.id == 1">
                                                     <!-- APROVAR -->
                                                     <button type="button" class="btn btn-success"
                                                             :disabled="trainingUnit.section1 == null ||
