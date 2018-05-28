@@ -9,7 +9,7 @@ use Rogerforner\ScoolProgramming\Models\Department;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens, HasRoles, Notifiable;
 
     /**
      * The attributes that are mass assignable.
