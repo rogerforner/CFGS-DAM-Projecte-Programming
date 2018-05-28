@@ -45,3 +45,7 @@ Vue.component(
     'scool-programming-temaries',
     require('./components/scool-programming/TemariesComponent.vue'
 ));
+
+const app = new Vue({
+    el: '#app'
+});

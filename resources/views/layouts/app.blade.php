@@ -31,15 +31,13 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        @auth
-            @include('layouts.partials.navbar')
-        @endauth
+    @auth
+        @include('layouts.partials.navbar')
+    @endauth
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+    <main class="py-4">
+        @yield('content')
+    </main>
     
     <!-- Scripts -->
     @yield('scripts')

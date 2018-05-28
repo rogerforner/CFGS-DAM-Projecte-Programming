@@ -20,10 +20,15 @@ Route::resource('dashboard', 'Web\DashboardController', [
     'only' => ['index']
 ]);
 
-// En les següents rutes només podran accedir els/les Administradors/res i Professors/res.
-Route::middleware(['role:admin|teacher'])->group(function () {
+// Només l'usuari administrador té accés a les següents rutes.
+Route::middleware(['role:admin'])->group(function () {
     // Dashboard: Passport.
     Route::resource('dashboard/access-tokens', 'Web\AccessTokenController', [
+        'only' => ['index']
+    ]);
+
+    // Dashboard: Programming, Users.
+    Route::resource('dashboard/users', 'Web\UserController', [
         'only' => ['index']
     ]);
 
@@ -31,7 +36,10 @@ Route::middleware(['role:admin|teacher'])->group(function () {
     Route::resource('dashboard/departments', 'Web\DepartmentController', [
         'only' => ['index']
     ]);
+});
 
+// En les següents rutes només podran accedir els/les Administradors/res i Professors/res.
+Route::middleware(['role:admin|teacher'])->group(function () {
     // Dashboard: Programming, Professional Modules.
     Route::resource('dashboard/professional-modules', 'Web\ProfessionalModuleController', [
         'only' => ['index']
@@ -44,11 +52,6 @@ Route::middleware(['role:admin|teacher'])->group(function () {
 
     // Dashboard: Programming, Training Units.
     Route::resource('dashboard/training-units', 'Web\TrainingUnitController', [
-        'only' => ['index']
-    ]);
-
-    // Dashboard: Programming, Users.
-    Route::resource('dashboard/users', 'Web\UserController', [
         'only' => ['index']
     ]);
 });

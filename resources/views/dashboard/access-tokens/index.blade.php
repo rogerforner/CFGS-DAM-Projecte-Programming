@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div id="app" class="container">
     <!-- BREADCRUMBS -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
