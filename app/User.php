@@ -2,10 +2,11 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Rogerforner\ScoolProgramming\Models\Department;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
