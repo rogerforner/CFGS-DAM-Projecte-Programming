@@ -28,7 +28,7 @@
                         <div class="row mt-5">
                             <div class="table-responsive">
                                 
-                                <ul class="list-group list-group-flush">
+                                <ul class="list-group list-group-flush mb-4">
                                     @forelse ($mpsApproved as $mp)
                                         <li class="list-group-item">
                                             <div class="row">
@@ -69,6 +69,9 @@
                                         <li class="list-group-item">No data yet.</li>
                                     @endforelse
                                 </ul>
+
+                                <!-- Paginació -->
+                                {{ $mpsApproved->links() }}
                                 
                             </div><!-- /.table-responsive -->
                         </div><!-- /.row -->
