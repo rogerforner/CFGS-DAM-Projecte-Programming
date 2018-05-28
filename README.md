@@ -19,14 +19,21 @@
 
 # Què és?
 
-**[Programming](http://acacha.org/mediawiki/Scool/programming#.WuNzDojFKUk)** és el projecte final del Cicle Formatiu de Grau Superior de _Desenvolupament d'Aplicacions Multiplataforma (DAM)_, de l'[Institut de l'Ebre](https://www.iesebre.com/) (Tortosa - Terres de l'Ebre).
+**[Programming Package](https://github.com/rogerforner/programming-package)** és el projecte final del Cicle Formatiu de Grau Superior de _Desenvolupament d'Aplicacions Multiplataforma (DAM)_, de l'[Institut de l'Ebre](https://www.iesebre.com/) (Tortosa - Terres de l'Ebre).
+
+Aquest és un paquet que es pot veure implementat en aquest mateix repositori **Programming**.
 
 # Qui?
 
 Alumne:
-- [Roger Forner Fabre](https://www.linkedin.com/in/rogerforner/)
+- [Roger Forner Fabre](https://rogerforner.com)
 
-Professor:
+Professors:
+- Gonçal Verge Arnau
+- Jaume Ramos Prades
+- Javier Sancho Fabregat
+- Quique Lorente Fuertes
+- Santiago Sabaté Sanz
 - Sergi Tur Badenas
 
 # Laravel

@@ -49,8 +49,8 @@ Route::group(['prefix' => 'api/scool/programming', 'middleware' => 'auth:api'], 
 |
 */
 
-Route::group(['prefix'=>'scool'], function () {
-    Route::resource('programming', LandingController::class, [
-        'only' => ['index']
-    ]);
-});
+// Route::group(['prefix'=>'scool'], function () {
+//     Route::resource('programming', LandingController::class, [
+//         'only' => ['index']
+//     ]);
+// });
