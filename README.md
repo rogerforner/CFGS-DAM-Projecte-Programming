@@ -3,6 +3,7 @@
 **Taula de continguts**
 
 - [Què és?](#que-es)
+	- [Enllaços d'interès](#enllacos-dinteres)
 - [Qui?](#qui)
 - [Laravel](#laravel)
 - [Vue](#vue)
@@ -16,12 +17,22 @@
 		- [Enviament de correus electrònics](#enviament-de-correus-electronics)
 	- [Assets](#assets)
 	- [Servidor](#servidor)
+- [Recursos emprats](#recursos-emprats)
+	- [Laravel](#laravel)
+	- [CSS i Fonts](#css-i-fonts)
+	- [JavaScript](#javascript)
+	- [Tercers](#tercers)
 
 # Què és?
 
 **[Programming Package](https://github.com/rogerforner/programming-package)** és el projecte final del Cicle Formatiu de Grau Superior de _Desenvolupament d'Aplicacions Multiplataforma (DAM)_, de l'[Institut de l'Ebre](https://www.iesebre.com/) (Tortosa - Terres de l'Ebre).
 
 Aquest és un paquet que es pot veure implementat en aquest mateix repositori **Programming**.
+
+## Enllaços d'interès
+
+- [Veure la presentació](https://rogerforner.github.io/programmingPresentacio/)
+- [Veure la documentació (paquet)](https://rogerforner.github.io/programming-package/)
 
 # Qui?
 
@@ -154,3 +165,31 @@ $ php artisan serve
 ```
 
 _És important no aturar el servidor mentre es treballi amb l'aplicació web ja que, llavors, no visualitzariem els canvis que es realitzin en el front-end._
+
+# Recursos emprats
+
+## Laravel
+
+Laravel és un framework PHP.
+
+- [Programming Package](https://github.com/rogerforner/programming-package)
+- [API Authentication (Passport)](https://laravel.com/docs/5.6/passport)
+- [Laravel Socialite](https://laravel.com/docs/5.6/socialite)
+- [Spatie Laravel Permission](https://github.com/spatie/laravel-permission#installation)
+
+## CSS i Fonts
+
+- [Bootstrap](https://getbootstrap.com/) (framework CSS)
+- [Font Awesome](https://fontawesome.com/)
+
+## JavaScript
+
+- [Toastr](https://github.com/CodeSeven/toastr)
+- [Vue.js](https://vuejs.org/)
+- [axios](https://github.com/axios/axios)
+- [jQuery](https://jquery.com/)
+
+## Tercers
+
+- [GitHub](https://github.com/)
+- [GitHub Pages](https://pages.github.com/)

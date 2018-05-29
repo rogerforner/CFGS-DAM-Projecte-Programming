@@ -8,6 +8,10 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
+                    <div class="alert alert-warning" role="alert">
+                        <p><strong>Projecte</strong> - Cicle Formatiu de Grau Superior de Desenvolupament d'Aplicacions Multiplataforma (DAM)</p>
+                        <p>Institut de l'Ebre, Tortosa.</p>
+                    </div>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <!-- E-Mail -->
@@ -77,10 +81,10 @@
                                 <a class="btn btn-danger" href="/login/google" role="button">
                                     Google <i class="fab fa-google-plus"></i>
                                 </a>
-                                <!-- Twitter -->
+                                <!-- Twitter
                                 <a class="btn btn-info" href="/login/twitter" role="button">
                                     Twitter <i class="fab fa-twitter"></i>
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                     </form>
