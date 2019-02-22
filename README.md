@@ -25,14 +25,20 @@
 
 # Què és?
 
-**[Programming Package](https://github.com/rogerforner/programming-package)** és el projecte final del Cicle Formatiu de Grau Superior de _Desenvolupament d'Aplicacions Multiplataforma (DAM)_, de l'[Institut de l'Ebre](https://www.iesebre.com/) (Tortosa - Terres de l'Ebre).
+**Programming Package** és el projecte final del Cicle Formatiu de Grau Superior de _Desenvolupament d'Aplicacions Multiplataforma (DAM)_, de l'[Institut de l'Ebre](https://www.iesebre.com/) (Tortosa - Terres de l'Ebre).
 
 Aquest és un paquet que es pot veure implementat en aquest mateix repositori **Programming**.
 
 ## Enllaços d'interès
 
-- [Veure la presentació](https://rogerforner.github.io/programmingPresentacio/)
-- [Veure la documentació (paquet)](https://rogerforner.github.io/programming-package/)
+- [Projecte de la presentació](https://github.com/rogerforner/CFGS-DAM-Projecte-Programming-Presentacio)
+- [Projecte final](https://github.com/rogerforner/CFGS-DAM-Projecte-Programming-Package)
+
+---
+
+- [Landing](https://rogerforner.github.io/CFGS-DAM-Projecte-Programming-Presentacio/)
+- [Veure la presentació](https://rogerforner.github.io/CFGS-DAM-Projecte-Programming-Presentacio/presentation/index.html)
+- [Veure la documentació (paquet)](https://rogerforner.github.io/CFGS-DAM-Projecte-Programming-Package/)
 
 # Qui?
 
